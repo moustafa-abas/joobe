@@ -1,0 +1,143 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  background-color: #fff;
+  font-family: Montserrat;
+}
+
+:root {
+  --Text-Color:#090F24 ;
+  --pr:#072AC8;
+  --S-Spacing:8px;
+  --r-16:16px;
+  --Disabled-Text-Color:#848484;
+  --Stroke:#BDBDBD;
+  --BG-Color:#fff;
+  --White:#fff;
+  --input-field-70:rgba(132, 132, 132, 0.70);
+}
+
+.login .left .logo {
+  width: 228px;
+  height: 76px;
+  flex-shrink: 0;
+  background: url(<path-to-image>), lightgray 50%/cover no-repeat;
+  margin: 40px 0 0 48px;
+}
+.login .left h2 {
+  color: var(--Text-Color, #090F24);
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 30px; /* 93.75% */
+  margin: 30px 0 0 112px;
+}
+.login .left .form {
+  margin: 20px 0 0 112px;
+  width: 489px;
+}
+.login .left .form .name, .login .left .form .password {
+  display: flex;
+  height: 72px;
+  padding: var(--r-16, 16px) var(--S-Spacing, 8px) var(--r-16, 16px) var(--r-16, 16px);
+  gap: var(--S-Spacing, 8px);
+  flex-shrink: 0;
+  border-radius: 8px;
+  border: 1px solid var(--Stroke, #BDBDBD);
+  background: var(--BG-Color, #FFF);
+}
+.login .left .form .name::-moz-placeholder, .login .left .form .password::-moz-placeholder {
+  padding-left: 30px;
+  height: 22px;
+  flex: 1 0 0;
+  color: var(--input-field-70, rgba(132, 132, 132, 0.7));
+  font-size: 20px;
+  font-weight: 400;
+}
+.login .left .form .name::placeholder, .login .left .form .password::placeholder {
+  padding-left: 30px;
+  height: 22px;
+  flex: 1 0 0;
+  color: var(--input-field-70, rgba(132, 132, 132, 0.7));
+  font-size: 20px;
+  font-weight: 400;
+}
+.login .left .form .label {
+  width: -moz-max-content;
+  width: max-content;
+  position: relative;
+  top: 20px;
+  left: 10px;
+  padding: 0 5px;
+}
+.login .left .form .inputIcon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  top: 53px;
+  left: 16px;
+}
+.login .left .form .passIcon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  right: 8px;
+  top: 53px;
+}
+.login .left .form .passIcon:hover {
+  cursor: pointer;
+}
+.login .left .form .submit {
+  display: flex;
+  height: 72px;
+  padding: 20px var(--S-Spacing, 8px);
+  justify-content: center;
+  gap: var(--S-Spacing, 8px);
+  border-radius: 10px;
+  background: var(--pr, #072AC8);
+  box-shadow: 4px 4px 13px 0px rgba(255, 255, 255, 0.25) inset;
+  color: #FFF;
+  font-size: 20px;
+  font-weight: 700;
+  border: none;
+  margin-top: 32px;
+}
+.login .left .form p {
+  margin: 40px 0;
+}
+.login .left .form p span {
+  color: var(--Disabled-Text-Color, #848484);
+  font-family: Montserrat;
+  font-size: 15px;
+  font-weight: 500;
+  text-align: center;
+  padding: 0 13px;
+}
+.login .left .form button {
+  display: flex;
+  width: 489px;
+  height: 64px;
+  padding: 20px var(--S-Spacing, 8px);
+  justify-content: center;
+  align-items: center;
+  gap: var(--S-Spacing, 8px);
+  border-radius: 10px;
+  border: 1px solid var(--Stroke, #BDBDBD);
+  background: var(--White, #FFF);
+}
+.login .left .registration {
+  margin: 28px 0 50px 148px;
+  color: var(--Details-Text-Color, #626262);
+  font-size: 20px;
+  font-weight: 400;
+}
+.login .left .registration .signLink {
+  color: var(--pr, #072AC8);
+  font-size: 20px;
+  font-weight: 700;
+  text-decoration-line: underline;
+}
+.login .left .registration .signLink:hover {
+  cursor: pointer;
+}/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.5.1",
+    "@fortawesome/free-regular-svg-icons": "^6.5.1",
+    "@fortawesome/free-solid-svg-icons": "^6.5.1",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@react-spring/web": "^9.7.3",
+    "bootstrap": "^5.3.3",
+    "react-bootstrap": "^2.10.1",
+    "react-router-dom": "^6.22.3",
+    "sass": "^1.72.0"
+  }
+}
