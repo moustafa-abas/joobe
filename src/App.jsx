@@ -1,13 +1,13 @@
 import './style/style.scss'
-import LogIn from './pages/registration/LogIn';
 import {BrowserRouter as Router, Routes,Route} from'react-router-dom'
+import LogIn from './pages/registration/LogIn';
 import SelectSign from './pages/registration/SelectSign';
 import SignUp from './pages/registration/SignUp';
 import Junior from './pages/registration/Junior';
 import StartUp from './pages/registration/StartUp';
 import {Instructor}  from'./pages/registration/Instructor';
 import Header from './pages/components/Header';
-import StdHome from './pages/student/StdHome';
+import Home from './pages/student/Home';
 import Jobs from './pages/student/Jobs';
 import Courses from './pages/student/Courses';
 import Quiz from './pages/student/Quiz';
@@ -29,7 +29,7 @@ const App=()=> {
         <Route path='/startup' Component={StartUp}/>
         <Route path='/instructor' Component={Instructor}/>
         <Route path='/header' Component={Header}/>
-        <Route exact path='/' Component={StdHome}/>
+        <Route exact path='/' Component={Home}/>
         <Route path='/jobs' Component={Jobs}/>
         <Route path='/courses' Component={Courses}/>
         <Route path='/quiz' Component={Quiz}/>

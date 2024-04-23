@@ -21,7 +21,7 @@ import Footer from "../components/Footer"
 import Job from '../components/job'
 import Header from '../components/Header'
 
-const StdHome = () => {
+const Home = () => {
 
 return (
 <home className="home">
@@ -168,4 +168,4 @@ return (
 )
 }
 
-export default StdHome
+export default Home
