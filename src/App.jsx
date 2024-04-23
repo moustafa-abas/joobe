@@ -1,6 +1,8 @@
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import './style/style.scss'
-import {BrowserRouter as Router, Routes,Route} from'react-router-dom'
 import LogIn from './pages/registration/LogIn';
+import {BrowserRouter as Router, Routes,Route} from'react-router-dom'
 import SelectSign from './pages/registration/SelectSign';
 import SignUp from './pages/registration/SignUp';
 import Junior from './pages/registration/Junior';
@@ -17,19 +19,22 @@ import Profile from './pages/student/Profile';
 import Payment from './pages/student/Payment';
 import Course from './pages/student/Course';
 import Footer from './pages/components/Footer';
+import { Test } from './pages/registration/test';
+// import CmpHome from './pages/Home/CmpHome';
+// import InstHome from './pages/Home/InstHome';
 const App=()=> {
 
   return (
     <Router>
       <Routes>
-        <Route path='/login' Component={LogIn}/>
+        <Route   exact path='/' Component={LogIn}/>
         <Route path='/signup' Component={SignUp}/>
         <Route path='/select' Component={SelectSign}/>
         <Route path='/junior' Component={Junior}/>
         <Route path='/startup' Component={StartUp}/>
         <Route path='/instructor' Component={Instructor}/>
         <Route path='/header' Component={Header}/>
-        <Route exact path='/' Component={Home}/>
+        <Route path='/home' Component={Home}/>
         <Route path='/jobs' Component={Jobs}/>
         <Route path='/courses' Component={Courses}/>
         <Route path='/quiz' Component={Quiz}/>
@@ -39,6 +44,7 @@ const App=()=> {
         <Route path='/payment' Component={Payment}/>
         <Route path='/course' Component={Course}/>
         <Route path='/footer' Component={Footer}/>
+        <Route path='/test' Component={Test}/>
       </Routes>
     </Router>
   )

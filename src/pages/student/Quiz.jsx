@@ -1,4 +1,5 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import axios from 'axios';
 import Footer from "../components/Footer"
 import Header from "../components/Header"
 import quiz from '../images/quiz.svg'
@@ -8,9 +9,32 @@ import trueIcon from '../images/true.svg'
 import circle from '../images/circle.svg'
 import lock from '../images/lock.svg'
 import result from '../images/result.jpg'
+
 const Quiz = () => {
     const [page, setPage] = useState("home");
     const [answer, setAnswer] = useState("");
+    const [exams, setExams] = useState([]);
+    const [currentQuestion,setCurrentQuestion] = useState(0);
+    const next=()=>{
+    const nextQuestion=currentQuestion + 1;
+    if(currentQuestion<exams.length){
+    setCurrentQuestion(nextQuestion)
+    }else{
+        setPage("result");
+}
+    }
+    useEffect(() => {
+        axios.get('https://jobee-5pfw.onrender.com/api/exam',{     
+        headers: {
+            Authorization : 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJuZXczVXNlcjRAZ21haWwuY29tIiwiaWF0IjoxNzEzODEwMzcyLCJleHAiOjE3MTY0MDIzNzJ9.7Y0QpPKDz4cieMVXRpRCid8QIS-YRowJgLuyQEOLcFs'
+        }})
+            .then(response => {
+            setExams(response.data.data.exam);
+            })
+            .catch(error => {
+            console.error('حدث خطأ أثناء جلب التراكات:', error);
+            });
+        },[]);
 return (
 <quizzes>
     <Header/>
@@ -134,31 +158,20 @@ page==="page2"?
 </header>
 
 <div className="range"></div>
-<p className="fs-4 fw-light text-center">1 Questions</p>
+<p className="fs-4 fw-light text-center"> Question {currentQuestion + 1}</p>
 
-<h3 className="text-center fs-2">Which of the typographic is primarily Responsible for guiding readers through the content and indicating the information ?</h3>
+<h3 className="text-center fs-2" key={exams[currentQuestion]}>{exams[currentQuestion].question}</h3>
 
 <form  action='' onChange={(e)=>setAnswer(e.target.value)} >
-<div className="group d-flex align-items-center my-5 py-4">
-<input type="radio" id="answer1"  name="option" value={answer}  className="ms-3 me-3"/>
-<label htmlFor='answer1' className="fs-4 fw-semibold w-100">Font Color</label>
+{exams[currentQuestion].options.map((option)=>(
+<div className="group d-flex align-items-center my-5 py-4" key={option}>
+<input type="radio" id={option._id}  name="option" value={option._id}  className="ms-3 me-3"/>
+<label htmlFor={option._id} className="fs-4 fw-semibold w-100" >{option.answer}</label>
 </div>
-<div className="group d-flex align-items-center my-5 py-4">
-<input type="radio" id="answer2" name="option" value={answer} className="ms-3 me-3"/>
-<label htmlFor='answer2' className="fs-4 fw-semibold w-100">Font Size</label>
-</div>
-<div className="group d-flex align-items-center my-5 py-4">
-<input type="radio" id="answer3" name="option" value={answer} className="ms-3 me-3"/>
-<label  htmlFor='answer3' className="fs-4 fw-semibold w-100">Letter Spacing</label>
-</div>
-<div className="group d-flex align-items-center my-5 py-4">
-<input type="radio" id="answer4" name="option" value={answer} className="ms-3 me-3"/>
-<label  htmlFor='answer4' className="fs-4 fw-semibold w-100">Hierarchy approach</label>
-</div>
+            ))}  
 
-<submitButton onClick={()=>{
-    setPage("result")
-}} className='py-4 w-50 my-5'>Next</submitButton>
+
+<submitButton onClick={next} className='py-4 w-50 my-5'>Next</submitButton>
 </form>
 </div>
 

@@ -163,7 +163,7 @@ placeholder='Enter your skills'
             </label>
             </cvGroup>
 <submitButton type="submit" className='mb-5 py-4' onClick={()=>{
-    location.replace("/juniorhome")
+    location.replace("/home")
 }}>Save</submitButton>
 
 </>
