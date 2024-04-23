@@ -17,9 +17,6 @@ import Profile from './pages/student/Profile';
 import Payment from './pages/student/Payment';
 import Course from './pages/student/Course';
 import Footer from './pages/components/Footer';
-import Test  from './test';
-// import CmpHome from './pages/Home/CmpHome';
-// import InstHome from './pages/Home/InstHome';
 const App=()=> {
 
   return (
