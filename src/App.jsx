@@ -7,7 +7,7 @@ import SelectSign from './pages/registration/SelectSign';
 import SignUp from './pages/registration/SignUp';
 import Junior from './pages/registration/Junior';
 import StartUp from './pages/registration/StartUp';
-import {Instructor}  from'./pages/registration/Instructor';
+import Instructor  from'./pages/registration/Instructor';
 import Header from './pages/components/Header';
 import StdHome from './pages/student/StdHome';
 import Jobs from './pages/student/Jobs';
@@ -19,7 +19,7 @@ import Profile from './pages/student/Profile';
 import Payment from './pages/student/Payment';
 import Course from './pages/student/Course';
 import Footer from './pages/components/Footer';
-import { Test } from './test';
+import Test  from './test';
 // import CmpHome from './pages/Home/CmpHome';
 // import InstHome from './pages/Home/InstHome';
 const App=()=> {
@@ -27,14 +27,14 @@ const App=()=> {
   return (
     <Router>
       <Routes>
-        <Route   exact path='/' Component={LogIn}/>
+        <Route    path='/login' Component={LogIn}/>
         <Route path='/signup' Component={SignUp}/>
         <Route path='/select' Component={SelectSign}/>
         <Route path='/junior' Component={Junior}/>
         <Route path='/startup' Component={StartUp}/>
         <Route path='/instructor' Component={Instructor}/>
         <Route path='/header' Component={Header}/>
-        <Route path='/juniorhome' Component={StdHome}/>
+        <Route exact path='/' Component={StdHome}/>
         <Route path='/jobs' Component={Jobs}/>
         <Route path='/courses' Component={Courses}/>
         <Route path='/quiz' Component={Quiz}/>
