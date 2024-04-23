@@ -1,5 +1,3 @@
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import './style/style.scss'
 import LogIn from './pages/registration/LogIn';
 import {BrowserRouter as Router, Routes,Route} from'react-router-dom'
@@ -7,7 +5,7 @@ import SelectSign from './pages/registration/SelectSign';
 import SignUp from './pages/registration/SignUp';
 import Junior from './pages/registration/Junior';
 import StartUp from './pages/registration/StartUp';
-import Instructor  from'./pages/registration/Instructor';
+import {Instructor}  from'./pages/registration/Instructor';
 import Header from './pages/components/Header';
 import StdHome from './pages/student/StdHome';
 import Jobs from './pages/student/Jobs';
@@ -27,7 +25,7 @@ const App=()=> {
   return (
     <Router>
       <Routes>
-        <Route    path='/login' Component={LogIn}/>
+        <Route path='/login' Component={LogIn}/>
         <Route path='/signup' Component={SignUp}/>
         <Route path='/select' Component={SelectSign}/>
         <Route path='/junior' Component={Junior}/>
@@ -44,7 +42,6 @@ const App=()=> {
         <Route path='/payment' Component={Payment}/>
         <Route path='/course' Component={Course}/>
         <Route path='/footer' Component={Footer}/>
-        <Route path='/test' Component={Test}/>
       </Routes>
     </Router>
   )
