@@ -26,7 +26,7 @@ return (
         <img src={search} alt="" className='position-absolute  '/>
         </form>
         <ul className='m-0  d-lg-flex d-none  justify-content-between align-items-center '>
-        <li className='me-4'><NavLink className='text-decoration-none'  activeClassName="active" to={"/juniorhome"}>Home</NavLink></li>
+        <li className='me-4'><NavLink className='text-decoration-none'  activeClassName="active" to={"/"}>Home</NavLink></li>
         <li className='mx-4'><NavLink className='text-decoration-none' activeClassName="active" to={"/community"}>Community</NavLink></li>
         <li className='mx-4'><NavLink className='text-decoration-none' activeClassName="active" to={"/jobs"}>Jops</NavLink></li>
 {isLogined?<>
@@ -40,7 +40,7 @@ return (
         </ul>
         {showLinks?
         <ul className='m-0  d-flex d-lg-none flex-column  justify-content-between align-items-center '>
-            <li className='me-3'><NavLink className='text-decoration-none'  activeClassName="active" to={"/juniorhome "}>Home</NavLink></li>
+            <li className='me-3'><NavLink className='text-decoration-none'  activeClassName="active" to={"/ "}>Home</NavLink></li>
             <li className='mx-3'><NavLink className='text-decoration-none' activeClassName="active" to={"/community"}>Community</NavLink></li>
             <li className='mx-3'><NavLink className='text-decoration-none' activeClassName="active" to={"/jobs"}>Jops</NavLink></li>
 {isLogined?<>
