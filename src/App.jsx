@@ -1,52 +1,66 @@
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import './style/style.scss'
-import LogIn from './pages/registration/LogIn';
+import { Suspense, lazy } from 'react';
 import {BrowserRouter as Router, Routes,Route} from'react-router-dom'
-import SelectSign from './pages/registration/SelectSign';
-import SignUp from './pages/registration/SignUp';
-import Junior from './pages/registration/Junior';
-import StartUp from './pages/registration/StartUp';
-import {Instructor}  from'./pages/registration/Instructor';
-import Header from './pages/components/Header';
-import Home from './pages/student/Home';
-import Jobs from './pages/student/Jobs';
-import Courses from './pages/student/Courses';
-import Quiz from './pages/student/Quiz';
-import ApplyJob from './pages/student/ApplyJob';
-import Community from './pages/student/Community';
-import Profile from './pages/student/Profile';
-import Payment from './pages/student/Payment';
-import Course from './pages/student/Course';
-import Footer from './pages/components/Footer';
-import { Test } from './pages/registration/test';
-// import CmpHome from './pages/Home/CmpHome';
-// import InstHome from './pages/Home/InstHome';
+const LogIn = lazy(()=>import('./pages/registration/LogIn'))
+const SignUp = lazy(()=>import('./pages/registration/SignUp'))
+const SelectSign = lazy(()=>import('./pages/registration/SelectSign'))
+const Junior = lazy(()=>import('./pages/registration/Junior'))
+const StartUp = lazy(()=>import('./pages/registration/StartUp'))
+const Instructor = lazy(()=>import('./pages/registration/Instructor'))
+const Home = lazy(()=>import('./pages/student/Home'))
+const Jobs = lazy(()=>import('./pages/student/jobs/Jobs'))
+const All_Jobs = lazy(()=>import('./pages/student/jobs/All_Jobs'))
+const ApplyJob = lazy(()=>import('./pages/student/jobs/ApplyJob'))
+
+const Courses = lazy(()=>import('./pages/student/courses/Courses'))
+const All_Courses = lazy(()=>import('./pages/student/courses/All_Course'))
+const Course_Details = lazy(()=>import('./pages/student/courses/Course_Details'))
+
+const Quiz = lazy(()=>import('./pages/student/quiz/Quiz'))
+const Tasks = lazy(()=>import('./pages/student/quiz/Daily-Tasks'))
+const Questions = lazy(()=>import('./pages/student/quiz/Question'))
+const Result = lazy(()=>import('./pages/student/quiz/Result'))
+const Community = lazy(()=>import('./pages/student/Community'))
+const Profile = lazy(()=>import('./pages/student/Profile'))
+const Payment = lazy(()=>import('./pages/student/Payment'))
+const Course = lazy(()=>import('./pages/student/courses/Course_Enrolled'))
+const Test = lazy(()=>import('./pages/registration/test'))
 const App=()=> {
 
   return (
+    <Suspense fallback={<h1 className='text-center'>loading</h1>}>
     <Router>
       <Routes>
-        <Route   exact path='/' Component={LogIn}/>
+        <Route path='/login' Component={LogIn}/>
         <Route path='/signup' Component={SignUp}/>
         <Route path='/select' Component={SelectSign}/>
         <Route path='/junior' Component={Junior}/>
         <Route path='/startup' Component={StartUp}/>
         <Route path='/instructor' Component={Instructor}/>
-        <Route path='/header' Component={Header}/>
-        <Route path='/home' Component={Home}/>
+
+        <Route exact path='/' Component={Home}/>
+
         <Route path='/jobs' Component={Jobs}/>
+        <Route path='/jobs/all_jobs' Component={All_Jobs}/>
+        <Route path='/jobs/applyJob' Component={ApplyJob}/>
+        
         <Route path='/courses' Component={Courses}/>
-        <Route path='/quiz' Component={Quiz}/>
-        <Route path='/applyJob' Component={ApplyJob}/>
+        <Route path='/courses/all-courses' Component={All_Courses}/>
+        <Route path='/courses/course_details' Component={Course_Details}/>
+        <Route path='/courses/enrolled' Component={Course}/>
+
+        <Route path='/quiz/home' Component={Quiz}/>
+        <Route path='/quiz/daily-tasks' Component={Tasks}/>
+        <Route path='/quiz/questions' Component={Questions}/>
+        <Route path='/quiz/result' Component={Result}/>
+
         <Route path='/community' Component={Community}/>
         <Route path='/profile' Component={Profile}/>
         <Route path='/payment' Component={Payment}/>
-        <Route path='/course' Component={Course}/>
-        <Route path='/footer' Component={Footer}/>
         <Route path='/test' Component={Test}/>
       </Routes>
     </Router>
+    </Suspense>
   )
 }
 

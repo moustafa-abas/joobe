@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBuilding } from '@fortawesome/free-regular-svg-icons'
+import { faBuilding } from '@fortawesome/free-solid-svg-icons'
 import { faUserGraduate } from '@fortawesome/free-solid-svg-icons'
 import { faPersonChalkboard } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react'
@@ -53,7 +53,7 @@ className='d-flex mx-auto text-center my-5' onChange={(e)=>setState(e.target.val
 </selection>
 
 </form>
-<submitButton type='submit' className='mx-auto py-4' onClick={handleSignUp}>Select</submitButton>
+<button type='submit' className='mx-auto py-4' onClick={handleSignUp}>Select</button>
 
 </div>
 )

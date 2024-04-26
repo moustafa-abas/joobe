@@ -1,9 +1,9 @@
-import add from'../images/add.svg'
-import visa from'../images/Visa.svg'
-import master from'../images/Mastercard logo.svg'
-import code from'../images/promo code.svg'
-import course from'../images/course1.jpg'
-import Footer from '../components/Footer'
+import add from'../../images/add.svg'
+import visa from'../../images/Visa.svg'
+import master from'../../images/Mastercard logo.svg'
+import code from'../../images/promo code.svg'
+import course from'../../images/course1.jpg'
+import Footer from '../../components/Footer'
 import { useState } from 'react'
 const Payment = () => {
     const [oldCard, setOldCard] = useState(true);
@@ -87,7 +87,7 @@ name='cvv'
     <input type="checkbox"  id='checkbox' className=' p-2 me-3'/>
     <label htmlFor="checkbox">Save this card securely for future purposes</label>
     </div>
-    <submitButton className='mt-5 py-4 w-50'><a href="/course"> Pay Now</a></submitButton>
+    <button className='mt-5 py-4 w-50'><a href="/course/enrolled"> Pay Now</a></button>
 </form>
 
 </left>
@@ -179,7 +179,7 @@ name='cvv'
     <input type="checkbox"  id='checkbox' className=' p-2 me-3'/>
     <label htmlFor="checkbox " >Save this card securely for future purposes</label>
     </div>
-    <submitButton className='mt-5 py-4 w-100'  ><a href="/payment"> Save Card</a></submitButton>
+    <button className='mt-5 py-4 w-100'  ><a href="/payment"> Save Card</a></button>
 
 </form>
 </>

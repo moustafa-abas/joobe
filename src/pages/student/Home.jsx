@@ -1,25 +1,25 @@
-import left from'../images/landing-left.jpg'
-import right from'../images/landing-right.png'
-import learn from'../images/Learn More icon.svg'
-import smile from'../images/smile.svg'
-import jobs from'../images/jobs icon.svg'
-import internship from'../images/intership icon.svg'
-import courses from'../images/courses icon.svg'
-import quiz from'../images/quiz icon.svg'
-import community from'../images/community icon.svg'
-import creative from'../images/creative icon.svg'
-import quizzes from'../images/quizes.svg'
-import course1 from'../images/course1.jpg'
-import course2 from'../images/course2.jpg'
-import course3 from'../images/course3.jpg'
-import course4 from'../images/course4.jpg'
-import course5 from'../images/course5.jpg'
-import course6 from'../images/course6.jpg'
-import arrow from'../images/arrow.svg'
-import star from'../images/star-icon.svg'
-import Footer from "../components/Footer"
-import Job from '../components/job'
-import Header from '../components/Header'
+import left from'../../images/landing-left.jpg'
+import right from'../../images/landing-right.png'
+import learn from'../../images/Learn More icon.svg'
+import smile from'../../images/smile.svg'
+import jobs from'../../images/jobs icon.svg'
+import internship from'../../images/intership icon.svg'
+import courses from'../../images/courses icon.svg'
+import quiz from'../../images/quiz icon.svg'
+import community from'../../images/community icon.svg'
+import creative from'../../images/creative icon.svg'
+import quizzes from'../../images/quizes.svg'
+import course1 from'../../images/course1.jpg'
+import course2 from'../../images/course2.jpg'
+import course3 from'../../images/course3.jpg'
+import course4 from'../../images/course4.jpg'
+import course5 from'../../images/course5.jpg'
+import course6 from'../../images/course6.jpg'
+import arrow from'../../images/arrow.svg'
+import star from'../../images/star-icon.svg'
+import Job from '../../components/job'
+import Footer from "../../components/Footer"
+import Header from '../../components/Header'
 
 const Home = () => {
 
@@ -30,8 +30,8 @@ return (
             <left className='d-flex flex-column'>
                 <img src={left} alt="" />
                 <buttons className='d-flex flex-column flex-md-row gap-3 mt-4'>
-                <submitButton className="start px-5 py-2 ">Get Started</submitButton>
-                <button className="learn py-2 fw-light "><img src={learn} alt="" className='w-25 border-0 me-3' />Learn More</button>
+                <button className="start px-5 py-2 ">Get Started</button>
+                <button className="learn py-2 fw-light text-dark "><img src={learn} alt="" className='w-25 border-0 me-3' />Learn More</button>
                 </buttons>
             </left>
             <right>
@@ -161,7 +161,7 @@ return (
         <h1 className='text-center fw-bold fs-1 py-5'>Job Lists</h1>
 
 <Job/>
-        <submitButton className='button py-2 mx-auto my-5 fs-5 fw-semibold'>View All</submitButton>
+        <button className='button py-2 mx-auto my-5 fs-5 fw-semibold'>View All</button>
     </div>
  <Footer/> 
 </home>

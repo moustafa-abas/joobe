@@ -2,11 +2,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye } from '@fortawesome/free-regular-svg-icons'
 import { useState } from 'react';
 import Logo from '../../logo'
-import lock from'../images/lock.svg'
+import lock from'../../images/lock.svg'
 
-import right from'../images/side right.svg'
-import user from'../images/lucide_user-round.svg'
-import email from'../images/fluent_mail-24-regular.svg'
+import right from'../../images/side right.svg'
+import user from'../../images/lucide_user-round.svg'
+import email from'../../images/fluent_mail-24-regular.svg'
 
 
 export const SignUp = () => {
@@ -89,9 +89,9 @@ id='confirm'
 </inputGroup>
 
 
-<submitButton type='submit' className='py-3 my-4'  onClick={signUp}>Sign up</submitButton>
+<button type='submit' className='w-100 py-3 my-4'  onClick={signUp}>Sign up</button>
 <p className=' text-center fs-5 fw-lighter'> have an account already? 
-<a href="/" className='ms-2 fw-bold text-decoration-underline'>Login</a> </p>
+<a href="/login" className='ms-2 fw-bold text-decoration-underline'>Login</a> </p>
 
 
 </form>

@@ -1,12 +1,12 @@
-import back from'../images/profile1.jpg'
-import edit from'../images/Group.svg'
-import photo from'../images/Group 64.jpg'
-import coin from'../images/coin.jpg'
-import cv from'../images/cv.jpg'
-import Header from "../components/Header"
+import back from'../../images/profile1.jpg'
+import edit from'../../images/Group.svg'
+import photo from'../../images/Group 64.jpg'
+import coin from'../../images/coin.jpg'
+import cv from'../../images/cv.jpg'
+import Header from "../../components/Header"
 import { useState } from 'react'
-import Footer from '../components/Footer'
-import Job from '../components/job'
+import Footer from '../../components/Footer'
+import Job from '../../components/job'
 
 const Profile = () => {
     const [src, setSrc] = useState(photo)
@@ -60,7 +60,7 @@ return (
     <h3 className='text-start mt-5 fw-semibold'>Your CV</h3>
     <img src={cv} alt="" className='my-3 w-100' />
     <h2 className='text-start fw-light '>MyCV.pdf</h2>
-    <submitButton  className="w-50 py-3 mt-4 mb-5 mx-auto">Change</submitButton>
+    <button  className="w-50 py-3 mt-4 mb-5 mx-auto">Change</button>
     </div>
     </div>
     <div className="Container">

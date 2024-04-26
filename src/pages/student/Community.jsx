@@ -1,24 +1,24 @@
-import Header from'../components/Header'
-import Footer from'../components/Footer'
-import job1 from'../images/job2.svg'
-import job2 from'../images/Avatar.svg'
-import job3 from'../images/job4.svg'
-import job4 from'../images/job3.svg'
-import arrow from'../images/arrow.svg'
-import back from'../images/community profile.jpg'
-import photo from'../images/Group 64.jpg'
-import coin from'../images/coin.jpg'
-import cv from'../images/community cv.svg'
-import profile from'../images/me.jpg'
-import photoShare from'../images/heroicons_photo.svg'
-import video from'../images/lucide_video.svg'
-import file from'../images/mynaui_file.svg'
-import points from'../images/3points.svg'
-import likes from'../images/likes.svg'
-import comment from'../images/comment.svg'
-import share from'../images/share.svg'
-import yahia from'../images/yahia.svg'
-import post from'../images/post.png'
+import Header from'../../components/Header'
+import Footer from'../../components/Footer'
+import job1 from'../../images/job2.svg'
+import job2 from'../../images/Avatar.svg'
+import job3 from'../../images/job4.svg'
+import job4 from'../../images/job3.svg'
+import arrow from'../../images/arrow.svg'
+import back from'../../images/community profile.jpg'
+import photo from'../../images/Group 64.jpg'
+import coin from'../../images/coin.jpg'
+import cv from'../../images/community cv.svg'
+import profile from'../../images/me.jpg'
+import photoShare from'../../images/heroicons_photo.svg'
+import video from'../../images/lucide_video.svg'
+import file from'../../images/mynaui_file.svg'
+import points from'../../images/3points.svg'
+import likes from'../../images/likes.svg'
+import comment from'../../images/comment.svg'
+import share from'../../images/share.svg'
+import yahia from'../../images/yahia.svg'
+import post from'../../images/post.png'
 import { useState } from 'react'
 const Community = () => {
     const [isComment, setIsComment] = useState(false)
@@ -27,7 +27,6 @@ return (
 <community>
 <Header/>
 <div className="community Container d-flex position-relative mt-4">
-    
 <div className="profile d-none d-sm-block p-2 text-center ">
     <img src={back} alt="" className='w-100 '/>
 <img src={photo} alt="valid source" className='profile   rounded-circle '/>
@@ -63,7 +62,7 @@ return (
     <h2 className='text-start mt-5 fs-4 fw-semibold '>Your CV</h2>
     <img src={cv} alt="" className='my-3 w-100' />
     <h2 className='text-start mt-4 fs-4 fw-semibold '>MyCV.pdf</h2>
-    <submitButton className='mx-auto my-4 py-3'>Change</submitButton>
+    <button className='mx-auto my-4 py-3'>Change</button>
     </div>
     </div>
 

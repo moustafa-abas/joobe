@@ -1,7 +1,7 @@
 @use "./global";
-@use "../pages/registration/regestrition";
-@use'../pages/components/components.scss';
-@use '../pages/student/std.scss';
+@use "./registration";
+@use'./components';
+@use './std';
 
 $max_mobile:"max-width:577px";
 $max_tablet:"max-width:767px";

@@ -1,11 +1,11 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye } from '@fortawesome/free-regular-svg-icons'
 
-import google from'../images/Encapsulated Group.svg'
-import apple from'../images/Apple logo.svg'
-import email from'../images/fluent_mail-24-regular.svg'
-import lock from'../images/lock.svg'
-import right from'../images/side right.svg'
+import google from'../../images/Encapsulated Group.svg'
+import apple from'../../images/Apple logo.svg'
+import email from'../../images/fluent_mail-24-regular.svg'
+import lock from'../../images/lock.svg'
+import right from'../../images/side right.svg'
 
 
 import Logo from '../../logo'
@@ -67,9 +67,9 @@ maxLength={16}
 </inputGroup>
 
 {/* validation///////////////////////////////// */}
-<submitButton type='submit' className='py-3 mt-4'  
+<button type='submit' className='w-100 py-3 mt-4'  
 onClick={(e)=>{e.preventDefault();}}
->Log in</submitButton>
+>Log in</button>
 <div className="or d-flex justify-content-between align-items-center mt-4">
 <div className="line  mb-3  "></div>
 <p className=' mx-auto d-inline text-center fs-6 fw-medium'>Or login with</p>

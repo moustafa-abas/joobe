@@ -1,6 +1,6 @@
 import { useState } from "react"
 import Logo from "../../logo";
-export const Instructor = () => {
+ const Instructor = () => {
 
     const [showPage2, setShowPage2] = useState(false)
     // const [instructorData, setInstructorData] = useState({
@@ -109,4 +109,6 @@ placeholder='tell us about you
 </instructor>
 )
 }
+
+export default Instructor
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
-import photo from'../images/Group 64.jpg'
-import cvIcon from'../images/folder-add.svg'
-import edit from'../images/Group.svg'
+import photo from'../../images/Group 64.jpg'
+import cvIcon from'../../images/folder-add.svg'
+import edit from'../../images/Group.svg'
 import Logo from '../../logo'
 import axios from 'axios'
 const Junior = () => {
@@ -19,7 +19,7 @@ const Junior = () => {
         trackLevel:'',
         military:'',
         about:'',
-        cv:'',
+        cv:{},
     })
     const handleChange=(e)=>{
         const newJuniorData={...juniorData};
@@ -40,16 +40,6 @@ const Junior = () => {
                 console.error('حدث خطأ أثناء جلب البيانات:', error);
               });
           }, []);
-        // useEffect(() => {
-        //     axios.get('https://jobee-5pfw.onrender.com/api/militry')
-        //         .then(response => {
-        //             setMilitryService(response.data[0].militryService);
-        //         // setSelectedTrack(response.data[0].tracks[0]);
-        //         })
-        //         .catch(error => {
-        //         console.error('حدث خطأ أثناء جلب التراكات:', error);
-        //         });
-        //     }, []);
 return (
 <div className="junior Container">
 <Logo/>
@@ -58,11 +48,13 @@ return (
 <p className='text-center fw-light fs-5'>Please enter this following data</p>
 {Page1?
     <>
-    
+
         <input type="file" id='photo' className='opacity-0 '
     name='photo'
     accept='image/*'
-    onChange={ (e)=>{setSrc(URL.createObjectURL(e.target.files[0]))} }
+// onChange={handleChange}
+    onChange={ (e)=>{setSrc(URL.createObjectURL(e.target.files[0]))
+    handleChange(e)}}
     />
     <label htmlFor="photo" className='mx-auto position-relative mt-  file'>
         <img src={src} alt="valid source" className='profile mt-3  rounded-circle'/>
@@ -118,12 +110,12 @@ onChange={handleChange}>
     <label htmlFor='selectLevel' className='position-absolute fw-light top-0 px-2'>Track level</label>
 </inputGroup>
 
-<submitButton className='my-5 py-4' onClick={(e)=>{
+<button className='w-100 my-5 py-4' onClick={(e)=>{
     e.preventDefault();
     // juniorData.age==='' || juniorData.name==='' ?alert('please insert your age'):
     setShowPage1(false)
     // console.log(militaries)
-}} >Next Step</submitButton>
+}} >Next Step</button>
 </>
 :
 <>
@@ -156,16 +148,19 @@ placeholder='Enter your skills'
         <input type="file" 
         id='cv'
         name='cv'
-        onChange={ (e)=>{setCv(URL.createObjectURL(e.target.files[0]))}  }/>
+onChange={handleChange}
+
+        // onChange={ (e)=>{setCv(e.target.files[0])}  }
+        />
             <label htmlFor='cv' className="labelCv py-3 fw-light fs-5 w-100 d-flex gap-3 align-items-center justify-content-center">
         <img src={cv} alt="" /> 
             Upload your cv/resume
             </label>
             </cvGroup>
-<submitButton type="submit" className='mb-5 py-4' onClick={()=>{
-    location.replace("/home")
-}}>Save</submitButton>
-
+<button type="submit" className='w-100 mb-5 py-4' onClick={(e)=>{
+    e.preventDefault();
+    location.replace("/")
+}}>Save</button>
 </>
 
 }
