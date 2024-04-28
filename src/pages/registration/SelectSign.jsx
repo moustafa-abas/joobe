@@ -4,7 +4,14 @@ import { faUserGraduate } from '@fortawesome/free-solid-svg-icons'
 import { faPersonChalkboard } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react'
 import Logo from '../../logo'
+import { useForm } from 'react-hook-form';
+
 const SelectSign=()=> {
+    const {  handleSubmit } = useForm();
+    const onSubmit = (data) => {
+      console.log(data);
+      // location.replace('/')
+    };
 
 const [state, setState] = useState('')
 const handleSignUp=()=>{
@@ -31,7 +38,7 @@ return (
 </heading>
 
 
-<form  action=''
+<form  action='' onSubmit={ handleSubmit(onSubmit)}
 className='d-flex mx-auto text-center my-5' onChange={(e)=>setState(e.target.value)} >
 <selection><box>
 <input type="radio" id="junior" name="option" value="Junior"  />

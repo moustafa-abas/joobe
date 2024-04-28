@@ -12,7 +12,6 @@ const [isVisible, setIsVisible] = useState(true)
 const [isLogined, setIsLogined] = useState(true)
 const [showLinks, setShowLinks] = useState(false)
 const location =useLocation()
-console.log(location.pathname)
 return (
 <header className=' position-relative'>
         {isLogined?<></>:

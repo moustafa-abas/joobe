@@ -5,7 +5,7 @@ $max_LargeScreen:"max-width:1200px";
 $max-sm-mobile:"max-width:400px";
 
 
-inputGroup{
+.inputGroup{
     border: 1px solid var(--Stroke, #BDBDBD);
     border-radius: 8px;
     input{
@@ -54,8 +54,11 @@ a{
     color: var(--White) !important;
 }
 }
+.error{
+    color: red !important;
+}
 //////////////////////////////////////////////////////////////
-login{
+.login{
     .logo{
         margin-top: 2%;
         width: 35%;
@@ -100,8 +103,8 @@ form{
 width: 95%;
 }}}
 // -------------------------------------------------------------------------------------------------------
-signUp{
-    @extend login;
+.signUp{
+    @extend .login;
 }
 .users{
     form{

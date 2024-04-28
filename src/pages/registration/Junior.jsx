@@ -6,7 +6,7 @@ import Logo from '../../logo'
 import axios from 'axios'
 const Junior = () => {
     const [src, setSrc] = useState(photo)
-    const [cv, setCv] = useState(cvIcon)
+    // const [cv, setCv] = useState(cvIcon)
     const [Page1, setShowPage1] = useState(true)
     const [tracks, setTracks] = useState([]);
     const [militaries, setMilitaries] = useState([]);
@@ -153,7 +153,7 @@ onChange={handleChange}
         // onChange={ (e)=>{setCv(e.target.files[0])}  }
         />
             <label htmlFor='cv' className="labelCv py-3 fw-light fs-5 w-100 d-flex gap-3 align-items-center justify-content-center">
-        <img src={cv} alt="" /> 
+        <img src={cvIcon} alt="" /> 
             Upload your cv/resume
             </label>
             </cvGroup>

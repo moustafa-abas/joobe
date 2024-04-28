@@ -1,9 +1,9 @@
 import logo from'./images/logo.jpg'
 const Logo = () => {
   return (
-    <logo>
+    <Logo>
 <img src={logo} alt="logo"  className='logo' />
-</logo>
+</Logo>
   )
 }
 
