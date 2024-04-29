@@ -117,7 +117,6 @@ id='confirm'
         minlength:{ value:'8', message:'*password should be at least 8 characters'},
         validate: (value) =>
         value === watch('password')|| 'Passwords do not match'})}
-
 />
 <label htmlFor='confirm' className='position-absolute fw-light top-0 px-2'>Confirm Password </label>
 <FontAwesomeIcon icon={faEye} onClick={handleConfirmPassword} className='eye ' />

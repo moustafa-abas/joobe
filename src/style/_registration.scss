@@ -35,6 +35,9 @@ color: var(--pr);
 cursor: pointer;
 }
 }
++ .error{
+    color: red !important;
+}
 }
 button{
     display: flex;
@@ -54,9 +57,7 @@ a{
     color: var(--White) !important;
 }
 }
-.error{
-    color: red !important;
-}
+
 //////////////////////////////////////////////////////////////
 .login{
     .logo{

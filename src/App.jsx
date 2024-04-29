@@ -5,6 +5,7 @@ const LogIn = lazy(()=>import('./pages/registration/LogIn'))
 const SignUp = lazy(()=>import('./pages/registration/SignUp'))
 const SelectSign = lazy(()=>import('./pages/registration/SelectSign'))
 const Junior = lazy(()=>import('./pages/registration/Junior'))
+const EndJunior = lazy(()=>import('./pages/registration/EndJunior'))
 const StartUp = lazy(()=>import('./pages/registration/StartUp'))
 const Instructor = lazy(()=>import('./pages/registration/Instructor'))
 const Home = lazy(()=>import('./pages/student/Home'))
@@ -35,6 +36,7 @@ const App=()=> {
         <Route path='/signup' Component={SignUp}/>
         <Route path='/select' Component={SelectSign}/>
         <Route path='/junior' Component={Junior}/>
+        <Route path='/endJunior' Component={EndJunior}/>
         <Route path='/startup' Component={StartUp}/>
         <Route path='/instructor' Component={Instructor}/>
 
