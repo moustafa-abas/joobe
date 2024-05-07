@@ -24,7 +24,7 @@ const Community = () => {
     const [isComment, setIsComment] = useState(false)
 return (
     <>
-<community>
+<>
 <Header/>
 <div className="community Container d-flex position-relative mt-4">
 <div className="profile d-none d-sm-block p-2 text-center ">
@@ -343,7 +343,7 @@ return (
 </div>
 </div>
 
-</community>
+</>
 <Footer/>
 </>
 )

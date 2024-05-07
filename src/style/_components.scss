@@ -5,7 +5,7 @@ $max_largeScreen:"max-width:1200px";
 $max_xLargeScreen:"max-width:1400px";
 $max-sm-mobile:"max-width:400px";
 
-logo{
+.logo{
     width: 10%;
     img{
         margin-top: 1%;
@@ -23,9 +23,6 @@ header{
         img{right: 7%;}
         cursor: pointer;
     }
-.logo{
-    width: 100%;
-}
     form{
         width: 40%;
         input{
@@ -37,12 +34,14 @@ header{
     }
 }
     ul{
+
         li{
             text-align: center;
             cursor: pointer;
             a{
                 color: var(--Text-Color, #090F24) !important;
                 position: relative;
+                width: 100%;
             }
             .active{
                 color: var(--main-color, #072AC8) !important;
@@ -60,7 +59,11 @@ header{
                 }
             }
         }
-
+    }
+    .button{
+        a{
+        color: var(--main-color) !important;
+    }
 }
 a{
     width: 35px;
@@ -118,11 +121,11 @@ footer{
 h2{
     color: var(--Text-Color, #090F24);
 }
-left{
+.left{
     width: 30%;
 border-right: 1px solid var(--Stroke);
 }
-center{
+.center{
     width: 40%;
     h2{
         color: var(--Text-Color, #090F24);
@@ -135,7 +138,7 @@ letter-spacing: 0.1px;
     }
 
 }
-right{
+.right{
     width: 30%;
 border-left: 1px solid var(--Stroke);
 a{
@@ -167,10 +170,10 @@ font-size: 14px;
     }
 }
 }
-jobComponent{
+.jobComponent{
     .job{
             background-color: var(--White);
-            left{
+            .left{
                 width: 60%;
                 .info{
                     width: 50%;
@@ -184,7 +187,7 @@ jobComponent{
                     }
                 }
             }
-            right{
+            .right{
                 a{
                     color: var(--White) !important;
                 }

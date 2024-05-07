@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import photo from'../../images/Frame 1171275375.svg'
-import edit from'../../images/Group.svg'
+import photo from'../images/Frame 1171275375.svg'
+import edit from'../images/Group.svg'
 import Logo from '../../logo'
 const StartUp = () => {
 

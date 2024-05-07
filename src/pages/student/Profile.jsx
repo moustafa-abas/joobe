@@ -12,7 +12,7 @@ const Profile = () => {
     const [src, setSrc] = useState(photo)
     const [coverSrc, setCoverSrc] = useState(back)
 return (
-<profile>
+<div className='profile'>
 <Header/>
 <div className='cv text-center'>
     <input type="file" id='cover'
@@ -68,7 +68,7 @@ return (
     <Job/>
     </div>
     <Footer/>
-</profile>
+</div>
 
 )
 }

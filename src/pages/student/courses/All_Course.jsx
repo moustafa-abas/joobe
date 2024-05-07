@@ -10,7 +10,7 @@ import Header from '../../../components/Header'
 
 const All_Course = () => {
   return (
-    <courses>
+    <div className='courses'>
     <Header/>
     <h1 className="text-center fw-bold mt-5">All Courses</h1>
     <div className="courses-group ">
@@ -139,7 +139,7 @@ const All_Course = () => {
 </div>
 
 <Footer/>
-</courses>
+</div>
   )
 }
 

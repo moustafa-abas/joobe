@@ -5,11 +5,20 @@ import circle from '../../../images/circle.svg'
 import lock from '../../../images/lock.svg'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { fetchQuizData } from '../../store/quizSlice'
 const DailyTasks = () => {
-return (<quiz>
+    const data=useSelector((state)=>state.Quizzes.data)
+    const dispatch = useDispatch()
+    useEffect(()=>{
+      dispatch(fetchQuizData())
+    },[])
+
+return (<div className='quiz'>
 <Header/>
     <div className="daily-tasks Container mt-3">
-<header className="   position-relative">
+<header className=" position-relative">
     <div className="text text-center ">
 <h1 className="fw-semibold">Daily Tasks</h1>
 <h2 className="fw-lighter mt-4">Good Morning Mostafa <img src={hand} alt="" /></h2>
@@ -19,7 +28,7 @@ return (<quiz>
 <div className="d-flex align-items-center justify-content-center "> <img src={coin} alt="" /> <span className="fw-semibold ms-3 fs-3">125</span></div>
 </div>
 </header>
-<tasks>
+<div className='tasks'>
     <h2 className="fw-semibold my-3">Daily Tasks</h2>
     <h4 className="fw-semibold">May</h4>
 <ul className="d-flex justify-content-between gap-3 mt-4 overflow-scroll">
@@ -33,13 +42,12 @@ return (<quiz>
 </ul>
     <h1 className="fw-bold text-center mt-5">You have 5 Tasks Today</h1>
     <p className="fs-4 fw-semibold mt-3 text-center">
-        front
-        {/* {exams.type} */}
+        {data.type}
     </p>
-</tasks>
+</div>
 
 
-<questions>
+<div className='questions'>
     <div className="tasks mt-4   ">
         <p className="fs-4 fw-light">1 Questions</p>
         <div className="state d-flex p-3 align-items-center ">
@@ -88,12 +96,12 @@ return (<quiz>
 <img src={lock} alt="" width={30}/>
         </div>
     </div>
-</questions>
+</div>
     <button className="my-5 py-4 " ><a href="/quiz/questions">Continue</a></button>
     <button className="py-4 ">New Level</button>
     </div>
     <Footer/>
-    </quiz>
+    </div>
   )
 }
 

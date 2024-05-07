@@ -20,24 +20,25 @@ import star from'../../images/star-icon.svg'
 import Job from '../../components/job'
 import Footer from "../../components/Footer"
 import Header from '../../components/Header'
+import { useSelector } from 'react-redux'
 
 const Home = () => {
-
+    const isLogined=useSelector((state)=>state.user.token)
 return (
-<home className="home">
+<div className="home">
 <Header/> 
-        <landing className='Container d-flex mt-3'>
-            <left className='d-flex flex-column'>
+        <div className='landing Container d-flex mt-3'>
+            <div className='left d-flex flex-column'>
                 <img src={left} alt="" />
-                <buttons className='d-flex flex-column flex-md-row gap-3 mt-4'>
+                <div className='buttons d-flex flex-column flex-md-row gap-3 mt-4'>
                 <button className="start px-5 py-2 ">Get Started</button>
                 <button className="learn py-2 fw-light text-dark "><img src={learn} alt="" className='w-25 border-0 me-3' />Learn More</button>
-                </buttons>
-            </left>
-            <right>
+                </div>
+            </div>
+            <div className='right'>
             <img src={right} alt="" />
-            </right>
-        </landing>
+            </div>
+        </div>
 
 <div className="services  mt-5 py-5">
 <h1 className="text-center fw-bold mb-4">Services</h1>
@@ -52,24 +53,24 @@ return (
     </div>
 
 
-<slider className='Container d-none d-xl-flex flex-column px-5   my-5'>
+<div className='slider Container d-none d-xl-flex flex-column px-5   my-5'>
         <main className='py-4 ps-5 w-50'>
         <h2 className='fw-bold'>Learn & Get jop</h2>
         <p className='fs-3 fw-lighter my-4'>With Jobee you can get courses and get offers for work very easily</p>
         <button  className='py-3'><a href="/jobs" className='fs-5 fw-light'>Apply now</a> </button>
         </main>
-<bullets className="d-flex justify-content-center mb-4 ">
+<div className="bullets d-flex justify-content-center mb-4 ">
     <div className="bullet1 rounded-circle mx-1"></div>
     <div className="bullet2 rounded-circle mx-1"></div>
     <div className="bullet3 rounded-circle mx-1"></div>
     <div className="bullet4 rounded-circle mx-1"></div>
-</bullets>
-</slider>
+</div>
+</div>
     <div className='Container'>
     <img src={smile} alt="" className='w-100 '/>
 <img src={quizzes} alt=""  className="w-100 my-5"/>
     </div> 
- <courses className='my-5'>
+ <div className='courses my-5'>
     <h1 className='fs2 fw-bold text-center'>Courses</h1>
     <div className="courses-group ">
         <div className="head mt-5 mb-4  Container d-flex justify-content-between">
@@ -155,7 +156,7 @@ return (
             </div>
         </div>
     </div>
-</courses>
+</div>
 
     <div className=" jobs Container">
         <h1 className='text-center fw-bold fs-1 py-5'>Job Lists</h1>
@@ -164,7 +165,7 @@ return (
         <button className='button py-2 mx-auto my-5 fs-5 fw-semibold'>View All</button>
     </div>
  <Footer/> 
-</home>
+</div>
 )
 }
 

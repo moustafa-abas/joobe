@@ -13,7 +13,7 @@ import ol from'../../../images/jobs-ul.svg'
 import { NavLink } from "react-router-dom"
 const Jobs = () => {
 return (
-    <jobs >
+    <div className="jobs" >
 <Header/>
 <>
 <div className="landing position-relative">
@@ -63,10 +63,10 @@ return (
 <button className="w-25 py-3 mx-auto mt-5">Explore All</button>
 </div>
 <div className="find-job Container d-flex">
-    <left className=" d-none d-md-block">
+    <div className="left d-none d-md-block">
         <img src={leftJobs} alt=""  className="w-100"/>
-    </left>
-    <right className=" p-lg-5 ps-3">
+    </div>
+    <div className="right p-lg-5 ps-3">
         <h1 className="fs-2 fw-bold ">We Help You To Get The Best Jobs 
 And Find A Talent</h1>
 <p className="fs-5 fw-lighter my-3"> our online platform dedicated to assisting individuals in their job search journey by providing a comprehensive and user-friendly experience. With a vast database of job opportunities spanning various industries</p>
@@ -78,26 +78,26 @@ And Find A Talent</h1>
     <li className="fs-5 fw-lighter mt-4 "><img className="me-3 p-2" src={ol} alt="" /> Educate constantly to raise your level</li>
 </ul>
 <button className='w-50 mt-5 py-3'>Explore Jobs</button>
-    </right>
+    </div>
 </div>
-<jobList>
+<div className="jobList">
     <h1 className="text-center fw-bold fs-1 mt-5">Job Lists</h1>
     <ul className="d-flex justify-content-between mx-auto mt-3 p-4 flex-wrap">
-<li className="fs-4 fw-semibold"><NavLink to="/jobs"   activeClassName="active">All</NavLink></li>
-<li className="fs-4 fw-semibold"><NavLink to="/j"   activeClassName="active">Remotely</NavLink></li>
-<li className="fs-4 fw-semibold"><NavLink to="/m"    activeClassName="active">On Site</NavLink></li>
-<li className="fs-4 fw-semibold"><NavLink to="/w"   activeClassName="active">Part-Time</NavLink></li>
-<li className="fs-4 fw-semibold"><NavLink to="/g"   activeClassName="active">Full-Time</NavLink></li>
-<li className="fs-4 fw-semibold"><NavLink to="/s"   activeClassName="active">Hybrid</NavLink></li>
+<li className="fs-4 fw-semibold"><NavLink to="/jobs"   >All</NavLink></li>
+<li className="fs-4 fw-semibold"><NavLink to="/"   >Remotely</NavLink></li>
+<li className="fs-4 fw-semibold"><NavLink to="/"    >On Site</NavLink></li>
+<li className="fs-4 fw-semibold"><NavLink to="/"   >Part-Time</NavLink></li>
+<li className="fs-4 fw-semibold"><NavLink to="/"   >Full-Time</NavLink></li>
+<li className="fs-4 fw-semibold"><NavLink to="/"   >Hybrid</NavLink></li>
     </ul>
     <div className="Container">
     <Job />
     </div>
-    <button className='py-3   mx-auto'  ><a href="/jobs/all_jobs">View All</a></button>
-</jobList>
+    <button className='py-3 mx-auto'  ><a href="/jobs/all_jobs">View All</a></button>
+</div>
 </>
 <Footer/>
-</jobs>
+</div>
 )
 }
 export default Jobs;

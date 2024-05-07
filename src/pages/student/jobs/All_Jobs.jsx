@@ -3,7 +3,7 @@ import Job from "../../../components/job"
 
 const All_Jobs = () => {
   return (
-<all>
+<>
   <Header/>
     <div className="Container mt-3">
 <h2 className="text-center fs-1 fw-bold"> All Available Jobs</h2>
@@ -11,7 +11,7 @@ const All_Jobs = () => {
 <Job/>
 <Job/>
 </div>
-</all>
+</>
   )
 }
 

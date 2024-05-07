@@ -11,32 +11,25 @@ import right from'../../images/side right.svg'
 import Logo from '../../logo'
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-// import axios from 'axios';
-// import {z} from 'zod';
-// import {zodResolver} from "@hookform/resolvers/zod";
+import { useDispatch, useSelector} from 'react-redux'
+import { login } from '../store/userSlice'
 const LogIn=()=>{
-    // const schema=z.object({
-    //     email:z.string().nonempty('email is required').email("email format is not valid"),
-    //     // password:z.number().
-    // })
+    const error=useSelector((state)=>state.user.error)
+    const dispatch=useDispatch()
     const { register, handleSubmit, formState: { errors } }  = useForm({
         defaultValues:{
             email:'',
             password:''
         }
-        // resolver:zodResolver(schema),
     });
     const onSubmit = (data) => {
-        location.replace('/')
-        console.log(data);
+        dispatch(login(data))
     };
 const [showPass , setShowPass] = useState(false)
 const handelShow=()=>{
 setShowPass(!showPass)
 }
-
 return (
-
 <div className='login Container d-flex '>
 <main>
 <Logo/>
@@ -49,7 +42,7 @@ type="email"
 id='email'
 placeholder='Email '
 name='email'
-{...register('email', { required: '* Email is required',pattern: { value: /^\S+@\S+$/i, message: 'Invalid email address' },
+{...register('email', { required: '* Email is required',pattern: { value:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, message: 'Invalid email format' },
 validate:{
     notAdmin:(fieldValue)=>{
         return(
@@ -65,7 +58,7 @@ validate:{
     // emailAvailable:async(fieldValue)=>{
     //     const res = await axios.get("").then(
     //         const data =res.data
-    //         return data.lenth==0||"email already exists"
+    //         return data.length==0||"email already exists"
     //     )
     // }
 } })}
@@ -82,15 +75,17 @@ placeholder='************'
 name='password'
 id='password'
 {...register('password',
-{
- required: ' * password is required',
-        minlength:{ value:'8', message:'*password should be at least 8 characters'}})}
+{required: ' * password is required',
+minLength:{ value:8, message:'* password should be at least 8 characters'}})}
 />
 <label htmlFor='password' className='position-absolute fw-light top-0 px-2'>Password </label>
 <FontAwesomeIcon icon={faEye} onClick={handelShow} className='eye ' />
 </div>
 <p className='error mt-2'>{errors.password?.message}</p>
-
+{error?
+<h6 className='error mt-2 text-danger  '> * username or password is wrong</h6>
+:<></>
+}
 
 <button type='submit' className='w-100 py-3 mt-4'>Log in</button>
 

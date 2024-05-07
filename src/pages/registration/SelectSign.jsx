@@ -2,19 +2,24 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBuilding } from '@fortawesome/free-solid-svg-icons'
 import { faUserGraduate } from '@fortawesome/free-solid-svg-icons'
 import { faPersonChalkboard } from '@fortawesome/free-solid-svg-icons'
-import { useState } from 'react'
 import Logo from '../../logo'
+import { useForm } from 'react-hook-form'
 const SelectSign=()=> {
+    const { handleSubmit, register } = useForm({
+        defaultValues:{
+        role:''
+        }
+    })
 
-const [state, setState] = useState('')
-const handleSignUp=()=>{
-    if (state ==="Junior"){
+const onSubmit=(data)=>{
+    localStorage.setItem('role',JSON.stringify(data.role))
+    if (data.role ==="Junior"){
         location.replace('/junior')
     }
-    else if(state==='Company'){
+    else if(data.role==='Company'){
         location.replace('/startup')
     }
-    else if(state==="instructor"){
+    else if(data.role==="instructor"){
         location.replace('/instructor')
     }
     else{
@@ -30,30 +35,37 @@ return (
     <h2 className='fs-3 fw-bold mt-3'>You Are A </h2>
 </heading>
 
-
 <form  action=''
-className='d-flex mx-auto text-center my-5' onChange={(e)=>setState(e.target.value)} >
+className=' mx-auto text-center my-5' 
+onSubmit={ handleSubmit(onSubmit)} noValidate >
+    <div className='d-flex'>
 <selection><box>
-<input type="radio" id="junior" name="option" value="Junior"  />
+<input type="radio" id="junior" name="option" value="Junior"  
+        {...register('role')}
+        />
 <FontAwesomeIcon icon={faUserGraduate}className='icon' />
 </box>
 <label htmlFor='junior' className='d-flex justify-content-center mt-5 fs-4 fw-lighter'>Junior / Student</label>
 </selection>
 <selection><box>
-<input type="radio" id="company" name="option" value="Company" />
+<input type="radio" id="company" name="option" value="Company"
+        {...register('role')}
+        />
 <FontAwesomeIcon icon={faBuilding}className='icon' />
 </box>
 <label htmlFor='company' className='d-flex justify-content-center mt-5 fs-4 fw-lighter'>Company</label>
 </selection>
 <selection><box>
-<input type="radio" id="instructor" name="option" value="Instructor" />
+<input type="radio" id="instructor" name="option" value="Instructor" 
+        {...register('role')}
+        />
 <FontAwesomeIcon icon={faPersonChalkboard}className='icon'/>
 </box>
 <label  htmlFor='instructor' className='d-flex justify-content-center mt-5 fs-4 fw-lighter'>Instructor</label>
 </selection>
-
+</div>
+<button type='submit' className='mx-auto py-4 mt-5' >Select</button>
 </form>
-<button type='submit' className='mx-auto py-4' onClick={handleSignUp}>Select</button>
 
 </div>
 )

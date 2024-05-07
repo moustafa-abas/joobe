@@ -7,9 +7,10 @@ import profile from'../images/profile.svg'
 import { useState } from 'react'
 import {  NavLink, useLocation } from 'react-router-dom'
 import Logo from '../logo'
+import { useSelector } from 'react-redux'
 const Header = () => {
+        const isLogined=useSelector((state)=>state.user.isLogined)
 const [isVisible, setIsVisible] = useState(true)
-const [isLogined, setIsLogined] = useState(true)
 const [showLinks, setShowLinks] = useState(false)
 const location =useLocation()
 return (
@@ -28,32 +29,43 @@ return (
         <img src={search} alt="" className='d-sm-none '/>
         <ul className='m-0  d-lg-flex d-none  justify-content-between align-items-center '>
         <li className='me-4'><NavLink to={"/"}>Home</NavLink></li>
+
+{isLogined?<>
         <li className='mx-4'><NavLink to={"/community"}>Community</NavLink></li>
         <li className='mx-4'><NavLink className={location.pathname.startsWith('/job') ? 'active' : ''}  to={"/jobs"}>Jops</NavLink></li>
-{isLogined?<>
         <li className='mx-4'><NavLink className={location.pathname.startsWith('/courses') ? 'active' :''}   to={"/courses"}>My courses</NavLink></li>
-        <li className='mx-4'><NavLink className={ location.pathname.startsWith('/quiz') ? 'active' : ''}   to={"/quiz/home"}>Quizzes</NavLink></li>
-        </>
+        <li className='mx-4'><NavLink className={ location.pathname.startsWith('/quiz') ? 'active' : ''}   to={"/quiz/home"}>Quizzes</NavLink></li>   
+        
+          </>
+
         :
         <>
+                <li className='mx-4' onClick={()=>alert('login or sign up first')}>Community</li>
+        <li className='mx-4' onClick={()=>alert('login or sign up first')}>jobs</li>
         </>
 }
         </ul>
+
+
+
+
         {showLinks?
         <ul className='m-0  d-flex d-lg-none flex-column  justify-content-between align-items-center '>
-            <li className='me-3'><NavLink className='text-decoration-none'  activeClassName="active" to={"/"}>Home</NavLink></li>
-            <li className='mx-3'><NavLink className='text-decoration-none' activeClassName="active" to={"/community"}>Community</NavLink></li>
-            <li className='mx-3'><NavLink className='text-decoration-none' activeClassName="active" to={"/jobs"}>Jops</NavLink></li>
+        <li className='me-3'><NavLink className='text-decoration-none'  activeClassName="active" to={"/"}>Home</NavLink></li>
+        <li className='mx-3'><NavLink className='text-decoration-none' activeClassName="active" to={"/community"}>Community</NavLink></li>
+        <li className='mx-3'><NavLink className='text-decoration-none' activeClassName="active" to={"/jobs"}>Jops</NavLink></li>
 {isLogined?<>
-            <li className='mx-3'><NavLink className='text-decoration-none'  activeClassName="active" to={"/courses"}>My courses</NavLink></li>
-            <li className='mx-3'><NavLink className='text-decoration-none'  activeClassName="active" to={"/quiz"}>Quizzes</NavLink></li>
-            </>
-            :
-            <></>
+        <li className='mx-3'><NavLink className='text-decoration-none'  activeClassName="active" to={"/courses"}>My courses</NavLink></li>
+        <li className='mx-3'><NavLink className='text-decoration-none'  activeClassName="active" to={"/quiz"}>Quizzes</NavLink></li>
+        </>
+        :
+        <></>
 }
         </ul>
         :<></>
 }
+
+
 {isLogined?<icons className='d-flex '>
 <a href="" >
         <img src={bill} alt="" className='icon ms-3'/> 
@@ -64,9 +76,7 @@ return (
         </icons>
         :
         <buttons className='d-flex ms-5 justify-content-between gap-4'>
-        <button className=' py-2  px-5 login button' onClick={()=>{
-                setIsLogined(true)
-        }}> <a href="/" >Log in</a></button>
+        <button className=' py-2  px-5 login button' > <a href="/" >Log in</a></button>
         <button className=' py-2 border-0 px-5 sign'> <a href="/signup">Sign up</a></button>
         </buttons>
 }

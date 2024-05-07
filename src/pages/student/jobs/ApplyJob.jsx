@@ -39,7 +39,7 @@ return (
             <h2 className='fw-semibold' >Job Summary</h2>
             <p className='fs-4 my-4 w-50'>As a Graphic Designer, you will be responsible for creating visual concepts and designs to communicate ideas that inspire, inform, or captivate our target audience. You will collaborate with various teams to understand project requirements and translate them into compelling visual solutions. Your creativity, attention to detail, and proficiency in design software will be crucial in producing high-quality graphics across various mediums.</p>
             <h2 className='fw-semibold'>Job Requirements</h2>
-            <p>
+            <>
                 <ul className='my-4'>
                     <li className='fs-4 my-3  '>Bachelor&apos;s degree in Graphic Design, Visual Arts, or related field.</li>
                     <li className='fs-4 my-3  '>Proven professional experience with a diverse portfolio of design projects.</li>
@@ -50,7 +50,7 @@ return (
                     <li className='fs-4 my-3  '>Ability to generate original design concepts and translate complex ideas visually.</li>
                     <li className='fs-4 my-3  '>Excellent communication skills for conveying design concepts and collaborating with teams.</li>
                 </ul>
-            </p>
+            </>
             <h2 className='fw-semibold '>About the company</h2>
             <p className='w-75 fs-4 my-4'>At Innova Hub , we are at the forefront of software innovation, dedicated to creating cutting-edge solutions that transform industries. As we continue to push boundaries, we recognize the crucial role that design plays in communicating our brand and product vision.</p>
         </div>
@@ -63,7 +63,7 @@ return (
 <div className="apply position-absolute top-0 start-0  bottom-0 end-0">
 <div className="form position-absolute ">
     <form action="" className='mx-auto py-5'>
-    <inputGroup className='d-flex position-relative py-3 px-3 align-items-center mt-4 gap-3'>
+    <div className='inputGroup d-flex position-relative py-3 px-3 align-items-center mt-4 gap-3'>
 <input  className='border-0 '
 type="text"
 id='name'
@@ -71,8 +71,8 @@ placeholder='Name '
 name='name'
 />
 <label htmlFor='name' className='position-absolute fw-light top-0 px-2'>Name</label>
-</inputGroup>
-    <inputGroup className='d-flex position-relative py-3 px-3 align-items-center mt-4 gap-3'>
+</div>
+    <div className='inputGroup d-flex position-relative py-3 px-3 align-items-center mt-4 gap-3'>
 <input  className='border-0 '
 type="number"
 id='phone'
@@ -80,8 +80,8 @@ placeholder='Phone number '
 name='phone'
 />
 <label htmlFor='phone' className='position-absolute fw-light top-0 px-2'>phone</label>
-</inputGroup>
-    <inputGroup className='d-flex position-relative py-3 px-3 align-items-center mt-4 gap-3'>
+</div>
+    <div className='inputGroup d-flex position-relative py-3 px-3 align-items-center mt-4 gap-3'>
 <input  className='border-0 '
 type="email"
 id='links'
@@ -89,8 +89,8 @@ placeholder='like Behance '
 name='links'
 />
 <label htmlFor='links' className='position-absolute fw-light top-0 px-2'>Links</label>
-</inputGroup>
-    <inputGroup className='d-flex position-relative py-3 px-3 align-items-center mt-4 gap-3'>
+</div>
+    <div className='inputGroup d-flex position-relative py-3 px-3 align-items-center mt-4 gap-3'>
 <input  className='border-0 '
 type="text"
 id='track'
@@ -98,10 +98,10 @@ placeholder='Track name '
 name='track'
 />
 <label htmlFor='track' className='position-absolute fw-light top-0 px-2'>Track</label>
-</inputGroup>
+</div>
 
 
-<cvGroup className='my-5 py-4 cv d-flex justify-content-center  '>
+<div className='my-5 py-3 cv d-flex justify-content-center  '>
         <input type="file" 
         id='cv'
         name='cv'
@@ -110,7 +110,7 @@ name='track'
         <img src={cv} alt="" /> 
             Upload your cv/resume
             </label>
-            </cvGroup>
+            </div>
     <button type='submit' className='my-5 me-5 py-4'> Apply</button>
     <button className='py-4' onClick={()=>{
         setApply(false)
@@ -118,7 +118,7 @@ name='track'
     </form>
 </div>
 </div>
-:<></>}
+:null}
 </div>
 
 )

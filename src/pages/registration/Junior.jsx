@@ -4,23 +4,24 @@ import edit from'../../images/Group.svg'
 import Logo from '../../logo'
 import axios from 'axios'
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux'
+import { firstDataJunior } from '../store/userSlice'
 
 const Junior = () => {
+   const dispatch=useDispatch()
+   const [selectedPhoto, setSelectedPhoto] = useState();
     const { register, handleSubmit, formState: { errors },watch }  = useForm({
         defaultValues:{
-        image:'',
-        name:'',
+        profileImage:null,
+        username:'',
         age:'',
         experience:'',
         track:'',
-        trackLevel:''
+        tracklevel:''
     }
-    // resolver:zodResolver(schema),
     });
     const onSubmit = (data) => {
-
-    location.replace('/endJunior')
-    console.log(data);
+dispatch(firstDataJunior(data))
     };
     const [src, setSrc] = useState(photo)
     const [tracks, setTracks] = useState([]);
@@ -33,6 +34,11 @@ const Junior = () => {
             console.error('حدث خطأ أثناء جلب البيانات:', error);
             });
         }, []);
+
+  const handleFileChange = (e) => {
+      setSrc(URL.createObjectURL(e.target.files[0]))
+      setSelectedPhoto(e.target.files[0]);
+  };
 return (
 <div className="junior Container">
 <Logo/>
@@ -40,14 +46,14 @@ return (
 <p className='text-center fw-light fs-5'>Please enter this following data</p>
 <form className='mx-auto text-center' onSubmit={ handleSubmit(onSubmit)} noValidate>
 
-        <input type="file" id='image' className='opacity-0 text-center '
-    name='image'
-    {...register('image')}
+        <input type="file" id='profileImage' className='opacity-0 text-center '
+    name='profileImage'
+    {...register('profileImage')}
     accept='image/*'
-    onChange={ (e)=>{setSrc(URL.createObjectURL(e.target.files[0]))}}
+    onChange={ handleFileChange}
 
     />
-    <label htmlFor="image" className='mx-auto position-relative file '>
+    <label htmlFor="profileImage" className='mx-auto position-relative file '>
         <img src={src} alt="valid source" className='profile mt-3  rounded-circle'/>
         <img src={edit} alt=""  className='edit position-absolute bottom-0 end-0 p-2 rounded-circle'/>
     </label>
@@ -55,14 +61,14 @@ return (
     <input type="text" 
     className='border-0 '
     placeholder='Name'
-    name='name'
+    name='username'
     id='name'
-{...register('name', { required: '* User name is required'})}
+{...register('username', { required: '* User name is required'})}
 
     />
     <label htmlFor='name' className='position-absolute fw-light top-0 px-2'>User Name</label>
 </div>
-<p className='error mt-2 text-start'>{errors.name?.message}</p>
+<p className='error mt-2 text-start'>{errors.username?.message}</p>
 
 <div className='inputGroup d-flex position-relative py-3 px-3 align-items-center mt-4 gap-3'>
     <input type="number" 
@@ -70,27 +76,38 @@ return (
     placeholder='Age'
     name='age'
     id='age'
-    {...register('age')}
+    {...register('age',
+    { required: '* age is required'
+    ,
+    min: {
+        value: 18,
+        message: "* You must be at least 18 years old",
+      },
+    })}
 
     />
     <label htmlFor='age' className='position-absolute fw-light top-0 px-2'>Age</label>
 </div>
+<p className='error mt-2 text-start'>{errors.age?.message}</p>
+
 <div className='inputGroup d-flex position-relative py-3 px-3 align-items-center mt-4 gap-3'>
     <input type="number" 
     className='border-0 '
     placeholder='Ex'
     name='ex'
     id='ex'
-    {...register('experience')}
+    {...register('experience',{required:'* experience is required'})}
     />
     <label htmlFor='ex' className='position-absolute fw-light top-0 px-2'>Experience Years</label>
 </div>
+<p className='error mt-2 text-start'>{errors.experience?.message}</p>
+
 <div className='inputGroup d-flex position-relative py-3 px-3 align-items-center mt-4 gap-3'>
 <select name="track" id="track"      
 {...register('track',
 {required:' * select your track'})}       
 >
-<option  selected hidden disabled>Track</option>
+<option  selected  hidden >Track</option>
             {tracks.map((track) => (
                 <option key={track} value={track}>{track}</option>
                         ))}
@@ -100,17 +117,19 @@ return (
 <p className='error mt-2 text-start'>{errors.track?.message}</p>
 
 <div className='inputGroup d-flex position-relative py-3 px-3 align-items-center mt-4 gap-3'>
-<select name="trackLevel" id="trackLevel"
+<select name="tracklevel" id="tracklevel"
 
-{...register('trackLevel')}
+{...register('tracklevel',{required:' * select your track level'})}
 disabled={!watch('track')}        
 >
 <option value="" selected hidden disabled>Track level</option>
-<option value="first">first</option>
-<option value="second">second</option>
+<option value="Beginner">Beginner</option>
+<option value="Intermediate">Intermediate</option>
+<option value="Advanced">Advanced</option>
 </select>
-    <label htmlFor='selectLevel' className='position-absolute fw-light top-0 px-2'>Track level</label>
+    <label htmlFor='tracklevel' className='position-absolute fw-light top-0 px-2'>Track level</label>
 </div>
+<p className='error mt-2 text-start'>{errors.tracklevel?.message}</p>
 
 <button type='submit' className='w-100 my-5 py-4' >Next Step</button>
 </form>

@@ -15,7 +15,7 @@ const Courses = () => {
     }
     )
 return (
-    <courses>
+    <div className="courses">
 <Header/>
 <>
 <div className="courses-group ">
@@ -139,7 +139,7 @@ return (
 
 
 <Footer/>
-</courses>
+</div>
 )
 }
 

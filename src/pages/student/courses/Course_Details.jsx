@@ -19,24 +19,24 @@ import Footer from '../../../components/Footer'
 
 const Course_Details = () => {
   return (
-    <courses>
+    <div className='courses'>
         <Header/>
     <div className="details">
         <div className="back mt-4= ">
     <div className="landing Container d-flex flex-column-reverse flex-lg-row pt-5 gap-5 ">
-        <left className=" ">
+        <div className="left ">
     <img src={Logo} alt=""  className="logo "/>
 <h2 className="mt-5 fw-semibold pe-5 me-5">Design a User Experience for Social Good & Prepare for Jobs</h2>
         <h6 className="my-4">This course is part of <span className="fw-semibold text-decoration-underline">Google UX Design Professional Certificate</span></h6>
-        <submitButton className='py-3 mb-3 '><a href="/payment"> Enroll Now</a></submitButton>
+        <button className='py-3 mb-3 '><a href="/payment"> Enroll Now</a></button>
         <h6><span className="text-decoration-none fw-bold">141,864</span> already enrolled</h6>
         <ul className=" d-flex my-5 justify-content-between flex-wrap flex-md-nowrap px-2  pb-4">
-                <li><NavLink to=""  activeClassName="active">About</NavLink></li>
-                <li><NavLink to="/"  activeClassName="active">Outcomes</NavLink></li>
-                <li><NavLink to="/"  activeClassName="active">Lessons</NavLink></li>
-                <li><NavLink to="/"  activeClassName="active">Certificate</NavLink></li>
-                <li><NavLink to="/"  activeClassName="active">Recommendations</NavLink></li>
-                <li><NavLink to="/"  activeClassName="active">Reviews</NavLink></li>
+                <li><NavLink to=""  >About</NavLink></li>
+                <li><NavLink to="/"  >Outcomes</NavLink></li>
+                <li><NavLink to="/"  >Lessons</NavLink></li>
+                <li><NavLink to="/"  >Certificate</NavLink></li>
+                <li><NavLink to="/"  >Recommendations</NavLink></li>
+                <li><NavLink to="/"  >Reviews</NavLink></li>
             </ul>
             <div className="about">
             <h4 className="fw-semibold">About course</h4>
@@ -53,11 +53,11 @@ const Course_Details = () => {
 
 <h4 className="fw-semibold mt-5">What you&apos;ll learn</h4>
 <div className="learn d-flex flex-column flex-sm-row justify-content-between gap-5 g-3">
-    <div className="left w-50">
+    <div className=" w-50">
     <p className=" d-flex align-items-center my-4"><img src={trueIcon} alt="" className="me-3"/>Apply each step of the UX design thinking framework (empathize, define, ideate, prototype, test) to create a  project focused on social good.</p>
     <p className=" d-flex align-items-center my-4 "><img src={trueIcon} alt="" className="me-3"/>Prepare to successfully interview for an entry-level UX design job.</p>
     </div>
-    <div className="right w-50">
+    <div className=" w-50">
     <p className=" d-flex align-items-center my-4"><img src={trueIcon} alt="" className="me-3"/>Build wireframes, mockups, and low-fidelity and high-fidelity prototypes for a dedicated mobile app and a responsive website. </p>
     <p className=" d-flex align-items-center my-4"><img src={trueIcon} alt="" className="me-3"/>Determine if freelance design work is a good career fit.</p>
 </div>
@@ -73,19 +73,19 @@ const Course_Details = () => {
 
 
 
-        </left>
-        <right className="mx-auto p-3 mt-5 ">
+        </div>
+        <div className=" right mx-auto p-3 mt-5 ">
         <img src={course} alt="" className="mb-4 w-100"/>
         <h5 className="fw-semibold"> Course</h5>
         <h6 className="brd pb-2">Gain insight into a topic and learn the fundamentals</h6>
-        <h6 className="d-flex align-items-center my-4 "><span className="fs-5 fw-semibold me-1">4.8 </span><img src={star} alt="" width={15} className="me-1"/> < tag className="brd2 pe-2">(3,066 reviews)</tag>
+        <h6 className="d-flex align-items-center my-4 "><span className="fs-5 fw-semibold me-1">4.8 </span><img src={star} alt="" width={15} className="me-1"/> <p  className="brd2 pe-2">(3,066 reviews)</p>
         <img src={like} alt=""  className="like ms-2 me-1 "/> 99%</h6>
         <h5 className="fw-semibold">Beginner level</h5>
         <h6  >No previous experience necessary</h6 >
         <h5 className="fw-semibold">24 hours (approximately) </h5>
             <h5 className="fw-semibold">Flexible schedule</h5>
         <h6 >Learn at your own pace</h6 >
-        </right>
+        </div>
     </div>
 
     </div>
@@ -177,7 +177,7 @@ const Course_Details = () => {
         </div>
 
         <div className="reviews Container d-flex flex-column flex-md-row gap-5  my-5 ">
-            <div className="left mt-5 ">
+            <div className="aside mt-5 ">
                 <h5 className="fw-semibold">Learner reviews</h5>
                 <h3 className="gap-2 d-flex align-items-center fw-semibold my-4"> <img src={starR} alt="" />4.8 <span className="fs-6 fw-normal">3,066 reviews</span></h3>
                 <div className="d-flex mb-2 align-items-center gap-3"><h6 className="fw-bold">5 stars</h6><progress value={.9} className="w-100"/><h6 >88.58%</h6></div>
@@ -186,13 +186,13 @@ const Course_Details = () => {
                 <div className="d-flex mb-2 align-items-center gap-3"><h6 className="fw-bold">2 stars</h6><progress value={.1} className="w-100"/><h6>0.38%</h6></div>
                 <div className="d-flex mb-2 align-items-center gap-3"><h6 className="fw-bold">1 stars</h6><progress value={0} className="w-100"/><h6>0.54%</h6></div>
             </div>
-            <div className="right ">
+            <div className="main ">
                 <p className="text-center">Showing 3 of 3066</p>
                 <div className="member d-flex my-4 w-100 py-4 pe-5 ps-4 gap-4">
         <img src={member1} alt=""  className="rounded-circle h-100 "/>
     <div className="info  align-items-center gap-3">
-            <h6 className="d-flex justify-content-between flex-column flex-md-row  fw-semibold "> Yahia Ahmed
-<h6 className="d-sm-flex align-items-center gap-1 pt-2 pt-md-0 fw-semibold"><img src={star} alt="" width={15}/> 5 .  <span className="fw-normal">  Reviewed on Oct 16, 2022</span></h6></h6>
+            <div className="d-flex justify-content-between flex-column flex-md-row  fw-semibold "> Yahia Ahmed
+<h6 className="d-sm-flex align-items-center gap-1 pt-2 pt-md-0 fw-semibold"><img src={star} alt="" width={15}/> 5 .  <span className="fw-normal">  Reviewed on Oct 16, 2022</span></h6></div>
     <p className="mt-1">Awesome course series! I learned a lot throughout the journey. I love how Google 
 emphasizes inclusive and ethical design. Everything will nourish my growth. Thank 
 you, Google!</p>
@@ -201,8 +201,8 @@ you, Google!</p>
                 <div className="member d-flex my-4 w-100 py-4 pe-5 ps-4 gap-4">
         <img src={member2} alt=""  className="rounded-circle h-100 "/>
     <div className="info  align-items-center gap-3">
-            <h6 className="d-flex justify-content-between flex-column flex-md-row fw-semibold "> Yahia Ahmed
-<h6 className="d-sm-flex align-items-center gap-1 pt-2 pt-md-0 fw-semibold"><img src={star} alt="" width={15}/> 5 .  <span className="fw-normal">  Reviewed on Oct 16, 2022</span></h6></h6>
+            <div className="d-flex justify-content-between flex-column flex-md-row fw-semibold "> Yahia Ahmed
+<h6 className="d-sm-flex align-items-center gap-1 pt-2 pt-md-0 fw-semibold"><img src={star} alt="" width={15}/> 5 .  <span className="fw-normal">  Reviewed on Oct 16, 2022</span></h6></div>
     <p className="mt-1">Awesome course series! I learned a lot throughout the journey. I love how Google 
 emphasizes inclusive and ethical design. Everything will nourish my growth. Thank 
 you, Google!</p>
@@ -211,8 +211,8 @@ you, Google!</p>
                 <div className="member d-flex my-4 w-100 py-4 pe-5 ps-4 gap-4">
         <img src={member3} alt=""  className="rounded-circle h-100 "/>
     <div className="info  align-items-center gap-3">
-            <h6 className="d-flex justify-content-between flex-column flex-md-row fw-semibold "> Yahia Ahmed
-<h6 className="d-sm-flex align-items-center gap-1 pt-2 pt-md-0 fw-semibold"><img src={star} alt="" width={15}/> 5 .  <span className="fw-normal">  Reviewed on Oct 16, 2022</span></h6></h6>
+            <div className="d-flex justify-content-between flex-column flex-md-row fw-semibold "> Yahia Ahmed
+<h6 className="d-sm-flex align-items-center gap-1 pt-2 pt-md-0 fw-semibold"><img src={star} alt="" width={15}/> 5 .  <span className="fw-normal">  Reviewed on Oct 16, 2022</span></h6></div>
     <p className="mt-1">Awesome course series! I learned a lot throughout the journey. I love how Google 
 emphasizes inclusive and ethical design. Everything will nourish my growth. Thank 
 you, Google!</p>
@@ -223,7 +223,7 @@ you, Google!</p>
         </div>
     </div>
     <Footer/>
-    </courses>
+    </div>
   )
 }
 
