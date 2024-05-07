@@ -76,7 +76,7 @@ return (
         </icons>
         :
         <buttons className='d-flex ms-5 justify-content-between gap-4'>
-        <button className=' py-2  px-5 login button' > <a href="/" >Log in</a></button>
+        <button className=' py-2  px-5 login button' > <a href="/login" >Log in</a></button>
         <button className=' py-2 border-0 px-5 sign'> <a href="/signup">Sign up</a></button>
         </buttons>
 }
