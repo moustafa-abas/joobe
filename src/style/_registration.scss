@@ -58,7 +58,6 @@ a{
 }
 }
 
-//////////////////////////////////////////////////////////////
 .login{
     .logo{
         margin-top: 2%;
@@ -101,19 +100,25 @@ width: 0%;
 }}
 @media ($max-sm-mobile) {
 form{
-width: 95%;
-}}}
-// -------------------------------------------------------------------------------------------------------
+width: 90%;
+}}
+}
+
 .signUp{
     @extend .login;
 }
 .users{
     form{
         width: 70%;
-        selection{
+        .selection{
         width: calc(100%/3);
         position: relative;
-        box{
+        label{
+            color: var(--Details-Text-Color, #626262);
+            cursor: pointer;
+            
+        }
+        .box{
         input[type="radio"]{
         appearance: none;
         width: 60%;
@@ -125,29 +130,40 @@ width: 95%;
         transition: all .2s;
         }
         .icon{
-        font-size: 60px;
         position: absolute;
-        top: 25%;
+        top: 50%;
         left: 50%;
-        transform: translate(-50%,-25%);
+        transform: translate(-50%,-50%);
         color: var(--Disabled-Text-Color);
         transition: all .2s;
-        }
+  
+    }
         input[type="radio"]:checked{
         background: var(--bG2-Color, #E9EBF8);
-        box-shadow: 3px 3px 5px 3px rgba(0, 0, 0, 0.10); 
-        &+.icon{
-        color: var(--main-color);
-        }
-    }}
-        label{
-        color: var(--Details-Text-Color, #626262);
-        cursor: pointer;
-        }}}
-button{
-    width: 35%;
+        box-shadow: 3px 3px 5px 3px rgba(0, 0, 0, 0.10);
+        &+ .icon{
+            path{
+            fill: #072AC8 ;
+
+    }
+    }
+
+    }
 }
+
+    @media ($max-mobile) {
+        width: 100%;
+    }  
+    }
+    }
+    button{
+        width: 50%;
+    }
+    
 }
+
+
+
 // //------------------------------------------------------------------------------------------------------------
 .junior{
 form{
@@ -188,17 +204,17 @@ form{
 }
 @media ($max-sm-mobile) {
 form{
-    width: 95%;
+    width: 90%;
 }
 }
 }
 // //----------------------------------------------------------------------------------------------------------------------------------------
-company{
+.company{
 @extend .junior;
 }
 // //-------------------------------------------------------------------------------------------------------------
-// instructor{
-// @extend junior;
+.instructor{
+@extend .junior;
 // }
 
 
@@ -210,6 +226,6 @@ company{
 //     background-color: #FFF;
 //     border-radius: 50%;
 //     padding: 10%;
-// }
+}
 
 

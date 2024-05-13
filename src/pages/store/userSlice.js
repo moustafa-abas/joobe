@@ -6,7 +6,7 @@ const initialState={
     isLogined:false,
     userData:null,
     error:null,
-    token:'',
+    token:null,
     tracks:[]
 }
 
@@ -32,7 +32,7 @@ async (data) => {
         "https://jobee-5pfw.onrender.com/api/student/auth/login",
         data
     );
-    return response.data.token;
+    return response.data.token
     } catch (error) {
     throw new Error(error.message);
     }
@@ -49,10 +49,10 @@ signUp:(state,action)=>{
     location.replace('/select')
 },
 firstDataJunior:(state,action)=>{
-    state.userData=action.payload     
+    state.userData={...state.userData,...action.payload}
 localStorage.setItem("firstJuniorData",JSON.stringify(state.userData));
-location.replace('/endJunior')
-
+// location.replace('/endJunior')
+// state.userData=null
 },
 
     },
@@ -63,8 +63,9 @@ location.replace('/endJunior')
         state.userData = null;
         state.error = null;
         })
-        .addCase(sendData.fulfilled, (state) => {
+        .addCase(sendData.fulfilled, (state,action) => {
         state.isLogined = true;
+        state.userData=action.payload
 location.replace('/')
         })
         .addCase(sendData.rejected, (state, action) => {
@@ -79,6 +80,7 @@ location.replace('/')
         .addCase(login.fulfilled, (state, action) => {
         state.isLogined = true;
         state.token=action.payload
+
 location.replace('/')
         })
         .addCase(login.rejected, (state, action) => {

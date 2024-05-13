@@ -603,11 +603,10 @@ main{
     width: 50%;
 h2{
 color: #333;
-font-size: 56px;
+font-size: 48px;
 @media ($max_tablet) {
     font-size: 32px;
 }
-
 }
 p{
 color: #828282;
@@ -625,13 +624,11 @@ width: 100% !important;
 .daily-tasks{
 header{
 .text{
-h1{
+h1:first-child{
 color: var(--main, #072AC8);
-font-size: 48px;
 }
-h2{
+h1{
 color: var(--Details-Text-Color, #626262);
-font-size: 48px;
 }
 }
 .score{
@@ -1078,11 +1075,11 @@ margin-left: -7%;
             width: 30%;
         }
         }
-        h4{
+        h5{
             color: var(--Details-Text-Color, #626262);
         }
         .boxes{
-            h4{
+            h5{
                 color: var(--Text-Color); 
                 background-color: #000;
                 border-radius: 8px;
@@ -1096,9 +1093,16 @@ margin-left: -7%;
             h3{
                 border-bottom: .5px solid var(--Stroke ,#BDBDBD);
             }
-            span{
-word-break: keep-all;
-            }
+            .skill{
+span{
+    border-radius: 4px;
+background: var(--BG-color-20, rgba(230, 234, 250, 0.20));
+    font-size: 18px;
+            &:first-child{
+font-size: 24px;
+}
+}
+        }
         }
         button{
             background: none ;

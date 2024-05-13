@@ -4,23 +4,26 @@ import edit from'../../images/Group.svg'
 import Logo from '../../logo'
 import axios from 'axios'
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { firstDataJunior } from '../store/userSlice'
 
 const Junior = () => {
+const user=useSelector((state)=>state.user.userData)
+console.log(user)
    const dispatch=useDispatch()
    const [selectedPhoto, setSelectedPhoto] = useState();
     const { register, handleSubmit, formState: { errors },watch }  = useForm({
         defaultValues:{
         profileImage:null,
         username:'',
-        age:'',
-        experience:'',
+        age:null,
+        experience:null,
         track:'',
         tracklevel:''
     }
     });
     const onSubmit = (data) => {
+        data.profileImage=selectedPhoto
 dispatch(firstDataJunior(data))
     };
     const [src, setSrc] = useState(photo)

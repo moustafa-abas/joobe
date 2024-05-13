@@ -12,6 +12,7 @@ $max-sm-mobile:"max-width:400px";
         background: url(<path-to-image>) lightgray 50% / cover no-repeat;
         width: 100%;
     }
+
 }
 //////////////////////////////////////////////////////////////
 header{
@@ -25,6 +26,7 @@ header{
     }
     form{
         width: 40%;
+        display: flex !important;
         input{
             border-radius: 60px !important;
             text-indent: 10%;
@@ -70,33 +72,46 @@ a{
 }
 @media ($max_laptop) {
     form{
-        width: 35%;
+        width: 75%;
     }
     ul{
         position: absolute;
-        // width: 50%;
-        top: 150%;
+        width: 50%;
+        top: 0;
         right: 0;
-    background-color: #0000009b ;
+        height: 100vh;
+    background-color: #000000e9 ;
 align-items: normal !important;
+z-index: 2;
     li{
 padding: 5% 0;
     margin: 0 !important;
-    
+    &:not(:last-child){
+    border-bottom: 1px solid white;
+    }
+    .active{
+        &::after{
+            display: none;
+        }
+    }
+    a{
+        color: var(--White) !important;
+    }
 }
 }
 }
 @media ($max-tablet) {
-    logo{
-        width: 60%;
+    .logo{
+        width: 50%;
     }
+    ul{width: 100%;}
 }
     buttons{
         a{
             text-decoration: none;
             width: fit-content;
         }
-        submitButton{
+        button{
         display: flex;
         justify-content: center;
 border-radius: 8px;
@@ -165,7 +180,7 @@ transition: all 1s;
 font-size: 14px;
 }
 @media ($max_mobile) {
-    left,center,right{
+    .left,.center,.right{
         width: 100%;
     }
 }
@@ -209,8 +224,8 @@ font-size: 14px;
                 }
             }
         @media ($max_tablet) {
-            left,
-            right{
+            .left,
+            .right{
                 width: 100%;
             }
 

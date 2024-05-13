@@ -1,6 +1,9 @@
 import './style/style.scss'
 import { Suspense, lazy } from 'react';
 import {BrowserRouter as Router, Routes,Route} from'react-router-dom'
+// import addCourse from './pages/startup/addCourse';
+const addCourse=lazy(()=>import('./pages/startup/addCourse'))
+const editCourse=lazy(()=>import('./pages/startup/editCourse'))
 const LogIn = lazy(()=>import('./pages/registration/LogIn'))
 const SignUp = lazy(()=>import('./pages/registration/SignUp'))
 const SelectSign = lazy(()=>import('./pages/registration/SelectSign'))
@@ -8,6 +11,7 @@ const Junior = lazy(()=>import('./pages/registration/Junior'))
 const EndJunior = lazy(()=>import('./pages/registration/EndJunior'))
 const StartUp = lazy(()=>import('./pages/registration/StartUp'))
 const Instructor = lazy(()=>import('./pages/registration/Instructor'))
+const EndInstructor = lazy(()=>import('./pages/registration/EndInstructor'))
 const Home = lazy(()=>import('./pages/student/Home'))
 const Jobs = lazy(()=>import('./pages/student/jobs/Jobs'))
 const All_Jobs = lazy(()=>import('./pages/student/jobs/All_Jobs'))
@@ -39,6 +43,7 @@ const App=()=> {
         <Route path='/endJunior' Component={EndJunior}/>
         <Route path='/startup' Component={StartUp}/>
         <Route path='/instructor' Component={Instructor}/>
+        <Route path='/endInstructor' Component={EndInstructor}/>
 
         <Route exact path='/' Component={Home}/>
 
@@ -50,6 +55,8 @@ const App=()=> {
         <Route path='/courses/all-courses' Component={All_Courses}/>
         <Route path='/courses/course_details' Component={Course_Details}/>
         <Route path='/courses/enrolled' Component={Course}/>
+        <Route path='/courses/addCourses' Component={addCourse}/>
+        <Route path='/courses/editCourses' Component={editCourse}/>
 
         <Route path='/quiz/home' Component={Quiz}/>
         <Route path='/quiz/daily-tasks' Component={Tasks}/>

@@ -20,10 +20,8 @@ import star from'../../images/star-icon.svg'
 import Job from '../../components/job'
 import Footer from "../../components/Footer"
 import Header from '../../components/Header'
-import { useSelector } from 'react-redux'
 
 const Home = () => {
-    const isLogined=useSelector((state)=>state.user.token)
 return (
 <div className="home">
 <Header/> 

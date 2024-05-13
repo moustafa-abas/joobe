@@ -1,16 +1,22 @@
 import back from'../../images/profile1.jpg'
 import edit from'../../images/Group.svg'
 import photo from'../../images/Group 64.jpg'
-import coin from'../../images/coin.jpg'
+import coin from'../../images/coin.png'
 import cv from'../../images/cv.jpg'
 import Header from "../../components/Header"
 import { useState } from 'react'
 import Footer from '../../components/Footer'
 import Job from '../../components/job'
+import { useSelector } from 'react-redux'
 
 const Profile = () => {
+    const data=JSON.parse(localStorage.getItem('allDAta'))
     const [src, setSrc] = useState(photo)
     const [coverSrc, setCoverSrc] = useState(back)
+    const userData=useSelector((state)=>state.user.userData)
+  const score=useSelector((state)=>state.quizzes.score)
+
+    console.log(userData)
 return (
 <div className='profile'>
 <Header/>
@@ -30,31 +36,19 @@ return (
         <img src={src} alt="valid source" className='profile rounded-circle'/>
         <img src={edit} alt=""  className='edit  p-2 bottom-0 end-0 rounded-circle position-absolute'/>
     </label>
-    <h2 className='fw-semibold mt-5'>Mostafa Abas</h2>
-    <h4>moustafa3bas@gmail.com</h4>
+    <h3 className='fw-semibold mt-5'>{data.username}</h3>
+    <h5>{data.email}</h5>
     <div className=" width w-50 mx-auto">
     <div className="boxes  d-flex justify-content-center gap-3 my-5">
-<h4 className='d-flex flex-column w-50 py-3 fw-semibold'> Track Name<span className='mt-3'>Front End</span></h4>
-<h4 className='d-flex flex-column w-50 py-3 fw-semibold'> Tests Score<span className='mt-3'><img src={coin} alt="" className='me-2'/>125</span></h4>
+<h5 className='d-flex flex-column w-50 py-3 fw-semibold'> Track Name<span className='mt-3'>{data.track}</span></h5>
+<h5 className='d-flex flex-column w-50 py-3 fw-semibold '> Tests Score<span className='mt-3 d-flex justify-content-center align-items-center fs-3'><img src={coin} alt="" className='me-2 'width={30}/>{score}</span></h5>
     </div>
     <div className="skills text-start">
         <h3 className='pb-3 mb-3 fw-semibold'>Skills</h3>
         <div className="skill d-flex flex-wrap gap-4 align-items-center">
-<span className='fs-4'>Usability Testing</span> 
-<span>Usability Testing</span> 
-<span>UX design jobs</span> 
-<span>Prototype</span> 
-<span>UX design jobs</span> 
-    <span>UX design jobs</span>
-    <span>UX design jobs</span>
-    <span>UX design jobs</span>
-    <span>UX design jobs</span>
-    <span>Prototype</span>
-    <span>Prototype</span>
-    <span>Prototype</span>
-    <span>Prototype</span>
-    <span>Prototype</span>
-    <span>User Experience (UX)</span>
+{data.skills.map((skill)=>(
+<span className='fw-medium px-2' key={skill}>{skill}</span> 
+))}
     </div>
     </div>
     <h3 className='text-start mt-5 fw-semibold'>Your CV</h3>

@@ -6,7 +6,7 @@ const Quiz = () => {
 return (
 <div className="quiz">
     <Header/>
-<div className="home Container d-flex flex-column flex-md-row gap-5 justify-content-between mt-3">
+<div className="home Container d-flex flex-column-reverse flex-md-row gap-5 justify-content-between mt-4">
 <main className=" pe-5">
     <h2 className="fw-semibold">Learn <br /> new concepts <br /> for each question</h2>
     <p className="fs-4 fw-light mt-4">We help you prepare for exams and quizzes to improve your self </p>

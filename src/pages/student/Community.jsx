@@ -67,7 +67,6 @@ return (
     </div>
 
 
-
 <div className="publish p-1 overflow-y-scroll ">
     <div className="head">
     <div className="group d-flex mb-2">

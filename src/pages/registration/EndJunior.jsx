@@ -4,10 +4,12 @@ import Logo from '../../logo'
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {  sendData} from '../store/userSlice';
 
 const Test = () => {
+    const user=useSelector((state)=>state.user.userData)
+    console.log(user)
 const dispatch=useDispatch()
 const [militaries, setMilitaries] = useState([]);
 const [selectedCV, setSelectedCV] = useState();
@@ -27,6 +29,7 @@ const data1={...data,skills}
 localStorage.setItem('finishData1',JSON.stringify(data1))
 const finishData=JSON.parse(localStorage.getItem('finishData1'))
 const all={...signData,...firstData,...finishData}
+localStorage.setItem('allDAta',JSON.stringify(all))
 dispatch(sendData(all))
 
 };
