@@ -7,6 +7,8 @@ import { fetchQuizData, nextQuestion, submitQuiz } from "../../store/quizSlice";
 import { useForm } from 'react-hook-form';
 
 const Questions = () => {
+  const score=useSelector((state)=>state.quizzes.score)
+
   const dispatch = useDispatch()
  const token=useSelector((state)=>state.user.token)
   const quizData=useSelector((state)=>state.quizzes.quizData)
@@ -42,7 +44,7 @@ const Questions = () => {
 <h2 >Quiz 4</h2>
 </div>
 <div className="score ">
-<div className="d-flex align-items-center justify-content-center "> <img src={coin} alt="" className="w-25"/> <span className="fw-semibold ms-3 fs-3">125</span></div>
+<div className="d-flex align-items-center justify-content-center "> <img src={coin} alt="" className="w-25"/> <span className="fw-semibold ms-3 fs-3">{score}</span></div>
 </div>
 
 </header>
