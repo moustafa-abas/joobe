@@ -51,8 +51,7 @@ signUp:(state,action)=>{
 firstDataJunior:(state,action)=>{
     state.userData={...state.userData,...action.payload}
 localStorage.setItem("firstJuniorData",JSON.stringify(state.userData));
-// location.replace('/endJunior')
-// state.userData=null
+location.replace('/endJunior')
 },
 
     },
