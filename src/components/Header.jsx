@@ -58,12 +58,12 @@ return (
 
         {showLinks?
         <ul className='ul pt-5 ps-0  d-flex d-lg-none flex-column    '>
-        <li className='mx-3'><NavLink className='text-decoration-none'   to={"/"}>Home</NavLink></li>
-        <li className='mx-3'><NavLink className='text-decoration-none'  to={"/community"}>Community</NavLink></li>
-        <li className='mx-3'><NavLink className='text-decoration-none'  to={"/jobs"}>Jops</NavLink></li>
+        <li className='mx-3'><NavLink    to={"/"}>Home</NavLink></li>
+        <li className='mx-3'><NavLink   to={"/community"}>Community</NavLink></li>
+        <li className='mx-3'><NavLink className={location.pathname.startsWith('/job') ? 'active' : ''}  to={"/jobs"}>Jops</NavLink></li>
 {isLogined?<>
-        <li className='mx-3'><NavLink className='text-decoration-none'   to={"/courses"}>My courses</NavLink></li>
-        <li className='mx-3'><NavLink className='text-decoration-none'   to={"/quiz"}>Quizzes</NavLink></li>
+        <li className='mx-3'><NavLink    to={"/courses"}>My courses</NavLink></li>
+        <li className='mx-3'><NavLink className={location.pathname.startsWith('/quiz') ? 'active' : ''}   to={"/quiz/home"}>Quizzes</NavLink></li>
         </>
         :
         <></>
