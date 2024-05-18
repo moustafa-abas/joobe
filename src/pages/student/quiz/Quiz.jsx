@@ -10,7 +10,7 @@ return (
 <main className=" pe-5">
     <h2 className="fw-semibold">Learn <br /> new concepts <br /> for each question</h2>
     <p className="fs-4 fw-light mt-4">We help you prepare for exams and quizzes to improve your self </p>
-    <button className='mt-5 w-50 py-3'> <a href="/quiz/daily-tasks">Daily Tasks</a></button>
+    <button className='mt-5 w-50 py-3' > <a href="/quiz/daily-tasks">Start Tasks</a></button>
 </main>
     <img src={quiz} alt=""  />
 </div>

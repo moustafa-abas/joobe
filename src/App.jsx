@@ -1,7 +1,7 @@
 import './style/style.scss'
 import { Suspense, lazy } from 'react';
+import Spinner from 'react-bootstrap/Spinner';
 import {BrowserRouter as Router, Routes,Route} from'react-router-dom'
-// import addCourse from './pages/startup/addCourse';
 const addCourse=lazy(()=>import('./pages/startup/addCourse'))
 const editCourse=lazy(()=>import('./pages/startup/editCourse'))
 const LogIn = lazy(()=>import('./pages/registration/LogIn'))
@@ -31,9 +31,11 @@ const Payment = lazy(()=>import('./pages/student/Payment'))
 const Course = lazy(()=>import('./pages/student/courses/Course_Enrolled'))
 const Test = lazy(()=>import('./pages/registration/test'))
 const App=()=> {
-
   return (
-    <Suspense fallback={<h1 className='text-center'>loading</h1>}>
+    <Suspense fallback={
+      <div className="spinner position-absolute w-100  ">
+  <Spinner animation="border" className=' position-absolute top-50 start-50 p-4 text-light' />
+  r</div>}>
     <Router>
       <Routes>
         <Route path='/login' Component={LogIn}/>

@@ -9,10 +9,16 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { fetchQuizData } from '../../store/quizSlice'
 const DailyTasks = () => {
-    const userData=JSON.parse(localStorage.getItem('allDAta'))
+    const userData=useSelector((state)=>state.user.userData)
+
     const token=useSelector((state)=>state.user.token)
-    const data=useSelector((state)=>state.quizzes.quizData)
+    const quizzesData=useSelector((state)=>state.quizzes.quizzesData)
   const score=useSelector((state)=>state.quizzes.score)
+  const currentQuestion=useSelector((state)=>state.quizzes.currentQuestion)
+  const currentQuiz=useSelector((state)=>state.quizzes.currentQuiz)
+  const length=quizzesData[currentQuiz].exam.length
+  const value=quizzesData[currentQuiz].exam.map((question ,index)=>index)
+  console.log(currentQuestion)
 
     const dispatch = useDispatch()
     useEffect(()=>{
@@ -22,9 +28,10 @@ const DailyTasks = () => {
 return (<div className='quiz'>
 <Header/>
     <div className="daily-tasks Container mt-3">
+        <data value=""></data>
+    
 <header className=" position-relative">
     <div className="text text-center ">
-<h1 className="fw-semibold">Daily Tasks</h1>
 <h1 className="fw-lighter mt-4">Good Morning {userData.username} <img src={hand} alt="" /></h1>
 </div>
 <div className="score ">
@@ -33,72 +40,32 @@ return (<div className='quiz'>
 </div>
 </header>
 <div className='tasks'>
-    <h3 className="fw-semibold my-3">Daily Tasks</h3>
-    <h4 className="fw-semibold">May</h4>
-<ul className="d-flex justify-content-between gap-3 mt-4 overflow-scroll">
-    <li className=" fw-bold fs-3 px-5 py-4">1</li>
-    <li className=" fw-bold fs-3 px-5 py-4">2</li>
-    <li className=" fw-bold fs-3 px-5 py-4">3</li>
-    <li className=" fw-bold fs-3 px-5 py-4">4</li>
-    <li className=" fw-bold fs-3 px-5 py-4">5</li>
-    <li className=" fw-bold fs-3 px-5 py-4">6</li>
-    <li className=" fw-bold fs-3 px-5 py-4">7</li>
-</ul>
-    <h2 className="fw-bold text-center mt-5">You have 5 Tasks Today</h2>
-    <p className="fs-3 fw-semibold mt-3 text-center">{data.type}</p>
+
+    <h2 className="fw-bold text-center mt-5">You have {quizzesData.length} Tasks </h2>
+    <p className="fs-3 fw-semibold mt-3 text-center">{userData.track}</p>
 </div>
 
 
-<div className='questions mx-auto'>
-    <div className="tasks mt-4   ">
-        <p className="fs-4 fw-light">1 Questions</p>
-        <div className="state d-flex p-3 align-items-center ">
-<h4 className="me-4  ">Color Physiology</h4>
-<progress value={0} className='w-100 me-3'></progress>
-<img src={trueIcon} alt="" width={30} />
-        </div>
-    </div>
-    <div className="tasks mt-4">
-        <p className="fs-4 fw-light">2 Questions</p>
+<div className='question'>
+{quizzesData.map((quiz, index)=>(
+        <div className="task mt-4" key={quiz._id} value={quiz._id}>
+        <p className="fs-5 fw-light">{index+1} Question</p>
         <div className="state p-3 align-items-center d-flex">
-<h4 className="me-4">Text & Spacing </h4>
-<progress value={0} className='w-100 me-3'></progress>
-
-<img src={trueIcon} alt="" width={30} />
-
+<h4 className="me-4 pe-5 w-25">{quiz.name} </h4>
+<progress value={currentQuiz===index? value[currentQuestion]:currentQuiz>index?length:0} max={length} className='w-75 me-3'></progress>
+{
+currentQuiz>index?
+<img src={trueIcon} alt="" width={30}  />:
+currentQuiz===index?
+<img src={circle} alt="" width={30} />
+:<img src={lock} alt="" width={30} />
+}
         </div>
     </div>
-    <div className="tasks mt-4">
-        <p className="fs-4 fw-light">3 Questions</p>
-        <div className="state p-3 align-items-center d-flex">
-<h4 className="me-4">Design System</h4>
-<progress value={0} className='w-100 me-3'></progress>
-
-<img src={trueIcon} alt="" width={30}/>
-
-        </div>
-    </div>
-    <div className="tasks mt-4">
-        <p className="fs-4 fw-light">4 Questions</p>
-        <div className="state p-3 align-items-center d-flex">
-<h4 className="me-4">Typography & Hierarchy</h4>
-<progress value={0} className='w-100 me-3'></progress>
-<img src={circle} alt="" width={30}/>
-
-        </div>
-    </div>
-    <div className="tasks mt-4">
-        <p className="fs-4 fw-light">5 Questions</p>
-        <div className="state p-3 align-items-center d-flex">
-<h4 className="me-4">Typography & Hierarchy</h4>
-<progress value={0} className='w-100 me-3'></progress>
-
-<img src={lock} alt="" width={30}/>
-        </div>
-    </div>
+))
+}
 </div>
     <button className="my-5 py-4 " ><a href="/quiz/questions">Continue</a></button>
-    <button className="py-4 ">New Level</button>
     </div>
     <Footer/>
     </div>

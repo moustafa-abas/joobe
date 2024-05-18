@@ -6,19 +6,19 @@ const Footer = () => {
 return (
     <>
 <footer className=" pt-4 mt-5">
-    <div className='d-flex flex-column flex-sm-row'>
+    <div className='d-flex flex-column  flex-sm-row'>
     <div className='left d-flex flex-column align-items-end fw-light pe-3'>
         <h2 className='fw-bold fs-1'>Contact Us</h2>
-<h3 className='fw-semibold mt-3'>Email</h3> 
+<h3 className='fw-semibold mt-md-3 '>Email</h3> 
 <p>yehiaahmed4589@gmail.com</p>
-<h3 className='fw-semibold mt-3'>Phone</h3>
+<h3 className='fw-semibold mt-md-3'>Phone</h3>
 <p>000 000 000 000</p>
-<h3 className='fw-semibold mt-3'>Address</h3>
+<h3 className='fw-semibold mt-md-3'>Address</h3>
 <p>Egypt, Tanta</p>
     </div>
-    <div className='center text-center mt-5'>
+    <div className='center text-center mt-md-5'>
         <img src={logo} alt="" />
-        <h2 className='fs-5 fw-light my-5'>Get courses and get offers for work</h2>
+        <h2 className='fs-5 fw-light my-md-5'>Get courses and get offers for work</h2>
         <div className="links">
             <img src={facebook} alt="" className='mx-3' />
             <img src={linkedin} alt="" className='mx-3' />
@@ -26,10 +26,10 @@ return (
         </div>
     </div>
     <div className='right ps-3'>
-        <h2 className='fw-bold fs-1 mb-3'>Pages</h2>
-        <p className='fs-5 '><a href="/home">Home</a></p>
-        <p className='fs-5 '><a href="/community">Community</a></p>
-        <p className='fs-5 '><a href="/jops">Jops</a></p>
+        <h2 className='fw-bold fs-1 mb-md-3'>Pages</h2>
+        <p className='fs-5 my-0'><a href="/home">Home</a></p>
+        <p className='fs-5 my-0'><a href="/community">Community</a></p>
+        <p className='fs-5 my-0'><a href="/jobs">Jobs</a></p>
     </div>
     </div>
         <p className='text-center copyRight'>Jobee © 2024, All Rights Reserved</p>

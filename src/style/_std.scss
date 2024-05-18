@@ -338,6 +338,7 @@ ul{
 .courses{
     h1{color: var(--Text-Color, #090F24);}
     .courses-group{
+        
         .head{
             p{
                 color: var(--main-color, #072AC8);
@@ -349,15 +350,16 @@ img{
             }
         }
         .group{
+            
             @media ($max_tablet) {
                 margin-left: 2% !important;
             }
             
         .course{
             cursor: pointer;
+            width: 25%;
             @media ($max_mobile) {
                 width: 100%;
-                
             }
             align-self: stretch;
             img{
@@ -624,9 +626,9 @@ width: 100% !important;
 .daily-tasks{
 header{
 .text{
-h1:first-child{
-color: var(--main, #072AC8);
-}
+// h1:first-child{
+// color: var(--main, #072AC8);
+// }
 h1{
 color: var(--Details-Text-Color, #626262);
 }
@@ -662,8 +664,8 @@ color: rgba(98, 98, 98, 0.60);
 }
 }
 
-.questions{
-.tasks{
+.question{
+.task{
 p{
 color: var(--Disabled-Text-Color, #848484);
 }
@@ -673,8 +675,6 @@ background: rgba(7, 42, 200, 0.03);
 backdrop-filter: blur(2px);
 h4{
 color: var(--main-color, #072AC8);
-width: 30%;
-padding-right: 2%;
 border-right: 3px solid var(--BG-color,#E6EAFA);
 }
 }

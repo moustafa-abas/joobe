@@ -7,14 +7,21 @@ import { fetchQuizData, nextQuestion, submitQuiz } from "../../store/quizSlice";
 import { useForm } from 'react-hook-form';
 
 const Questions = () => {
-  const score=useSelector((state)=>state.quizzes.score)
-
   const dispatch = useDispatch()
  const token=useSelector((state)=>state.user.token)
-  const quizData=useSelector((state)=>state.quizzes.quizData)
-  const answers=useSelector((state)=>state.quizzes.answers)
-  const finishQuestion=useSelector((state)=>state.quizzes.finishQuestion)
-  const currentQuestion=useSelector((state)=>state.quizzes.currentQuestion)
+ const quizzesData=useSelector((state)=>state.quizzes.quizzesData)
+
+ const currentQuiz=useSelector((state)=>state.quizzes.currentQuiz)
+ const id = quizzesData[currentQuiz]._id
+ console.log(id)
+ const answers=useSelector((state)=>state.quizzes.answers)
+ const finishQuestion=useSelector((state)=>state.quizzes.finishQuestion)
+ const currentQuestion=useSelector((state)=>state.quizzes.currentQuestion)
+ const questionsData=useSelector((state)=>state.quizzes.quizzesData)
+//  const questionData=useSelector((state)=>state.quizzes.quizzesData[currentQuiz])
+  // console.log(questionsData)
+  const score=useSelector((state)=>state.quizzes.score)
+
   const {  handleSubmit ,register,formState:{errors}}  = useForm({
     defaultValues:{
       que_id:null,
@@ -23,7 +30,7 @@ const Questions = () => {
   })
   useEffect(() => {
     if (finishQuestion===true) {
-      dispatch(submitQuiz(answers , token));
+      dispatch(submitQuiz(answers , token , id));
     }
   }, [finishQuestion]);
 
@@ -32,7 +39,7 @@ const Questions = () => {
     },[])
 
     const onSubmit = (data) => {
-      data.que_id = quizData.exam[currentQuestion]._id;
+      data.que_id = questionsData[currentQuiz].exam[currentQuestion]._id;
       dispatch(nextQuestion(data)) 
           };
   return (<div className="quiz">
@@ -40,7 +47,7 @@ const Questions = () => {
     <div className="questions Container mt-3">
 <header className="   position-relative">
     <div className="text text-center ">
-<h1>{quizData.type} </h1>
+<h1>{questionsData.type} </h1>
 <h2 >Quiz 4</h2>
 </div>
 <div className="score ">
@@ -48,7 +55,7 @@ const Questions = () => {
 </div>
 
 </header>
-<progress value={currentQuestion+ 1} max={quizData.exam.length} className="w-100"/>
+<progress value={currentQuestion+ 1} max={questionsData[currentQuiz].exam.length} className="w-100"/>
 
 {finishQuestion?
 <p className="text-center fs-2 text-dark mt-3">you finished question today</p>
@@ -56,11 +63,11 @@ const Questions = () => {
 <>
 <p className="fs-4 fw-light text-center"> Question {currentQuestion + 1}</p>
 
-<h3 className="text-center fs-2" key={quizData.exam[currentQuestion]._id}>{quizData.exam[currentQuestion].question}</h3>
+<h3 className="text-center fs-2" key={questionsData[currentQuiz].exam[currentQuestion]._id}>{questionsData[currentQuiz].exam[currentQuestion].question}</h3>
 
 <form  action='' 
 onSubmit={ handleSubmit(onSubmit)}>
-{quizData.exam[currentQuestion].options.map((option)=>(
+{questionsData[currentQuiz].exam[currentQuestion].options.map((option)=>(
 <div className="group d-flex align-items-center my-5 py-4" key={option._id}>
 <input type="radio" id={option._id}  name="answer" value={option._id}  className="ms-3 me-3"
 {...register('ans_id',
@@ -76,6 +83,7 @@ onSubmit={ handleSubmit(onSubmit)}>
 </form>
 </>
 } 
+{/* <button onClick={()=>dispatch(nextQuestion())}>kjhj</button> */}
 </div>
 <Footer/>
 </div>

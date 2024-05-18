@@ -4,7 +4,10 @@ $max_laptop:"max-width:992px";
 $max_LargeScreen:"max-width:1200px";
 $max-sm-mobile:"max-width:400px";
 
-
+.spinner{
+    background-color: rgba(0, 0, 0, 0.655);
+    height: 100vh;
+}
 .inputGroup{
     border: 1px solid var(--Stroke, #BDBDBD);
     border-radius: 8px;
@@ -19,6 +22,7 @@ $max-sm-mobile:"max-width:400px";
     input:focus{
         outline: none;
     caret-color: var(--main-color) ;
+    background: none;
     }
     label{
         transform: translateY(-50%);

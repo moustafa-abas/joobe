@@ -9,7 +9,7 @@ import {  sendData} from '../store/userSlice';
 
 const Test = () => {
     const user=useSelector((state)=>state.user.userData)
-    console.log(user)
+    // console.log(user)
 const dispatch=useDispatch()
 const [militaries, setMilitaries] = useState([]);
 const [selectedCV, setSelectedCV] = useState();
@@ -21,20 +21,14 @@ const { register, handleSubmit, formState:{errors} }  = useForm({
         cv:null
 }
 });
-const signData=JSON.parse( localStorage.getItem('signData'))
-const firstData=JSON.parse( localStorage.getItem('firstJuniorData'))
 const onSubmit = (data) => {
 const skills=data.skills.split(' ')
-const data1={...data,skills}
-localStorage.setItem('finishData1',JSON.stringify(data1))
-const finishData=JSON.parse(localStorage.getItem('finishData1'))
-const all={...signData,...firstData,...finishData}
-localStorage.setItem('allDAta',JSON.stringify(all))
+const all={...user,...data,skills}
 dispatch(sendData(all))
-
+console.log(all)
 };
 const handleFileChange = (e) => {
-    setSelectedCV(e.target.files[0]);
+    setSelectedCV (e.target.files[0]);
 }
 useEffect(() => {
     axios.get('https://jobee-5pfw.onrender.com/api/militry')

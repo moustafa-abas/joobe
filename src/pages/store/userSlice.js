@@ -3,11 +3,12 @@ import axios from 'axios';
 
 
 const initialState={
+    loading:false,
     isLogined:false,
     userData:null,
     error:null,
     token:null,
-    tracks:[]
+    rule:null
 }
 
 export const sendData = createAsyncThunk(
@@ -32,7 +33,7 @@ async (data) => {
         "https://jobee-5pfw.onrender.com/api/student/auth/login",
         data
     );
-    return response.data.token
+    return response.data
     } catch (error) {
     throw new Error(error.message);
     }
@@ -45,50 +46,53 @@ const userSlice=createSlice({
     reducers:{
 signUp:(state,action)=>{
     state.userData=action.payload
-    localStorage.setItem("signData",JSON.stringify(state.userData))
     location.replace('/select')
 },
 firstDataJunior:(state,action)=>{
     state.userData={...state.userData,...action.payload}
-localStorage.setItem("firstJuniorData",JSON.stringify(state.userData));
 location.replace('/endJunior')
 },
+logOut:(state)=>{
+    state.userData=null
+    state.isLogined=false
+    location.replace('/')
+    console.log(state.isLogined)
+}
 
     },
     extraReducers: (builder) => {
         builder
         .addCase(sendData.pending, (state) => {
-        state.isLogined = false;
-        state.userData = null;
-        state.error = null;
+            state.loading=true
         })
         .addCase(sendData.fulfilled, (state,action) => {
+            state.loading=false
         state.isLogined = true;
-        state.userData=action.payload
+        state.userData={...state.userData,...action.payload}
+        state.token=action.payload
 location.replace('/')
         })
         .addCase(sendData.rejected, (state, action) => {
-        state.isLogined = false;
+            state.loading=false
         state.error = action.error.message;
         })
         .addCase(login.pending, (state) => {
-            state.isLogined = false;
-            state.userData = null;
-            state.error = null;
+            state.loading=true
         })
         .addCase(login.fulfilled, (state, action) => {
+            state.loading=false
         state.isLogined = true;
-        state.token=action.payload
-
+        state.userData=action.payload.data
+        state.token=action.payload.token
+        state.rule=action.payload.rule
 location.replace('/')
         })
         .addCase(login.rejected, (state, action) => {
-        state.isLogined = false;
+            state.loading=false
         state.error = action.error.message;
         })
-
-        
+    
 }
 })
 export default userSlice.reducer
-export const{signUp,firstDataJunior}=userSlice.actions
+export const{signUp,firstDataJunior,logOut}=userSlice.actions

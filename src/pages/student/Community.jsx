@@ -40,7 +40,7 @@ return (
 </div>
 <div className="box w-50 py-2">
 <h3 className='fs-6 fw-semibold'>Tests Score</h3>
-<h4 className='fs-6 fw-semibold'> <img src={coin} alt=""  className='me-2'/>125</h4>
+<h4 className='fs-6 fw-semibold'> <img src={coin} alt=""  className='me-2' width={25}/>125</h4>
 </div>
     </div>
     <div className="skills text-start">

@@ -1,20 +1,19 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye } from '@fortawesome/free-regular-svg-icons'
-
 import google from'../../images/Encapsulated Group.svg'
 import apple from'../../images/Apple logo.svg'
 import email from'../../images/fluent_mail-24-regular.svg'
 import lock from'../../images/lock.svg'
 import right from'../../images/side right.svg'
-
-
 import Logo from '../../logo'
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector} from 'react-redux'
 import { login } from '../store/userSlice'
+import Spinner from 'react-bootstrap/Spinner';
 const LogIn=()=>{
     const error=useSelector((state)=>state.user.error)
+    const loading=useSelector((state)=>state.user.loading)
     const dispatch=useDispatch()
     const { register, handleSubmit, formState: { errors } }  = useForm({
         defaultValues:{
@@ -30,7 +29,9 @@ const handelShow=()=>{
 setShowPass(!showPass)
 }
 return (
-<div className='login Container d-flex '>
+    <>
+<div className='login d-flex  position-relative'>
+    <div className="Container d-flex">
 <main>
 <Logo/>
 <form  className='mx-auto' onSubmit={ handleSubmit(onSubmit)} noValidate >
@@ -55,12 +56,6 @@ validate:{
             "this domain is not  supported"
         )
     },
-    // emailAvailable:async(fieldValue)=>{
-    //     const res = await axios.get("").then(
-    //         const data =res.data
-    //         return data.length==0||"email already exists"
-    //     )
-    // }
 } })}
 />
 <label htmlFor='email' className='position-absolute fw-light top-0 px-2'>Email</label>
@@ -113,6 +108,15 @@ Log in using Apple
 <img src={right} alt="" className='w-100' />
 </aside>
 </div>
+{loading?
+<div className="spinner position-absolute w-100  ">
+    <Spinner animation="border" className=' position-absolute top-50 start-50 p-4 text-light' />
+    </div>
+    :
+<></>
+}
+</div>
+</>
 )
 }
 

@@ -25,7 +25,7 @@ return (
         <p className='d-flex fs-6 '><a href="/courses/all-courses">See More <img src={arrow} alt="" className='ms-2' /></a></p>
         </div>
         <div className=' group d-flex overflow-scroll gap-5  ms-5'>
-            <div className="course">
+            <div className="course ">
                 <img src={course1} alt="" />
                 <div className="info mt-3 ">
                         <h1 className='d-flex justify-content-between fs-6 fw-bold'>Fundamental Of User Experience <span className='d-flex align-items-center fw-lighter'><img src={star} alt="" className='me-2'/>4.9</span> </h1>
