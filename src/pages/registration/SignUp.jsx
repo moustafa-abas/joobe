@@ -72,15 +72,19 @@ validate:{
             "this domain is not  supported"
         )
     },
-    emailAvailable: async (fieldValue) => {
-      try {
-        const res = await axios.get(`https://jobee-5pfw.onrender.com/api/student/auth/register/${fieldValue}`); // Provide the URL for your API endpoint
-        const data = res.data;
-        return data.length === 0 ;
-      } catch (error) {
-        return " * email already exists"
-      }
-    }
+    // emailAvailable: async (fieldValue) => {
+    //   try {
+    //     const res = await axios.get(`https://jobee-5pfw.onrender.com/api/student/auth/register/${fieldValue}`); // Provide the URL for your API endpoint
+    //     const data = res.data;
+    //     return data.length === 0;
+    //   } catch (error) {
+    //     if (error.response && error.response.status === 400) {
+    //       return " * email already exists";
+    //     } else {
+    //       throw error; // rethrow other errors
+    //     }
+    //   }
+    // }
 } })}
 />
 <label htmlFor='email' className='position-absolute fw-light top-0 px-2'>Email</label>

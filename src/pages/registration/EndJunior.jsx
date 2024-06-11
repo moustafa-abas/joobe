@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import cvIcon from'../../images/folder-add.svg'
+import cvIcon2 from'../../images/PDF_file_icon 1.png'
 import Logo from '../../logo'
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
@@ -9,10 +10,10 @@ import {  sendData} from '../store/userSlice';
 
 const Test = () => {
     const user=useSelector((state)=>state.user.userData)
-    // console.log(user)
+    const [cv, setCv] = useState()
+    // console.log(cv.name)
 const dispatch=useDispatch()
 const [militaries, setMilitaries] = useState([]);
-const [selectedCV, setSelectedCV] = useState();
 const { register, handleSubmit, formState:{errors} }  = useForm({
     defaultValues:{
         militaryStatus:'',
@@ -23,13 +24,13 @@ const { register, handleSubmit, formState:{errors} }  = useForm({
 });
 const onSubmit = (data) => {
 const skills=data.skills.split(' ')
-const all={...user,...data,skills}
+const cv = JSON.stringify(data.cv[0]);
+
+const all={...user,...data,skills, cv}
+console.log(cv)
 dispatch(sendData(all))
-console.log(all)
 };
-const handleFileChange = (e) => {
-    setSelectedCV (e.target.files[0]);
-}
+
 useEffect(() => {
     axios.get('https://jobee-5pfw.onrender.com/api/militry')
     .then(((response) => {
@@ -86,17 +87,25 @@ placeholder='Enter your skills'
 <p className='error mt-2 text-start'>{errors.skills?.message}</p>
 
 
-    <div className=' my-5 py-2 cv d-flex justify-content-center '>
+    <div className={`${cv? "border-0":null} my-5 py-2 cv d-flex justify-content-center `}>
     <input type="file" 
     id='cv'
     name='cv'
     {...register('cv')}
-
-    onChange={ handleFileChange  }
+onChange={(e)=>setCv(e.target.files[0])}
     />
-        <label htmlFor='cv' className="labelCv py-3 fw-light fs-5 w-100 d-flex gap-3 align-items-center justify-content-center">
-    <img src={cvIcon} alt="" /> 
-        Upload your cv/resume
+        <label htmlFor='cv' className={`labelCv ${cv? "text-dark  justify-content-between px-4" : "justify-content-center"}  py-3 fw-light fs-5 w-100 d-flex gap-3 align-items-center `}>
+       { cv!=null ?
+       <>
+       <img src={cvIcon2} alt="" /> 
+       {cv.name}
+       </>
+       :
+       <>
+       <img src={cvIcon} alt="" /> 
+       Upload your cv/resume
+       </>
+       }
             </label>
         </div>
 <button type="submit" className='w-100 mb-5 py-4' >Save</button>

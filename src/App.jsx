@@ -2,8 +2,8 @@ import './style/style.scss'
 import { Suspense, lazy } from 'react';
 import Spinner from 'react-bootstrap/Spinner';
 import {BrowserRouter as Router, Routes,Route} from'react-router-dom'
-const addCourse=lazy(()=>import('./pages/startup/addCourse'))
-const editCourse=lazy(()=>import('./pages/startup/editCourse'))
+const addCourse=lazy(()=>import('./pages/instructor/addCourse'))
+const editCourse=lazy(()=>import('./pages/instructor/editCourse'))
 const LogIn = lazy(()=>import('./pages/registration/LogIn'))
 const SignUp = lazy(()=>import('./pages/registration/SignUp'))
 const SelectSign = lazy(()=>import('./pages/registration/SelectSign'))
@@ -29,6 +29,7 @@ const Community = lazy(()=>import('./pages/student/Community'))
 const Profile = lazy(()=>import('./pages/student/Profile'))
 const Payment = lazy(()=>import('./pages/student/Payment'))
 const Course = lazy(()=>import('./pages/student/courses/Course_Enrolled'))
+const Edit = lazy(()=>import('./pages/student/Edit'))
 const Test = lazy(()=>import('./pages/registration/test'))
 const App=()=> {
   return (
@@ -67,6 +68,7 @@ const App=()=> {
 
         <Route path='/community' Component={Community}/>
         <Route path='/profile' Component={Profile}/>
+        <Route path='/edit' Component={Edit}/>
         <Route path='/payment' Component={Payment}/>
         <Route path='/test' Component={Test}/>
       </Routes>

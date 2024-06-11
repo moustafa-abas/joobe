@@ -3,7 +3,7 @@ import coin from '../../../images/coin.png'
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchQuizData, nextQuestion, submitQuiz } from "../../store/quizSlice";
+import {  nextQuestion, submitQuiz } from "../../store/quizSlice";
 import { useForm } from 'react-hook-form';
 
 const Questions = () => {
@@ -13,13 +13,11 @@ const Questions = () => {
 
  const currentQuiz=useSelector((state)=>state.quizzes.currentQuiz)
  const id = quizzesData[currentQuiz]._id
- console.log(id)
  const answers=useSelector((state)=>state.quizzes.answers)
  const finishQuestion=useSelector((state)=>state.quizzes.finishQuestion)
  const currentQuestion=useSelector((state)=>state.quizzes.currentQuestion)
  const questionsData=useSelector((state)=>state.quizzes.quizzesData)
-//  const questionData=useSelector((state)=>state.quizzes.quizzesData[currentQuiz])
-  // console.log(questionsData)
+ 
   const score=useSelector((state)=>state.quizzes.score)
 
   const {  handleSubmit ,register,formState:{errors}}  = useForm({
@@ -33,11 +31,7 @@ const Questions = () => {
       dispatch(submitQuiz(answers , token , id));
     }
   }, [finishQuestion]);
-
-    useEffect(()=>{
-      dispatch(fetchQuizData(token))
-    },[])
-
+  
     const onSubmit = (data) => {
       data.que_id = questionsData[currentQuiz].exam[currentQuestion]._id;
       dispatch(nextQuestion(data)) 
@@ -58,7 +52,7 @@ const Questions = () => {
 <progress value={currentQuestion+ 1} max={questionsData[currentQuiz].exam.length} className="w-100"/>
 
 {finishQuestion?
-<p className="text-center fs-2 text-dark mt-3">you finished question today</p>
+<p className="text-center fs-2 text-dark mt-3">you finished this quiz</p>
 :
 <>
 <p className="fs-4 fw-light text-center"> Question {currentQuestion + 1}</p>

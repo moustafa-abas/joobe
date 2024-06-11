@@ -20,8 +20,13 @@ import share from'../../images/share.svg'
 import yahia from'../../images/yahia.svg'
 import post from'../../images/post.png'
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
 const Community = () => {
     const [isComment, setIsComment] = useState(false)
+    const userData=useSelector((state)=>state.user.userData)
+    console.log(userData)
+    const score=useSelector((state)=>state.quizzes.score)
+
 return (
     <>
 <>
@@ -30,33 +35,25 @@ return (
 <div className="profile d-none d-sm-block p-2 text-center ">
     <img src={back} alt="" className='w-100 '/>
 <img src={photo} alt="valid source" className='profile   rounded-circle '/>
-    <h1 className='mt-3 fs-5 fw-light'>Mostafa Abas</h1>
-    <p className=' fs6'>moustafa3bas@gmail.com</p>
+    <h1 className='mt-3 fs-5 fw-light'>{userData.username}</h1>
+    <p className=' fs6'>{userData.email}</p>
     <div className="container2">
     <div className="boxes  d-flex justify-content-center gap-5">
 <div className="box w-50 py-2 ">
 <h3 className='fs-6 fw-semibold'>Track Name</h3>
-<h4 className='fs-6 fw-semibold'> Front End</h4>
+<h4 className='fs-6 fw-semibold'> {userData.track}</h4>
 </div>
 <div className="box w-50 py-2">
 <h3 className='fs-6 fw-semibold'>Tests Score</h3>
-<h4 className='fs-6 fw-semibold'> <img src={coin} alt=""  className='me-2' width={25}/>125</h4>
+<h4 className='fs-5  fw-semibold'> <img src={coin} alt=""  className='me-2' width={25}/>{score}</h4>
 </div>
     </div>
     <div className="skills text-start">
         <h2 className='text-start mt-4 fs-4 fw-semibold pb-2 ' >Skills</h2>
 <div className="skill ">
-<p> 
-<span>Usability Testing</span> 
-<span>UX design jobs</span> 
-</p>
-<p>
-    <span>Prototype</span>
-    <span>User Experience (UX)</span>
-</p>
-<p>
-    <span>User Experience Design (UXD)</span>
-</p>
+{userData.skills.map((skill)=>(
+<span className='px-2 fs-5' key={skill}>{skill}</span> 
+))}
 </div>
     </div>
     <h2 className='text-start mt-5 fs-4 fw-semibold '>Your CV</h2>
@@ -73,7 +70,7 @@ return (
     <label htmlFor="" className='ms-2'><img src={profile} alt="" className='rounded-circle' /></label>
         <input type="text" placeholder='What do you want to talk about?' className='border-0 ms-3 ' />
 </div>
-<ul className='d-flex'>
+<ul className='d-flex p-0'>
     <li className='d-flex w-25 justify-content-center align-items-center py-3 gap-2 fs-6 fw-semibold'><img src={photoShare} alt="" /> Photo</li>
     <li className='d-flex w-25 justify-content-center align-items-center py-3 gap-2 fs-6 fw-semibold'><img src={video} alt="" />Video</li>
     <li className='d-flex w-25 justify-content-center align-items-center py-3 gap-2 fs-6 fw-semibold'><img src={file} alt="" />File</li>

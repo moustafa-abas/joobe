@@ -9,7 +9,6 @@ import { firstDataJunior } from '../store/userSlice'
 
 const Junior = () => {
 const user=useSelector((state)=>state.user.userData)
-console.log(user)
    const dispatch=useDispatch()
    const [selectedPhoto, setSelectedPhoto] = useState();
     const { register, handleSubmit, formState: { errors },watch }  = useForm({
@@ -23,8 +22,13 @@ console.log(user)
     }
     });
     const onSubmit = (data) => {
-        data.profileImage=selectedPhoto
-dispatch(firstDataJunior(data))
+        if (data.profileImage ) {
+            const photo = JSON.stringify(data.profileImage[0]);
+            console.log(photo);
+        } else {
+            console.log("No image selected");
+        }
+// dispatch(firstDataJunior(data))
     };
     const [src, setSrc] = useState(photo)
     const [tracks, setTracks] = useState([]);
@@ -40,7 +44,7 @@ dispatch(firstDataJunior(data))
 
   const handleFileChange = (e) => {
       setSrc(URL.createObjectURL(e.target.files[0]))
-      setSelectedPhoto(e.target.files[0]);
+      setSelectedPhoto(JSON.stringify(e.target.files[0]));
   };
 return (
 <div className="junior Container">
@@ -99,7 +103,12 @@ return (
     placeholder='Ex'
     name='ex'
     id='ex'
-    {...register('experience',{required:'* experience is required'})}
+    {...register('experience',{required:'* experience is required',
+    min: {
+        value: 0,
+        message: "* experience can't be negative",
+      },
+    })}
     />
     <label htmlFor='ex' className='position-absolute fw-light top-0 px-2'>Experience Years</label>
 </div>

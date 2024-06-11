@@ -4,6 +4,15 @@ $max_laptop:"max-width:992px";
 $max_LargeScreen:"max-width:1200px";
 $max-sm-mobile:"max-width:400px";
 
+.cv{
+    border: 3px dashed var(--Stroke, #BDBDBD);
+    box-shadow: 4px 4px 11.3px 0px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    .labelCv{
+    color: var(--input-field-70, rgba(132, 132, 132, 0.70));
+    cursor: pointer;
+    }
+    }
 .spinner{
     background-color: rgba(0, 0, 0, 0.655);
     height: 100vh;
@@ -191,15 +200,7 @@ outline: none;
 textarea{
     outline: none;
 }
-.cv{
-border: 3px dashed var(--Stroke, #BDBDBD);
-box-shadow: 4px 4px 11.3px 0px rgba(0, 0, 0, 0.15);
-border-radius: 10px;
-.labelCv{
-color: var(--input-field-70, rgba(132, 132, 132, 0.70));
-cursor: pointer;
-}
-}
+
 }
 @media ($max_tablet) {
 form{
@@ -230,6 +231,9 @@ form{
 //     background-color: #FFF;
 //     border-radius: 50%;
 //     padding: 10%;
+}
+.addcourse{
+    @extend .junior
 }
 
 

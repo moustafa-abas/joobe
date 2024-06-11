@@ -10,20 +10,23 @@ import { useEffect } from 'react'
 import { fetchQuizData } from '../../store/quizSlice'
 const DailyTasks = () => {
     const userData=useSelector((state)=>state.user.userData)
-
     const token=useSelector((state)=>state.user.token)
     const quizzesData=useSelector((state)=>state.quizzes.quizzesData)
   const score=useSelector((state)=>state.quizzes.score)
   const currentQuestion=useSelector((state)=>state.quizzes.currentQuestion)
   const currentQuiz=useSelector((state)=>state.quizzes.currentQuiz)
-  const length=quizzesData[currentQuiz].exam.length
-  const value=quizzesData[currentQuiz].exam.map((question ,index)=>index)
-  console.log(currentQuestion)
+  // const length=quizzesData[currentQuiz].exam.length
+  // const value=quizzesData[currentQuiz].exam.map((question ,index)=>index)
+//   console.log(currentQuestion)
+//   console.log(length)
+//   console.log(quizzesData)
 
-    const dispatch = useDispatch()
-    useEffect(()=>{
-      dispatch(fetchQuizData(token))
-    },[])
+
+  const dispatch=useDispatch()
+
+  useEffect(()=>{
+    dispatch(fetchQuizData())
+  },[])
 
 return (<div className='quiz'>
 <Header/>
@@ -52,7 +55,7 @@ return (<div className='quiz'>
         <p className="fs-5 fw-light">{index+1} Question</p>
         <div className="state p-3 align-items-center d-flex">
 <h4 className="me-4 pe-5 w-25">{quiz.name} </h4>
-<progress value={currentQuiz===index? value[currentQuestion]:currentQuiz>index?length:0} max={length} className='w-75 me-3'></progress>
+{/* <progress value={currentQuiz===index? value[currentQuestion]:currentQuiz>index?length:0} max={length} className='w-75 me-3'></progress> */}
 {
 currentQuiz>index?
 <img src={trueIcon} alt="" width={30}  />:

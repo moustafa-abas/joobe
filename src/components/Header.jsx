@@ -39,8 +39,8 @@ return (
         <li className='mx-4'><NavLink className={location.pathname.startsWith('/courses') ? 'active' :''}   to={"/courses"}>My courses</NavLink></li>
         <li className='mx-4'><NavLink className={ location.pathname.startsWith('/quiz') ? 'active' : ''}   to={"/quiz/home"}>Quizzes</NavLink></li>  
         </>:<>
-        <li className='mx-4'><NavLink className={ location.pathname.startsWith('/courses') ? 'active' : ''}   to={"/courses/editCourses"}>My courses</NavLink></li>  
-        <li className='mx-4'><NavLink className={ location.pathname.startsWith('/courses') ? 'active' : ''}   to={"/courses/addCourses"}>Add Course</NavLink></li>  
+        <li className='mx-4'><NavLink className={ location.pathname.includes('/editCourses') ? 'active' : ''}   to={"/courses/editCourses"}>My courses</NavLink></li>  
+        <li className='mx-4'><NavLink className={ location.pathname.includes('/addCourses') ? 'active' : ''}   to={"/courses/addCourses"}>Add Course</NavLink></li>  
         </>
 }
           </>
@@ -63,7 +63,7 @@ return (
         <li className='mx-3'><NavLink className='text-decoration-none'  to={"/jobs"}>Jops</NavLink></li>
 {isLogined?<>
         <li className='mx-3'><NavLink className='text-decoration-none'   to={"/courses"}>My courses</NavLink></li>
-        <li className='mx-3'><NavLink className='text-decoration-none'   to={"/quiz"}>Quizzes</NavLink></li>
+        <li className='mx-3'><NavLink className='text-decoration-none'   to={"/quiz/home"}>Quizzes</NavLink></li>
         </>
         :
         <></>

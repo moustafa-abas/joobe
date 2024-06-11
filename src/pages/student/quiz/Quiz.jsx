@@ -1,8 +1,18 @@
+import { useDispatch} from "react-redux"
 import Footer from "../../../components/Footer"
 import Header from "../../../components/Header"
 import quiz from '../../../images/quiz.svg'
+import { fetchQuizData } from "../../store/quizSlice"
+import { useEffect } from "react"
+import { logOut } from "../../store/userSlice"
 
 const Quiz = () => {
+    // const dispatch=useDispatch()
+    // useEffect(()=>{
+    //     dispatch(fetchQuizData())
+    //   },[])
+
+
 return (
 <div className="quiz">
     <Header/>

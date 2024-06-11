@@ -53,6 +53,7 @@ firstDataJunior:(state,action)=>{
 location.replace('/endJunior')
 },
 logOut:(state)=>{
+    state.loading=false
     state.userData=null
     state.isLogined=false
     location.replace('/')
