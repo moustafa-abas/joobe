@@ -14,8 +14,7 @@ score:'0'
 export const fetchQuizData = createAsyncThunk('quizzes/fetchQuizData',
     async(_,{getState})=>{
     const token = getState().user.token;
-    console.log(token)
-    return await axios.get('https://jobee-5pfw.onrender.com/api/exam',{     
+    return await axios.get('https://jobee-5pfw.onrender.com/api/exam/all',{     
         headers: {
             Authorization : `Bearer ${token}`
         }})
@@ -60,12 +59,10 @@ extraReducers:(builder)=>{
     .addCase(fetchQuizData.fulfilled,(state,action)=>{
         state.loading=false
         state.quizzesData=action.payload
-        console.log('y')
     })
     .addCase(fetchQuizData.rejected,(state,action)=>{
         state.loading=false
         state.error=action.error.message
-        console.log(state.error)
     })
     .addCase(submitQuiz.pending,(state)=>{
         state.loading=true

@@ -36,7 +36,7 @@ const App=()=> {
     <Suspense fallback={
       <div className="spinner position-absolute w-100  ">
   <Spinner animation="border" className=' position-absolute top-50 start-50 p-4 text-light' />
-  r</div>}>
+  </div>}>
     <Router>
       <Routes>
         <Route path='/login' Component={LogIn}/>

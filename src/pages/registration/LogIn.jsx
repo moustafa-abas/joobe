@@ -14,6 +14,7 @@ import Spinner from 'react-bootstrap/Spinner';
 const LogIn=()=>{
     const error=useSelector((state)=>state.user.error)
     const loading=useSelector((state)=>state.user.loading)
+    console.log(loading)
     const dispatch=useDispatch()
     const { register, handleSubmit, formState: { errors } }  = useForm({
         defaultValues:{
