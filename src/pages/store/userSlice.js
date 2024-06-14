@@ -79,6 +79,7 @@ location.replace('/')
         })
         .addCase(login.pending, (state) => {
             state.loading=true
+            
         })
         .addCase(login.fulfilled, (state, action) => {
             state.loading=false
@@ -86,6 +87,7 @@ location.replace('/')
         state.userData=action.payload.data
         state.token=action.payload.token
         state.rule=action.payload.rule
+        state.error=null
 location.replace('/')
         })
         .addCase(login.rejected, (state, action) => {

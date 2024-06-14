@@ -14,6 +14,7 @@ score:'0'
 export const fetchQuizData = createAsyncThunk('quizzes/fetchQuizData',
     async(_,{getState})=>{
     const token = getState().user.token;
+    console.log(token)
     return await axios.get('https://jobee-5pfw.onrender.com/api/exam',{     
         headers: {
             Authorization : `Bearer ${token}`
