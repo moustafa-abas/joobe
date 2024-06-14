@@ -77,7 +77,6 @@ onSubmit={ handleSubmit(onSubmit)}>
 </form>
 </>
 } 
-{/* <button onClick={()=>dispatch(nextQuestion())}>kjhj</button> */}
 </div>
 <Footer/>
 </div>

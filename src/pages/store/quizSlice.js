@@ -29,7 +29,6 @@ async (answers ,{getState}) => {
     const currentQuiz = getState().quizzes.currentQuiz;
     const id = getState().quizzes.quizzesData[currentQuiz]._id;
     console.log(id)
-    console.log(answers)
     return await axios.post(`https://jobee-5pfw.onrender.com/api/exam/submit/${id}`,
     answers,
     {     
