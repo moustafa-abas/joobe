@@ -20,8 +20,17 @@ import star from'../../images/star-icon.svg'
 import Job from '../../components/job'
 import Footer from "../../components/Footer"
 import Header from '../../components/Header'
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { getJobs } from '../store/JobsSlice'
+import {  getCourses } from '../store/CoursesSlice'
 
 const Home = () => {
+    const dispatch=useDispatch()
+    useEffect(()=>{
+dispatch(getJobs())
+dispatch(getCourses())
+    },[])
 return (
 <div className="home">
 <Header/> 

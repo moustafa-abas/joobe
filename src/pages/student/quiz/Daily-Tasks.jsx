@@ -14,8 +14,9 @@ const DailyTasks = () => {
   const score=useSelector((state)=>state.quizzes.score)
   const currentQuestion=useSelector((state)=>state.quizzes.currentQuestion)
   const currentQuiz=useSelector((state)=>state.quizzes.currentQuiz)
-  // const length=quizzesData[currentQuiz].exam.length
-  // const value=quizzesData[currentQuiz].exam.map((question ,index)=>index)
+  const length=quizzesData[currentQuiz].exam.length
+  const value=quizzesData[currentQuiz].exam.map((question ,index)=>index)[currentQuestion]
+  console.log(quizzesData)
 
   const dispatch=useDispatch()
 
@@ -45,12 +46,12 @@ return (<div className='quiz'>
 
 
 <div className='question'>
-{quizzesData.map((quiz, index)=>(
+{quizzesData?.map((quiz, index)=>(
         <div className="task mt-4" key={quiz._id} value={quiz._id}>
         <p className="fs-5 fw-light">{index+1} Question</p>
         <div className="state p-3 align-items-center d-flex">
 <h4 className="me-4 pe-5 w-25">{quiz.name} </h4>
-{/* <progress value={currentQuiz===index? value[currentQuestion]:currentQuiz>index?length:0} max={length} className='w-75 me-3'></progress> */}
+<progress value={currentQuiz===index? value:currentQuiz>index?length:0} max={length} className='w-75 me-3'></progress>
 {
 currentQuiz>index?
 <img src={trueIcon} alt="" width={30}  />:

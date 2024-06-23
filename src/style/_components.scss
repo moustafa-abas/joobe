@@ -62,14 +62,8 @@ header{
             }
         }
     }
-    .button{
-        a{
-        color: var(--main-color) !important;
-    }
-}
-a{
-    width: 35px;
-}
+
+
 @media ($max_laptop) {
     form{
         width: 75%;
@@ -109,7 +103,6 @@ padding: 5% 0;
     buttons{
         a{
             text-decoration: none;
-            width: fit-content;
         }
         button{
         display: flex;
@@ -121,11 +114,20 @@ font-weight: 600;
     .login{
 border: 1px solid var(--pr, #072AC8);
 background: var(--White);
-a{color: var(--main-color);}
+a{
+    color: var(--main-color) !important;
+    width: 80px !important;
+// padding: none !important;
+
+}
 }
     .sign{
 background: var(--main-color, #072AC8);
-a{color: var(--White) !important;}
+a{color: var(--White) !important;
+    width: 80px !important;
+
+    // padding: 5px 40px !important;
+}
     }
     
 }

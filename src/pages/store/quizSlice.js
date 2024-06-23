@@ -24,18 +24,18 @@ export const fetchQuizData = createAsyncThunk('quizzes/fetchQuizData',
 
 export const submitQuiz = createAsyncThunk(
 "quizzes/submitQuiz",
-async (answers ,{getState}) => {
+async (_,{getState}) => {
     const token = getState().user.token;
     const currentQuiz = getState().quizzes.currentQuiz;
     const id = getState().quizzes.quizzesData[currentQuiz]._id;
-    console.log(id)
+    const answers = getState().quizzes.answers;
     return await axios.post(`https://jobee-5pfw.onrender.com/api/exam/submit/${id}`,
-    answers,
+    {answers},
     {     
         headers: {
-            Authorization : `Bearer ${token}`
+            Authorization : `Bearer ${token}` 
         }})
-            .then(response => ( response.data.data.score))
+            .then(response => ( response.data))
     })       
 
 const quizSlice=createSlice({
@@ -71,14 +71,13 @@ extraReducers:(builder)=>{
         state.score=action.payload
 state.currentQuiz++
 state.currentQuestion=0
-state.finishQuestion=false
 location.replace('/quiz/result')
+state.finishQuestion=false
 
     })
     .addCase(submitQuiz.rejected,(state,action)=>{
         state.loading=false
         state.error=action.payload
-
 // alert('try again later')
     })
 }

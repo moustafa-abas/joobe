@@ -17,7 +17,7 @@ const location =useLocation()
 return (
 <header className=' position-relative'>
         {isLogined?<></>:
-        <p style={{display:isVisible?"block":"none"}} className="text-center py-2 fw-medium fs-6 ">Sign up and get 20% off to your first course. <a href='/signup'  > Sign Up Now </a> 
+        <p style={{display:isVisible?"block":"none"}} className="text-center py-2 fw-medium fs-6 ">Sign up and get 20% off to your first course. <a href='/signup' className='text-decoration-underline'  > Sign Up Now </a> 
         <img src={x} alt="" onClick={()=>{setIsVisible(false)}} className='position-absolute '/></p>
         }
         
@@ -27,7 +27,7 @@ return (
         <input className="form-control p-2   w-100" type="search" placeholder="Search for products..." aria-label="Search" autoComplete='true'/>
         <img src={search} alt="" className='position-absolute  '/>
         </form>
-        <img src={search} alt="" className='d-sm-none ms-5 '/>
+        <img src={search} alt="" className='d-sm-none ms-md-5 '/>
         <ul className='m-0  d-lg-flex d-none  justify-content-between align-items-center '>
         <li className='me-4 '><NavLink to={"/"}>Home</NavLink></li>
 
@@ -82,9 +82,9 @@ return (
         </a>
         </div>
         :
-        <buttons className='d-flex ms-5 justify-content-between gap-4'>
-        <button className=' py-2  px-5 login button' > <a href="/login" className='w-100' >Log in</a></button>
-        <button className=' py-2 border-0 px-5 sign'> <a href="/signup">Sign up</a></button>
+        <buttons className='d-flex ms-md-5 ms-2 justify-content-between gap-4'>
+        <button className='  login button' > <a href="/login" className='w-100  py-2 ' >Log in</a></button>
+        <button className=' border-0  sign'> <a href="/signup" className=' py-2'>Sign up</a></button>
         </buttons>
 }
 {isLogined?

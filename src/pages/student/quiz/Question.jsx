@@ -5,6 +5,7 @@ import Footer from "../../../components/Footer";
 import { useDispatch, useSelector } from "react-redux";
 import {  nextQuestion, submitQuiz } from "../../store/quizSlice";
 import { useForm } from 'react-hook-form';
+import axios from "axios";
 
 const Questions = () => {
   const dispatch = useDispatch()
@@ -17,7 +18,7 @@ const Questions = () => {
  const finishQuestion=useSelector((state)=>state.quizzes.finishQuestion)
  const currentQuestion=useSelector((state)=>state.quizzes.currentQuestion)
  const questionsData=useSelector((state)=>state.quizzes.quizzesData)
- 
+ console.log(finishQuestion)
   const score=useSelector((state)=>state.quizzes.score)
 
   const {  handleSubmit ,register,formState:{errors}}  = useForm({
@@ -27,11 +28,12 @@ const Questions = () => {
     }
   })
   useEffect(() => {
-    if (finishQuestion===true) {
-      dispatch(submitQuiz(answers , token , id));
+    if (finishQuestion === true) {
+      dispatch(submitQuiz());
     }
   }, [finishQuestion]);
   
+
     const onSubmit = (data) => {
       data.que_id = questionsData[currentQuiz].exam[currentQuestion]._id;
       dispatch(nextQuestion(data)) 

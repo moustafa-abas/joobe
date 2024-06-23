@@ -148,6 +148,7 @@ border: 1px solid var(--main-color, #072AC8);
 //community----------------------------------------------------------------------------
 .community{
     height: 170vh;
+
     .profile{
         width: 25%;
         height: fit-content;
@@ -250,6 +251,20 @@ box-shadow: 0px 4px 11.7px 0px rgba(0, 0, 0, 0.08);
             .more{
                 cursor: pointer;
             }
+            .list{
+                border-radius: 8px !important;
+                box-shadow: 3px 3px 3px 3px rgba(128, 128, 128, 0.712);
+                right: -15px;
+                top: -10px;
+                button{
+                    background-color: white;
+                    color: black;
+                    border-radius: 0 !important;
+                    &:last-of-type{
+                        border-top: 1px solid gray;
+                    }
+                }
+            }
         }
         .content{
             img{
@@ -334,6 +349,52 @@ ul{
 }
 }
 }
+.push{
+    background-color: rgba(255, 255, 255, 0.683);
+    .center{
+        width: 35%;
+        background-color: #fff;
+        transform: translate(-50%,-50%);
+        border-radius: 8px;
+        box-shadow: 2px 2px 5px 5px rgba(128, 128, 128, 0.795);
+        h2{
+            border-bottom: 1px solid gray;
+        }
+        .x{
+            background-color: rgba(128, 128, 128, 0.587);
+            border-radius: 50%;
+        }
+        .icon{
+            cursor: pointer;
+            border-radius: 50%; 
+            background-color: rgba(128, 128, 128, 0.587);
+            right: 10px;
+        }
+        .upload{
+            // background-color: #000;
+            border-radius: 8px;
+            height: 35vh;
+            cursor: pointer;
+            label{
+                transform: translate(-50%,-50%);
+                cursor: pointer;
+                img{
+                    border-radius: 8px;
+                }
+                .label{
+                    transform: translate(-50%,-50%);
+
+                }
+            }
+        }
+        @media ($max-tablet) {
+            width: 60% !important;
+        }
+        @media ($max-mobile) {
+            width: 90% !important;
+        }
+    }
+    }
 //courses-------------------------------------------------------------------------------------------------------
 .courses{
     h1{color: var(--Text-Color, #090F24);}

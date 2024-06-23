@@ -7,7 +7,7 @@ return (
     <>
 <footer className=" pt-4 mt-5">
     <div className='d-flex flex-column  flex-sm-row'>
-    <div className='left d-flex flex-column align-items-end fw-light pe-3'>
+    <div className='left d-md-flex flex-column d-none align-items-end fw-light pe-3'>
         <h2 className='fw-bold fs-1'>Contact Us</h2>
 <h3 className='fw-semibold mt-md-3 '>Email</h3> 
 <p>yehiaahmed4589@gmail.com</p>
@@ -25,7 +25,7 @@ return (
             <img src={twitter} alt="" className='mx-3' />
         </div>
     </div>
-    <div className='right ps-3'>
+    <div className='right ps-3 d-none d-md-block'>
         <h2 className='fw-bold fs-1 mb-md-3'>Pages</h2>
         <p className='fs-5 my-0'><a href="/home">Home</a></p>
         <p className='fs-5 my-0'><a href="/community">Community</a></p>
