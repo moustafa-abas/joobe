@@ -28,7 +28,7 @@ const user=useSelector((state)=>state.user.userData)
         } else {
             console.log("No image selected");
         }
-// dispatch(firstDataJunior(data))
+dispatch(firstDataJunior(data))
     };
     const [src, setSrc] = useState(photo)
     const [tracks, setTracks] = useState([]);
