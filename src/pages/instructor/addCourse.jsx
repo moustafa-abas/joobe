@@ -1,11 +1,10 @@
-import { useEffect, useState } from 'react';
 import Header from'../../components/Header'
-import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import cvIcon from'../../images/folder-add.svg'
 import cvIcon2 from'../../images/PDF_file_icon 1.png'
+import { useSelector } from 'react-redux';
+import { useState } from 'react';
 const addCourse = () => {
-  const [tracks, setTracks] = useState([]);
   const [cv, setCv] = useState()
   const tracks=useSelector((state)=>state.user.tracks[0].tracks)
 const { register, handleSubmit, formState: { errors },watch }  = useForm({
@@ -21,6 +20,7 @@ const { register, handleSubmit, formState: { errors },watch }  = useForm({
 const onSubmit = (data) => {
       console.log(data);
 };
+
   return (
     <div className='addcourse'>
       <Header/>
