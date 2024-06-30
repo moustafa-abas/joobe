@@ -30,7 +30,9 @@ const Profile = lazy(()=>import('./pages/student/Profile'))
 const Payment = lazy(()=>import('./pages/student/Payment'))
 const Course = lazy(()=>import('./pages/student/courses/Course_Enrolled'))
 const Edit = lazy(()=>import('./pages/student/Edit'))
-const Test = lazy(()=>import('./pages/registration/test'))
+const completeEdit = lazy(()=>import('./pages/student/CompleteEdit'))
+const CompanyJobs = lazy(()=>import('./pages/company/CompanyJobs'))
+const employee = lazy(()=>import('./pages/company/Employee'))
 const App=()=> {
   return (
     <Suspense fallback={
@@ -69,8 +71,10 @@ const App=()=> {
         <Route path='/community' Component={Community}/>
         <Route path='/profile' Component={Profile}/>
         <Route path='/edit' Component={Edit}/>
+        <Route path='/completeEdit' Component={completeEdit}/>
         <Route path='/payment' Component={Payment}/>
-        <Route path='/test' Component={Test}/>
+        <Route path='/CompanyJobs' Component={CompanyJobs}/>
+        <Route path='/employee' Component={employee}/>
       </Routes>
     </Router>
     </Suspense>

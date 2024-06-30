@@ -5,11 +5,12 @@ import Logo from '../../logo'
 import axios from 'axios'
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux'
-import { firstDataJunior } from '../store/userSlice'
+import { firstDataJunior, getTracks } from '../store/userSlice'
 
 const Junior = () => {
 const user=useSelector((state)=>state.user.userData)
-   const dispatch=useDispatch()
+const tracks=useSelector((state)=>state.user.tracks)
+const dispatch=useDispatch()
    const [selectedPhoto, setSelectedPhoto] = useState();
     const { register, handleSubmit, formState: { errors },watch }  = useForm({
         defaultValues:{
@@ -31,17 +32,9 @@ const user=useSelector((state)=>state.user.userData)
 dispatch(firstDataJunior(data))
     };
     const [src, setSrc] = useState(photo)
-    const [tracks, setTracks] = useState([]);
         useEffect(() => {
-            axios.get('https://jobee-5pfw.onrender.com/api/tracks')
-            .then(((response) => {
-            setTracks(response.data[0].tracks);
-            }))
-            .catch(error => {
-            console.error('حدث خطأ أثناء جلب البيانات:', error);
-            });
-        }, []);
-
+dispatch(getTracks())
+        },[]);
   const handleFileChange = (e) => {
       setSrc(URL.createObjectURL(e.target.files[0]))
       setSelectedPhoto(JSON.stringify(e.target.files[0]));
@@ -119,8 +112,7 @@ return (
 {...register('track',
 {required:' * select your track'})}       
 >
-<option  selected  hidden >Track</option>
-            {tracks.map((track) => (
+            {tracks?.map((track) => (
                 <option key={track} value={track}>{track}</option>
                         ))}
 </select>

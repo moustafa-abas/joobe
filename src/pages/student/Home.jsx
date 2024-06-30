@@ -2,7 +2,7 @@ import left from'../../images/landing-left.jpg'
 import right from'../../images/landing-right.png'
 import learn from'../../images/Learn More icon.svg'
 import smile from'../../images/smile.svg'
-import jobs from'../../images/jobs icon.svg'
+import job from'../../images/jobs icon.svg'
 import internship from'../../images/intership icon.svg'
 import courses from'../../images/courses icon.svg'
 import quiz from'../../images/quiz icon.svg'
@@ -20,26 +20,42 @@ import star from'../../images/star-icon.svg'
 import Job from '../../components/job'
 import Footer from "../../components/Footer"
 import Header from '../../components/Header'
-import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { getJobs } from '../store/JobsSlice'
 import {  getCourses } from '../store/CoursesSlice'
+import CommunityPart from '../../components/community'
+import Alert from '../../components/Alert'
 
 const Home = () => {
     const dispatch=useDispatch()
+
+    const jobs=useSelector((state)=>state.jobs.jobs.data)
+    const NewPost=useSelector((state)=>state.community.newPost)
+
+    const isLogin=useSelector((state)=>state.user.isLogined)
+    const rule=useSelector((state)=>state.user.rule)
+    const alert=useSelector((state)=>state.community.alert)
+    console.log(rule)
+    console.log(isLogin)
     useEffect(()=>{
 dispatch(getJobs())
 dispatch(getCourses())
     },[])
+
 return (
-<div className="home">
+<div className="home position-relative ">
 <Header/> 
+{rule==='company' && isLogin===true?
+<CommunityPart/>
+:
+<>
         <div className='landing Container d-flex mt-3'>
             <div className='left d-flex flex-column'>
                 <img src={left} alt="" />
                 <div className='buttons d-flex flex-column flex-md-row gap-3 mt-4'>
                 <button className="start px-5 py-2 ">Get Started</button>
-                <button className="learn py-2 fw-light text-dark "><img src={learn} alt="" className='w-25 border-0 me-3' />Learn More</button>
+                <button className="learn py-2 fw-light text-dark " onClick={()=>location.replace('/courses/all-courses')}><img src={learn} alt="" className='w-25 border-0 me-3' />Learn More</button>
                 </div>
             </div>
             <div className='right'>
@@ -51,7 +67,7 @@ return (
 <h1 className="text-center fw-bold mb-4">Services</h1>
 <ul className="d-flex flex-column flex-sm-row flex-wrap mx-auto justify-content-center ">
 <li className="white d-flex flex-column py-4 fw-bolder fs-5"><img src={courses} alt="" className='mb-3 pb-3 ' />Courses</li>
-<li className="blue d-flex flex-column fw-bolder fs-5 py-4"><img src={jobs} alt="" className='mb-3 pb-3'/> Jops</li>
+<li className="blue d-flex flex-column fw-bolder fs-5 py-4"><img src={job} alt="" className='mb-3 pb-3'/> Jops</li>
 <li className="white d-flex flex-column fw-bolder fs-5 py-4"><img src={internship} alt="" className='mb-3 pb-3' /> Internships</li>
 <li className="blue d-flex flex-column fw-bolder fs-5 py-4"><img src={quiz} alt="" className='mb-3 pb-3' /> Quizzes</li>
 <li className="white d-flex flex-column fw-bolder fs-5 py-4"><img src={community} alt="" className='mb-3 pb-3' /> Community</li>
@@ -167,10 +183,18 @@ return (
 
     <div className=" jobs Container">
         <h1 className='text-center fw-bold fs-1 py-5'>Job Lists</h1>
-
-<Job/>
-        <button className='button py-2 mx-auto my-5 fs-5 fw-semibold'>View All</button>
+        {jobs?.map((job)=>(
+<Job key={job._id} job={job}/>
+        )
+    )
+        }
+        <button className='button py-2 mx-auto my-5 fs-5 fw-semibold' onClick={()=>location.replace('/jobs/all_jobs')}>View All</button>
     </div>
+    </>
+}
+{
+alert==='not logined'?<Alert/>:null
+}
  <Footer/> 
 </div>
 )

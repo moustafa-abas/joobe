@@ -5,7 +5,8 @@ const initialState={
     loading:false,
     jobs:[],
     job:[],
-    error:null
+    error:null,
+    alert:false
 
 }
 export const getJobs=createAsyncThunk('jobs/getJobs',
@@ -19,7 +20,7 @@ export const getJobs=createAsyncThunk('jobs/getJobs',
                 }
             }
             )
-            return response.data;
+            return response.data
         }
         catch(error){
 throw new Error(error.message)
@@ -62,42 +63,63 @@ throw new Error(error.message)
 //         }
 //     }
 // );
-// export const createJob=createAsyncThunk('jobs/createJob',
-//     async(data,{getState})=>{
-//         const token=getState().user.token
-//         try{
-//             const response=await axios.post('https://jobee-5pfw.onrender.com/api/jobs/create',
-//                 data,
-//                 {
-//                 headers:{
-//                     Authorization:`Bearer ${token}`
-//                 }
-//             }
-//             )
-//             return response.data;
-//         }
-//         catch(error){
-// throw new Error(error.message)
-//         }
-//     }
-// );
-// export const getJob=createAsyncThunk('jobs/getJob',
-//     async(id,{getState})=>{
-//         const token=getState().user.token
-//         try{
-//             const response=await axios.get(`https://jobee-5pfw.onrender.com/api/jobs/${id}`,{
-//                 headers:{
-//                     Authorization:`Bearer ${token}`
-//                 }
-//             }
-//             )
-//             return response.data;
-//         }
-//         catch(error){
-// throw new Error(error.message)
-//         }
-//     }
-// );
+export const createJob=createAsyncThunk('jobs/createJob',
+    async(data,{getState})=>{
+        const token=getState().user.token
+        try{
+            const response=await axios.post('https://jobee-5pfw.onrender.com/api/jobs/create',
+                data,
+                {
+                headers:{
+                    Authorization:`Bearer ${token}`
+                }
+            }
+            )
+            return response.data;
+        }
+        catch(error){
+throw new Error(error.message)
+        }
+    }
+);
+export const getJob=createAsyncThunk('jobs/getJob',
+    async({id},{getState})=>{
+        const token=getState().user.token
+        try{
+            const response=await axios.get(`https://jobee-5pfw.onrender.com/api/jobs/${id}`,{
+                headers:{
+                    Authorization:`Bearer ${token}`
+                }
+            }
+            )
+            return response.data;
+        }
+        catch(error){
+throw new Error(error.message)
+        }
+    }
+);
+export const applyJob=createAsyncThunk('jobs/applyJob',
+    async(data,{getState})=>{
+        const token=getState().user.token
+        const id=getState().jobs.job._id
+        try{
+            const response=await axios.post(`https://jobee-5pfw.onrender.com/api/jobs/apply/${id}`,
+                data,
+                {
+                headers:{
+                    Authorization:`Bearer ${token}`
+                }
+            }
+            )
+            return response.data;
+        }
+        catch(error){
+throw new Error(error.message)
+        }
+    }
+);
+
 const jobsSlice =createSlice({
     name:'jobs',
     initialState,
@@ -143,31 +165,32 @@ const jobsSlice =createSlice({
         //     state.loading=false
         //     state.error=action.payload
         // })
-        // .addCase(createJob.pending,(state)=>{
-        //     state.loading=true
-        // })
-        // .addCase(createJob.fulfilled,(state,action)=>{
-        //     state.loading=false
-        //     state.jobs=action.payload
-        //     state.error=null
-        // })
-        // .addCase(createJob.rejected,(state,action)=>{
-        //     state.loading=false
-        //     state.error=action.payload
-        // })
-        // .addCase(getJob.pending,(state)=>{
-        //     state.loading=true
-        // })
-        // .addCase(getJob.fulfilled,(state,action)=>{
-        //     state.loading=false
-        //     state.job=action.payload
-        //     state.error=null
-        // })
-        // .addCase(getJob.rejected,(state,action)=>{
-        //     state.loading=false
-        //     state.job=[]
-        //     state.error=action.payload
-        // })
+        .addCase(createJob.pending,(state)=>{
+            state.loading=true
+        })
+        .addCase(createJob.fulfilled,(state)=>{
+            state.loading=false
+            state.error=null
+            state.alert=true
+        })
+        .addCase(createJob.rejected,(state,action)=>{
+            state.loading=false
+            state.error=action.payload
+        })
+        .addCase(getJob.pending,(state)=>{
+            state.loading=true
+        })
+        .addCase(getJob.fulfilled,(state,action)=>{
+            state.loading=false
+            state.job=action.payload.data
+            state.error=null
+            location.replace('/jobs/applyJob')
+        })
+        .addCase(getJob.rejected,(state,action)=>{
+            state.loading=false
+            state.job=[]
+            state.error=action.payload
+        })
     }
 })
 export default jobsSlice.reducer

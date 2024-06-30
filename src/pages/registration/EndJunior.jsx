@@ -24,10 +24,9 @@ const { register, handleSubmit, formState:{errors} }  = useForm({
 });
 const onSubmit = (data) => {
 const skills=data.skills.split(' ')
-const cv = JSON.stringify(data.cv[0]);
+// const cv = JSON.stringify(data.cv[0]);
 
-const all={...user,...data,skills, cv}
-console.log(cv)
+const all={...user,...data,skills}
 dispatch(sendData(all))
 };
 

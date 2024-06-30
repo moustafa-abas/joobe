@@ -4,7 +4,6 @@ import linkedin from'../images/LinkedIn.svg'
 import twitter from'../images/twitter.svg'
 const Footer = () => {
 return (
-    <>
 <footer className=" pt-4 mt-5">
     <div className='d-flex flex-column  flex-sm-row'>
     <div className='left d-md-flex flex-column d-none align-items-end fw-light pe-3'>
@@ -34,7 +33,6 @@ return (
     </div>
         <p className='text-center copyRight'>Jobee © 2024, All Rights Reserved</p>
 </footer>
-        </>
 )
 }
 

@@ -7,16 +7,7 @@ import cvIcon2 from'../../images/PDF_file_icon 1.png'
 const addCourse = () => {
   const [tracks, setTracks] = useState([]);
   const [cv, setCv] = useState()
-
-  useEffect(() => {
-    axios.get('https://jobee-5pfw.onrender.com/api/tracks')
-    .then(((response) => {
-    setTracks(response.data[0].tracks);
-    }))
-    .catch(error => {
-    console.error('حدث خطأ أثناء جلب البيانات:', error);
-    });
-}, []);
+  const tracks=useSelector((state)=>state.user.tracks[0].tracks)
 const { register, handleSubmit, formState: { errors },watch }  = useForm({
   defaultValues:{
     CourseName:'',
@@ -28,9 +19,7 @@ const { register, handleSubmit, formState: { errors },watch }  = useForm({
 }
 });
 const onSubmit = (data) => {
-
       console.log(data);
-// dispatch(firstDataJunior(data))
 };
   return (
     <div className='addcourse'>
@@ -105,6 +94,21 @@ disabled={!watch('track')}
     <label htmlFor='tracklevel' className='position-absolute fw-light top-0 px-2'>Track level</label>
 </div>
 <p className='error mt-2 text-start'>{errors.tracklevel?.message}</p>
+<div className='inputGroup d-flex position-relative py-3 px-3 align-items-center mt-4 gap-3'>
+    <input type="number" 
+    className='border-0 '
+    placeholder='Cost'
+    name='Cost'
+    id='Cost'
+    {...register('Cost',
+    { required: '* Cost is required'
+    ,
+    })}
+
+    />
+    <label htmlFor='Cost' className='position-absolute fw-light top-0 px-2'>Cost</label>
+</div>
+<p className='error mt-2 text-start'>{errors.Cost?.message}</p>
 
 <div className={`${cv? "border-0":null} my-5 py-4 cv d-flex justify-content-center `}>
     <input type="file" 

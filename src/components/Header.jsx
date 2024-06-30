@@ -1,22 +1,26 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBarsStaggered } from '@fortawesome/free-solid-svg-icons'
+import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import {  NavLink, useLocation } from 'react-router-dom'
+import Logo from '../logo'
 import x from'../images/x.svg'
 import search from'../images/search.svg'
 import bill from'../images/bill.svg'
 import profile from'../images/profile.svg'
-import { useState } from 'react'
-import {  NavLink, useLocation } from 'react-router-dom'
-import Logo from '../logo'
-import { useSelector } from 'react-redux'
+import { setAlert } from '../pages/store/CommunitySlice'
 const Header = () => {
+        const dispatch=useDispatch()
         const isLogined=useSelector((state)=>state.user.isLogined)
 const [isVisible, setIsVisible] = useState(true)
 const [showLinks, setShowLinks] = useState(false)
 const rule=useSelector((state)=>state.user.rule)
+        
 const location =useLocation()
+
 return (
 <header className=' position-relative'>
-        {isLogined?<></>:
+        {isLogined?null:
         <p style={{display:isVisible?"block":"none"}} className="text-center py-2 fw-medium fs-6 ">Sign up and get 20% off to your first course. <a href='/signup' className='text-decoration-underline'  > Sign Up Now </a> 
         <img src={x} alt="" onClick={()=>{setIsVisible(false)}} className='position-absolute '/></p>
         }
@@ -30,50 +34,64 @@ return (
         <img src={search} alt="" className='d-sm-none ms-md-5 '/>
         <ul className='m-0  d-lg-flex d-none  justify-content-between align-items-center '>
         <li className='me-4 '><NavLink to={"/"}>Home</NavLink></li>
-
 {isLogined?<>
-        <li className='mx-4'><NavLink to={"/community"}>Community</NavLink></li>
 {rule==='student'?
 <>
-        <li className='mx-4'><NavLink className={location.pathname.startsWith('/job') ? 'active' : ''}  to={"/jobs"}>Jops</NavLink></li>
+        <li className='mx-4'><NavLink to={"/community"}>Community</NavLink></li>
+        <li className='mx-4'><NavLink className={location.pathname.startsWith('/job') ? 'active' : ''}  to={"/jobs"}>Jobs</NavLink></li>
         <li className='mx-4'><NavLink className={location.pathname.startsWith('/courses') ? 'active' :''}   to={"/courses"}>My courses</NavLink></li>
         <li className='mx-4'><NavLink className={ location.pathname.startsWith('/quiz') ? 'active' : ''}   to={"/quiz/home"}>Quizzes</NavLink></li>  
-        </>:<>
+        </>:
+        rule==='mentor'?
+        <>
+        <li className='mx-4'><NavLink to={"/community"}>Community</NavLink></li>
         <li className='mx-4'><NavLink className={ location.pathname.includes('/editCourses') ? 'active' : ''}   to={"/courses/editCourses"}>My courses</NavLink></li>  
         <li className='mx-4'><NavLink className={ location.pathname.includes('/addCourses') ? 'active' : ''}   to={"/courses/addCourses"}>Add Course</NavLink></li>  
+        </>:<>
+        <li className='mx-4'><NavLink className={ location.pathname.includes('/CompanyJobs') ? 'active' : ''}   to={"/CompanyJobs"}>Jops</NavLink></li>  
+        <li className='mx-4'><NavLink className={ location.pathname.includes('Applicants') ? 'active' : ''} to={'/m'}  >Applicants</NavLink></li>  
+        <li className='mx-4'><NavLink className={ location.pathname.includes('/Profile') ? 'active' : ''} to={'/n'} >Profile</NavLink></li>  
         </>
 }
-          </>
-
+        </>
         :
         <>
-                <li className='mx-4' onClick={()=>alert('login or sign up first')}>Community</li>
-        <li className='mx-4' onClick={()=>alert('login or sign up first')}>jobs</li>
+                <li className='mx-4' onClick={()=>{isLogined?location.replace('/community'):dispatch(setAlert('not logined'))}}>Community</li>
+        <li className='mx-4' onClick={()=>{isLogined?location.replace('/jobs'):dispatch(setAlert('not logined'))}}>jobs</li>
         </>
 }
         </ul>
-
-
-
-
         {showLinks?
         <ul className='ul pt-5 ps-0  d-flex d-lg-none flex-column    '>
         <li className='mx-3'><NavLink className='text-decoration-none'   to={"/"}>Home</NavLink></li>
-        <li className='mx-3'><NavLink className='text-decoration-none'  to={"/community"}>Community</NavLink></li>
-        <li className='mx-3'><NavLink className='text-decoration-none'  to={"/jobs"}>Jops</NavLink></li>
 {isLogined?<>
-        <li className='mx-3'><NavLink className='text-decoration-none'   to={"/courses"}>My courses</NavLink></li>
-        <li className='mx-3'><NavLink className='text-decoration-none'   to={"/quiz/home"}>Quizzes</NavLink></li>
+{rule==='student'?
+         <>
+        <li className='mx-3'><NavLink to={"/community"}>Community</NavLink></li>
+        <li className='mx-3'><NavLink className={location.pathname.startsWith('/job') ? 'active' : ''}  to={"/jobs"}>Jobs</NavLink></li>
+        <li className='mx-3'><NavLink className={location.pathname.startsWith('/courses') ? 'active' :''}   to={"/courses"}>My courses</NavLink></li>
+        <li className='mx-3'><NavLink className={ location.pathname.startsWith('/quiz') ? 'active' : ''}   to={"/quiz/home"}>Quizzes</NavLink></li>  
+        </>:
+        rule==='mentor'?
+        <>
+        <li className='mx-3'><NavLink to={"/community"}>Community</NavLink></li>
+        <li className='mx-3'><NavLink className={ location.pathname.includes('/editCourses') ? 'active' : ''}   to={"/courses/editCourses"}>My courses</NavLink></li>  
+        <li className='mx-3'><NavLink className={ location.pathname.includes('/addCourses') ? 'active' : ''}   to={"/courses/addCourses"}>Add Course</NavLink></li>  
+        </>:
+        <>
+        <li className='mx-3'><NavLink className={ location.pathname.includes('/CompanyJobs') ? 'active' : ''}   to={"/CompanyJobs"}>Jobs</NavLink></li>  
+        <li className='mx-3'><NavLink className={ location.pathname.includes('Applicants') ? 'active' : ''} to={'/m'}  >Applicants</NavLink></li>  
+        <li className='mx-3'><NavLink className={ location.pathname.includes('/Profile') ? 'active' : ''} to={'/n'} >Profile</NavLink></li>  
         </>
-        :
-        <></>
+}
+</>:null
 }
         </ul>
-        :<></>
+        :null
 }
 
-
-{isLogined?<div className='d-flex '>
+{isLogined?
+<div className='d-flex '>
 <a href="" >
         <img src={bill} alt="" className='icon ms-3'/> 
 </a>
@@ -89,8 +107,8 @@ return (
 }
 {isLogined?
         <FontAwesomeIcon icon={faBarsStaggered} flip className='ms-4 d-lg-none z-2' onClick={()=>{
-            setShowLinks(!showLinks)
-        }}/>:<></>
+        setShowLinks(!showLinks)
+        }}/>:null
 }
 </div>
 </header>

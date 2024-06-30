@@ -11,7 +11,9 @@ import analysis from'../../../images/analysis-analytical-business 2.svg'
 import leftJobs from'../../../images/jobs.jpg'
 import ol from'../../../images/jobs-ul.svg'
 import { NavLink } from "react-router-dom"
+import { useSelector } from "react-redux"
 const Jobs = () => {
+    const jobs=useSelector((state)=>state.jobs.jobs.data)
 return (
     <div className="jobs" >
 <Header/>
@@ -21,7 +23,7 @@ return (
     <div className="text w-75 z-1">
 <h2 className="fw-semibold">Find The Best Job That You Deserved</h2>
 <p className="pe-5 fs-5 my-5">Visit our website to learn and achieve new Jobs that meet&apos;s your Requirements in different Careers</p>
-<button className='py-3'>View Jobs</button>
+<button className='py-3'><a href="#jobList">View Jobs</a></button>
 </div>
 <img src={border} alt="" className="w-25 mt-5 z-1 d-none d-md-block"/>
 </div>
@@ -80,7 +82,7 @@ And Find A Talent</h1>
 <button className='w-50 mt-5 py-3'>Explore Jobs</button>
     </div>
 </div>
-<div className="jobList">
+<div className="jobList" id="jobList">
     <h1 className="text-center fw-bold fs-1 mt-5">Job Lists</h1>
     <ul className="d-flex justify-content-between mx-auto mt-3 p-4 flex-wrap">
 <li className="fs-4 fw-semibold"><NavLink to="/jobs"   >All</NavLink></li>
@@ -91,7 +93,12 @@ And Find A Talent</h1>
 <li className="fs-4 fw-semibold"><NavLink to="/"   >Hybrid</NavLink></li>
     </ul>
     <div className="Container">
-    <Job />
+        {jobs?.map((job)=>(
+
+            <Job key={job._id} job={job}/>
+        )
+    )
+        }
     </div>
     <button className='py-3 mx-auto'  ><a href="/jobs/all_jobs">View All</a></button>
 </div>

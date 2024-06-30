@@ -23,8 +23,8 @@ const Questions = () => {
 
   const {  handleSubmit ,register,formState:{errors}}  = useForm({
     defaultValues:{
-      que_id:null,
-      ans_id:null
+      'que_id':null,
+      'ans_id':null
     }
   })
   useEffect(() => {
