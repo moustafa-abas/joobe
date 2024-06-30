@@ -30,9 +30,7 @@ import star from "../../images/star-icon.svg";
 const Home = () => {
 const dispatch = useDispatch();
 const jobs = useSelector((state) => state.jobs.jobs?.data);
-const someJob = jobs
-?.sort(() => Math.floor(Math.random() * 3) - 1)
-.slice(3, 8);
+const someJob = [...jobs]?.sort(() => Math.floor(Math.random() * 3) - 1).slice(3,8)
 const isLogin = useSelector((state) => state.user.isLogined);
 const rule = useSelector((state) => state.user.rule);
 const alert = useSelector((state) => state.community.alert);
