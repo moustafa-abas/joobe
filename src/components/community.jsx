@@ -17,7 +17,7 @@ const dispatch = useDispatch();
 const alert = useSelector((state) => state.community.alert);
 const fetchPosts = useSelector((state) => state.community.posts.data);
 const userId = useSelector((state) => state.user.userData) || ((state)=>state.user.id) 
-const posts=[...fetchPosts].sort(()=>(Math.random() *1)-1)
+const posts=[...fetchPosts]?.sort(()=>(Math.random() *1)-1)
 useEffect(() => {
 dispatch(getPosts());
 }, []);
