@@ -29,7 +29,7 @@ const DailyTasks = () => {
     <div className="quiz position-relative">
       <>
         <Header />
-        {alert === "finish" ? (
+        {alert === "finish" || alert==='no data'? (
           <Alert />
         ) : (
           <div className="daily-tasks Container mt-3">
@@ -88,7 +88,7 @@ const DailyTasks = () => {
               className="my-5 py-4 "
               onClick={() => {
                 currentQuiz >= quizzesData.length
-                  ? dispatch(setAlert("finish"))
+                  ? dispatch(setAlert("finish")):quizzesData.length===0?dispatch(setAlert('no data'))
                   : location.replace("/quiz/questions");
               }}
             >

@@ -115,7 +115,10 @@ dispatch(getPosts())}}>Delete Post</button>
 {
   alert==='failed'?
   <h2 className=" text-center text-capitalize"> failed to complete</h2>:
-  alert==='finish'?<h2 className=" text-center text-capitalize"> You Finished All Exams</h2>:
+  alert==='finish'?
+  <h2 className=" text-center text-capitalize"> You Finished All Exam</h2>:
+  alert==='no data'?
+  <h2 className=" text-center text-capitalize"> No Exams For Your Track</h2>:
   null
 }
     </div>
