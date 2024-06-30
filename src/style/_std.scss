@@ -878,15 +878,16 @@ li{
     a{
         color: var(--Text-Color) !important;
     }
-.active{
-color: var(--main-color, #072AC8) !important;
-font-weight: 700 !important;
-}
+
 @media ($max_mobile) {
     width: 40%;
     margin-bottom: 10px;
 }
 }
+.active{
+    color: var(--main-color, #072AC8) !important;
+    font-weight: 700 !important;
+    }
 @media ($max_tablet) {
     width: 100%;
 }

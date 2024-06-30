@@ -8,6 +8,7 @@ import { createPost, deletePost, updatePost } from "../pages/store/CommunitySlic
 const Alert = () => {
     const dispatch=useDispatch()
     const alert=useSelector((state)=>state.community.alert)
+    console.log(alert)
     const post=useSelector((state)=>state.community.post)
     const comments=useSelector((state)=>state.community.post.comments)
     const {register,watch,handleSubmit} = useForm({

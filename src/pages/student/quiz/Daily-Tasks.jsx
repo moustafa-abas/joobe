@@ -11,6 +11,10 @@ import trueIcon from "../../../images/true.svg";
 import circle from "../../../images/circle.svg";
 import lock from "../../../images/lock.svg";
 const DailyTasks = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchQuizData());
+  }, []);
   const userData = useSelector((state) => state.user.userData);
   const quizzesData = useSelector((state) => state.quizzes.quizzesData);
   const score = useSelector((state) => state.quizzes.score);
@@ -20,10 +24,6 @@ const DailyTasks = () => {
   const value = quizzesData[currentQuiz]?.exam.map((question, index) => index)[
     currentQuestion
   ];
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchQuizData());
-  }, []);
   const alert = useSelector((state) => state.community.alert);
   return (
     <div className="quiz position-relative">
@@ -87,9 +87,9 @@ const DailyTasks = () => {
             <button
               className="my-5 py-4 "
               onClick={() => {
-                currentQuiz >= quizzesData.length
-                  ? dispatch(setAlert("finish")):quizzesData.length===0?dispatch(setAlert('no data'))
-                  : location.replace("/quiz/questions");
+                quizzesData.length=== 0 ? dispatch(setAlert('no data')): currentQuiz >= quizzesData.length
+                  ? dispatch(setAlert("finish")): 
+                  location.replace("/quiz/questions");
               }}
             >
               Continue
