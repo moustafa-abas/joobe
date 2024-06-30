@@ -15,7 +15,7 @@ const Community = () => {
   const alert = useSelector((state) => state.community.alert);
   const userData = useSelector((state) => state.user.userData);
   const score = useSelector((state) => state.quizzes.score);
-const jobs=useSelector((state)=>state.jobs.jobs.data).slice(0,4)
+const jobs=useSelector((state)=>state.jobs.jobs.data)?.slice(0,4)
 useEffect(() => {
 dispatch(getJobs())
 }, [])
@@ -66,7 +66,7 @@ dispatch(getJobs())
         </div>
         <CommunityPart />
         <div className="suggestion d-none d-lg-block  p-3">
-          <h1 className="fs-6 fw-semibold">Some jops for you</h1>
+          <h1 className="fs-6 fw-semibold">Some jobs for you</h1>
           {
             jobs?.map((job)=>(
 

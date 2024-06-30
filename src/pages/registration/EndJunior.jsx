@@ -19,7 +19,7 @@ const { register, handleSubmit, formState:{errors} }  = useForm({
         militaryStatus:'',
         about:'',
         skills:[],
-        cv:null
+        cv:''
 }
 });
 const onSubmit = (data) => {

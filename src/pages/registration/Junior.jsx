@@ -14,7 +14,7 @@ const dispatch=useDispatch()
    const [selectedPhoto, setSelectedPhoto] = useState();
     const { register, handleSubmit, formState: { errors },watch }  = useForm({
         defaultValues:{
-        profileImage:null,
+        // profileImage:null,
         username:'',
         age:null,
         experience:null,
@@ -23,12 +23,12 @@ const dispatch=useDispatch()
     }
     });
     const onSubmit = (data) => {
-        if (data.profileImage ) {
-            const photo = JSON.stringify(data.profileImage[0]);
-            console.log(photo);
-        } else {
-            console.log("No image selected");
-        }
+        // if (data.profileImage ) {
+        //     const photo = JSON.stringify(data.profileImage[0]);
+        //     console.log(photo);
+        // } else {
+        //     console.log("No image selected");
+        // }
 dispatch(firstDataJunior(data))
     };
     const [src, setSrc] = useState(photo)
@@ -46,7 +46,7 @@ return (
 <p className='text-center fw-light fs-5'>Please enter this following data</p>
 <form className='mx-auto text-center' onSubmit={ handleSubmit(onSubmit)} noValidate>
 
-        <input type="file" id='profileImage' className='opacity-0 text-center '
+        {/* <input type="file" id='profileImage' className='opacity-0 text-center '
     name='profileImage'
     {...register('profileImage')}
     accept='image/*'
@@ -56,7 +56,7 @@ return (
     <label htmlFor="profileImage" className='mx-auto position-relative file '>
         <img src={src} alt="valid source" className='profile mt-3  rounded-circle'/>
         <img src={edit} alt=""  className='edit position-absolute bottom-0 end-0 p-2 rounded-circle'/>
-    </label>
+    </label> */}
 <div className='inputGroup d-flex position-relative py-3 px-3 align-items-center mt-4 gap-3'>
     <input type="text" 
     className='border-0 '

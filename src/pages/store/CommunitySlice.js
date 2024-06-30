@@ -219,7 +219,6 @@ state.alert='failed'
 .addCase(makeComment.fulfilled,(state)=>{
     state.loading=false
     state.alert=null
-    state.alert=null
 
 })
 .addCase(makeComment.rejected,(state)=>{

@@ -64,7 +64,7 @@ const App=()=> {
         <Route path='/courses/editCourses' Component={editCourse}/>
 
         <Route path='/quiz/home' Component={Quiz}/>
-        <Route path='/quiz/daily-tasks' Component={Tasks}/>
+        <Route path='/a' Component={Tasks}/>
         <Route path='/quiz/questions' Component={Questions}/>
         <Route path='/quiz/result' Component={Result}/>
 

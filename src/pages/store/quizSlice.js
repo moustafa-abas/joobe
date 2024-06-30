@@ -3,7 +3,7 @@ import axios from "axios";
 const initialState={
 loading:false,
 quizzesData:[],
-error:'',
+error:false,
 currentQuestion:0,
 currentQuiz:0,
 quizNumber:1,
@@ -14,11 +14,11 @@ score:'0'
 export const fetchQuizData = createAsyncThunk('quizzes/fetchQuizData',
     async(_,{getState})=>{
     const token = getState().user.token;
-    return await axios.get('https://jobee-5pfw.onrender.com/api/exam/all',{     
+    return await axios.get('https://jobee-5pfw.onrender.com/api/exam',{     
         headers: {
             Authorization : `Bearer ${token}`
         }})
-        .then(response => ( response.data.data)
+        .then(response => ( response.data)
     )
 })
 
@@ -57,28 +57,30 @@ extraReducers:(builder)=>{
     })
     .addCase(fetchQuizData.fulfilled,(state,action)=>{
         state.loading=false
-        state.quizzesData=action.payload
+        state.quizzesData=action.payload.data
+        state.error=false
     })
-    .addCase(fetchQuizData.rejected,(state,action)=>{
+    .addCase(fetchQuizData.rejected,(state)=>{
         state.loading=false
-        state.error=action.error.message
+        state.error=true
     })
     .addCase(submitQuiz.pending,(state)=>{
         state.loading=true
     })
     .addCase(submitQuiz.fulfilled,(state,action)=>{
+        state.error=false
         state.loading=false
-        state.score=action.payload
-state.currentQuiz++
+        location.replace('/quiz/result')
+        state.score=state.score + action.payload.data.score
+state.currentQuiz=state.currentQuiz +1
 state.currentQuestion=0
-location.replace('/quiz/result')
+state.answers=[]
 state.finishQuestion=false
 
     })
-    .addCase(submitQuiz.rejected,(state,action)=>{
+    .addCase(submitQuiz.rejected,(state,)=>{
         state.loading=false
-        state.error=action.payload
-// alert('try again later')
+        state.error=true
     })
 }
 })

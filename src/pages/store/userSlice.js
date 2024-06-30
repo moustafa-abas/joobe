@@ -10,7 +10,8 @@ const initialState={
     token:null,
     rule:null,
     tracks:null,
-    alert:null
+    alert:null,
+    id:null
 }
 
 export const getTracks = createAsyncThunk(
@@ -31,7 +32,7 @@ export const sendData = createAsyncThunk(
 async (data) => {
     try {
    const response = await axios.post(
-        "https://jobee-5pfw.onrender.com/api/company/auth/register",
+        "https://jobee-5pfw.onrender.com/api/student/auth/register",
      data
     );
     return response.data;
@@ -129,9 +130,6 @@ logOut:(state)=>{
     state.token=null
     location.replace('/')
 },
-// setAlert:(state,action)=>{
-// state.alert=action.payload
-// },
 
     },
     extraReducers: (builder) => {
@@ -145,6 +143,7 @@ logOut:(state)=>{
         state.userData={...state.userData,...action.payload}
         state.token=action.payload.token
         state.error=false
+        state.id=action.payload.studentId
 location.replace('/')
         })
         .addCase(sendData.rejected, (state) => {
