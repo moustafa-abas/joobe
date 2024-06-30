@@ -30,7 +30,7 @@ import star from "../../images/star-icon.svg";
 const Home = () => {
 const dispatch = useDispatch();
 const jobs = useSelector((state) => state.jobs.jobs?.data);
-const someJob = [...jobs]?.sort(() => Math.floor(Math.random() * 3) - 1).slice(3,8)
+// const someJob = [...jobs]?.sort(() => Math.floor(Math.random() * 3) - 1)
 const isLogin = useSelector((state) => state.user.isLogined);
 const rule = useSelector((state) => state.user.rule);
 const alert = useSelector((state) => state.community.alert);
@@ -310,7 +310,7 @@ return (
 
         <div className=" jobs Container">
         <h1 className="text-center fw-bold fs-1 py-5">Job Lists</h1>
-        {someJob?.map((job) => (
+        {jobs?.map((job) => (
             <Job key={job._id} job={job} />
         ))}
         <button
