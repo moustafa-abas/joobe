@@ -10,6 +10,36 @@ $max_largeScreen:"max-width:1200px";
 $max_xLargeScreen:"max-width:1400px";
 
 //----------------------------------------------------------------------------------------
+.button{
+    background-color: white;
+    color:  var(--main-color);
+    border:  1px solid var(--main-color);
+}
+.saved{
+stroke: red !important;
+}
+.applied{
+    .person{
+        width: 45%;
+    img{
+        width: 65px ;
+        height: 65px ;
+        border-radius: 50%;
+    }
+    button{
+        border-radius: 30px !important;
+    }
+}
+.head{
+    img:first-of-type{
+        width: 170px ;
+        height: 170px ;
+    }
+    button{
+        border-radius: 30px !important;
+    }
+}
+}
 .companyJob{
     @media ($max_tablet) {
         img{
@@ -20,6 +50,23 @@ $max_xLargeScreen:"max-width:1400px";
         }
         
     }
+    .job{
+        width: 45%;
+        .left{
+
+        }   
+             h4{
+            img{
+                cursor: pointer;
+            }
+        }
+        h2 {
+            span{
+            color: var(--main-color) !important;
+        }
+    }
+    }
+
 }
 .employee{
 form div{
@@ -100,6 +147,7 @@ box-shadow: 0px 4px 11.7px 0px rgba(0, 0, 0, 0.08);
     .content{
         img{
             width: 100%;
+            border-radius: 8px;
         }
     }
     .tools{
@@ -128,7 +176,7 @@ border-radius: 6px;
 }
 .home{
     .publish{
-        width: 80% !important; 
+        width: 60% !important; 
         margin: auto;
     }
 }
@@ -138,7 +186,15 @@ border-radius: 6px;
         background-color: white;
         border-radius: 10px 50px;
         transform: translate(-50%,-50%);
-
+.upload, label{
+    min-height: 200px;
+    border-radius: 10px;
+    cursor: pointer;
+    .icon{
+        width: 15px ;
+        height: 15px ;
+    }
+}
 
     }
     .comments{
@@ -169,8 +225,18 @@ form{
     }
 }
 }
-//---------------------------------------------------------------------------------------------------------------------
-
+.addcourse{
+    .inputGroup {
+        width: 45%;
+    }
+    .cv{
+        width: 35%;
+    }
+}
+//---------------------------------------------------------------------------------------------------------------
+#area{
+    outline: none;
+}
 
 
 

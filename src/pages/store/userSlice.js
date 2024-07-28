@@ -11,7 +11,8 @@ const initialState={
     rule:null,
     tracks:null,
     alert:null,
-    id:null
+    id:null,
+    appliedStudent:[]
 }
 
 export const getTracks = createAsyncThunk(
@@ -29,11 +30,11 @@ async () => {
 );
 export const sendData = createAsyncThunk(
 "user/sendData",
-async (data) => {
+async (formData) => {
     try {
    const response = await axios.post(
         "https://jobee-5pfw.onrender.com/api/student/auth/register",
-     data
+     formData
     );
     return response.data;
     } catch (error) {
@@ -71,21 +72,37 @@ return response.data;
 );
 export const editData = createAsyncThunk(
 "user/edit",
-async (all,{getState}) => {
+async (formData,{getState}) => {
     const id=getState().user.userData._id
     const token=getState().user.token
-    console.log(id)
-    console.log(token)
-    try {
+        try {
    const response = await axios.put(
         `https://jobee-5pfw.onrender.com/api/student/${id}`,
-     all,{
+        formData,{
         headers:{
             Authorization:`Bearer ${token}`
         }
      }
     );
     console(response.data)
+    } catch (error) {
+    throw new Error(error.message);
+    }
+}
+);
+export const getUser = createAsyncThunk(
+"user/getUser",
+async ({id},{getState}) => {
+    const token=getState().user.token
+    try {
+   const response = await axios.get(
+        `https://jobee-5pfw.onrender.com/api/student/${id}`,{
+        headers:{
+            Authorization:`Bearer ${token}`
+        }
+     }
+    );
+    return response.data
     } catch (error) {
     throw new Error(error.message);
     }
@@ -128,7 +145,6 @@ logOut:(state)=>{
     state.isLogined=false
     state.rule=null
     state.token=null
-    location.replace('/')
 },
 
     },
@@ -144,11 +160,14 @@ logOut:(state)=>{
         state.token=action.payload.token
         state.error=false
         state.id=action.payload.studentId
+        state.rule='student'
+
 location.replace('/')
         })
         .addCase(sendData.rejected, (state) => {
             state.loading=false
         state.error = true;
+        console.log('no')
         })
         .addCase(signInstructor.pending, (state) => {
             state.loading=true
@@ -208,6 +227,20 @@ location.replace('/')
         })
         .addCase(getTracks.rejected, (state) => {
             state.loading=false
+        })
+        .addCase(getUser.pending, (state) => {
+            state.loading=true
+        })
+        .addCase(getUser.fulfilled, (state, action) => {
+            state.loading=false
+            state.userData=action.payload.student
+            // state.appliedStudent=action.payload
+        state.error=false
+        })
+        .addCase(getUser.rejected, (state) => {
+            state.loading=false
+            state.appliedStudent=[]
+
         })
     
 }

@@ -60,12 +60,12 @@ throw new Error(error.message)
     }
 );
 export const updatePost=createAsyncThunk('community/updatePost',
-    async(data,{getState})=>{
+    async(formData,{getState})=>{
         const token=getState().user.token
         const id=getState().community.post._id
         try{
             const response=await axios.put(`https://jobee-5pfw.onrender.com/api/posts/update/${id}`,
-                data,
+                formData,
                 {
                 headers:{
                     Authorization:`Bearer ${token}`
@@ -80,11 +80,11 @@ throw new Error(error.message)
     }
 );
 export const createPost=createAsyncThunk('community/createPost',
-    async(data,{getState})=>{
+    async(formData,{getState})=>{
         const token=getState().user.token
         try{
             const response=await axios.post('https://jobee-5pfw.onrender.com/api/posts/create',
-                data,
+                formData,
                 {
                 headers:{
                     Authorization:`Bearer ${token}`

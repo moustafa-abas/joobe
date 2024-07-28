@@ -7,7 +7,7 @@ import photo from'../../images/Group 64.jpg'
 import edit from'../../images/Group.svg'
 import cvIcon from'../../images/folder-add.svg'
 import cvIcon2 from'../../images/PDF_file_icon 1.png'
-import { editData } from '../store/userSlice';
+import { editData, } from '../store/userSlice';
 const CompleteEdit = () => {
     const userData=useSelector((state)=>state.user.userData)
     console.log(userData.cv)
@@ -23,7 +23,7 @@ const dispatch=useDispatch()
         console.error('حدث خطأ أثناء جلب البيانات:', error);
         });
     }, []);
-    const { register, handleSubmit, formState: { errors },watch }  = useForm({
+    const { register, handleSubmit, formState: { errors }}  = useForm({
         defaultValues:{
             militaryStatus:userData.militaryStatus,
             about:userData.about,
@@ -37,14 +37,24 @@ const dispatch=useDispatch()
 
     const onSubmit = (data) => {
         // const skills=data.skills.split(' ')
-        const firstData=JSON.parse(localStorage.getItem('edit'))
-const skills=data.skills.split(' ')
+        const user=JSON.parse(localStorage.getItem('edit'))
+// const skills=data.skills.split(' ')
 
-        const all ={...firstData , ...data,skills}
-        dispatch(editData(all))
+        // const all ={...firstData , ...data,skills}
+        // dispatch(editData(all))
         // const all={...user,...data,skills, cv}
-        // dispatch(sendData(all))
-        };
+        let formData = new FormData();
+        formData.append("username", user.username);
+        formData.append("password", user.password);
+        formData.append("age", user.age);
+        formData.append("experience", user.experience);
+        formData.append("track", user.track);
+        formData.append("tracklevel", user.tracklevel);
+        formData.append("profileImage", data.profileImage[0]);
+        formData.append("militaryStatus", data.militaryStatus);
+        formData.append("about", data.about);
+        formData.append("cv", data.cv[0]);
+        dispatch(editData(formData))}
         const handleFileChange = (e) => {
             setSrc(URL.createObjectURL(e.target.files[0]))
             setSelectedPhoto(JSON.stringify(e.target.files[0]));
@@ -124,7 +134,7 @@ onChange={(e)=>setCv(e.target.files[0])}
             </label>
         </div>
 <button type='submit' className='w-100 my-5 py-4' >Save</button>
-<button type='button' className='w-100 my-5 py-4'onClick={()=>location.replace('/profile')} >Back</button>
+<button type='button' className='button w-100 my-5 py-4'onClick={()=>location.replace('/profile')} >Back</button>
 </form>
     </div>
   )

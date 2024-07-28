@@ -10,7 +10,7 @@ const EndInstructor = () => {
   const {register,handleSubmit,formState:{errors}}=useForm({
 
   })
-  onsubmit=(data)=>{
+ const onsubmit=(data)=>{
     const all={...user,...data}
 dispatch(signInstructor(all))
   }
@@ -21,6 +21,19 @@ dispatch(signInstructor(all))
 <form action="" className='form mx-auto' onSubmit={handleSubmit(onsubmit)}>
 <h2 className='text-center fs-2 mt-2 fw-bold'>Instructor Data</h2>
 <p className='text-center fw-light fs-5'>Please enter this following data</p>
+<div className='inputGroup d-flex position-relative py-3 px-3 align-items-center mt-4 gap-3'>
+<input  className='border-0 '
+type="email"
+id='email'
+placeholder='Email '
+name='email'
+{...register('email', { required: '* Email is required',pattern: { value:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, message: 'Invalid email address' },
+
+})}
+/>
+<label htmlFor='email' className='position-absolute fw-light top-0 px-2'>Email</label>
+</div>
+<p className='error mt-2'>{errors.email?.message}</p>
 
     <div className="inputGroup d-flex position-relative py-3 px-3 align-items-center mt-4 gap-3">
     <input type="email" id='faceLink'

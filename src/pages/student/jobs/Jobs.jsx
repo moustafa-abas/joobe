@@ -19,7 +19,7 @@ const jobs = useSelector((state) => state.jobs.jobs.data);
 var someJobs = null;
 {
 filter === null
-    ? (someJobs = jobs.slice(4, 12))
+    ? (someJobs = jobs.slice(0,8))
     : filter === "Remotely"
     ? (someJobs = jobs.filter((one) => one.type.includes(filter)))
     : filter === "On-Site"

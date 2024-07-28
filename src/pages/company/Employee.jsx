@@ -18,9 +18,8 @@ register,
 handleSubmit,
 formState: { errors },
 } = useForm({});
-const onsubmit = (data) => {
-    console.log(data)
-dispatch(createJob(data));
+const onsubmit = async(data) => {
+await dispatch(createJob(data))
 };
 
 return (
@@ -114,7 +113,7 @@ return (
             <input
                 type="number"
                 className="border-0 "
-                placeholder="Salary / period"
+                placeholder="Salary / month"
                 name="Salary"
                 id="Salary"
                 {...register("salary", {

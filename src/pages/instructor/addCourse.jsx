@@ -4,29 +4,31 @@ import cvIcon from'../../images/folder-add.svg'
 import cvIcon2 from'../../images/PDF_file_icon 1.png'
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
+
 const addCourse = () => {
   const [cv, setCv] = useState()
-  const tracks=useSelector((state)=>state.user.tracks[0].tracks)
+  const tracks=useSelector((state)=>state.user.tracks)
 const { register, handleSubmit, formState: { errors },watch }  = useForm({
   defaultValues:{
     CourseName:'',
-    Language:'',
+    will_learn:'',
     Description:'',
   experience:null,
   track:'',
-  tracklevel:''
+  level:''
 }
 });
 const onSubmit = (data) => {
       console.log(data);
 };
 
-  return (
-    <div className='addcourse'>
-      <Header/>
-      <form className=' mx-auto text-center  mt-5' onSubmit={ handleSubmit(onSubmit)} noValidate>
 
-<div className='inputGroup d-flex position-relative py-3 px-3 align-items-center mt-4 gap-3'>
+  return (<>
+      <Header/>
+    <div className='addcourse Container'>
+      <form className=' w-100 d-flex  flex-wrap mt-5 gap-5' onSubmit={ handleSubmit(onSubmit)} noValidate>
+
+<div className='inputGroup   d-flex position-relative py-3 px-3 align-items-center  '>
     <input type="text" 
     className='border-0 '
     placeholder='Course Name'
@@ -39,21 +41,21 @@ const onSubmit = (data) => {
 </div>
 <p className='error mt-2 text-start'>{errors.CourseName?.message}</p>
 
-<div className='inputGroup d-flex position-relative py-3 px-3 align-items-center mt-4 gap-3'>
+<div className='inputGroup    d-flex position-relative py-3 px-3 align-items-center '>
     <input type="text" 
     className='border-0 '
-    placeholder='Language'
-    name='Language'
-    id='Language'
-    {...register('Language',
-    { required: '* Language is required'})}
+    placeholder='what you will learn'
+    name='learn'
+    id='learn'
+    {...register('will_learn',
+    { required: '* this field is required'})}
 
     />
-    <label htmlFor='Language' className='position-absolute fw-light top-0 px-2'>Language</label>
+    <label htmlFor='learn' className='position-absolute fw-light top-0 px-2'>what you will learn</label>
 </div>
-<p className='error mt-2 text-start'>{errors.Language?.message}</p>
+<p className='error mt-2 text-start'>{errors.will_learn?.message}</p>
 
-<div className='inputGroup d-flex position-relative py-3 px-3 align-items-center mt-4 gap-3'>
+<div className='inputGroup   d-flex position-relative py-3 px-3 align-items-center '>
     <input type="text" 
     className='border-0 '
     placeholder='Description'
@@ -66,7 +68,7 @@ const onSubmit = (data) => {
 </div>
 <p className='error mt-2 text-start'>{errors.Description?.message}</p>
 
-<div className='inputGroup d-flex position-relative py-3 px-3 align-items-center mt-4 gap-3'>
+<div className='inputGroup   d-flex position-relative py-3 px-3 align-items-center '>
 <select name="track" id="track"      
 {...register('track',
 {required:' * select course track'})}       
@@ -80,10 +82,10 @@ const onSubmit = (data) => {
 </div>
 <p className='error mt-2 text-start'>{errors.track?.message}</p>
 
-<div className='inputGroup d-flex position-relative py-3 px-3 align-items-center mt-4 gap-3'>
+<div className='inputGroup   d-flex position-relative py-3 px-3 align-items-center '>
 <select name="tracklevel" id="tracklevel"
 
-{...register('tracklevel',{required:' * select course track level'})}
+{...register('level',{required:' * select course track level'})}
 disabled={!watch('track')}        
 >
 <option value="" selected hidden disabled>Track level</option>
@@ -93,8 +95,8 @@ disabled={!watch('track')}
 </select>
     <label htmlFor='tracklevel' className='position-absolute fw-light top-0 px-2'>Track level</label>
 </div>
-<p className='error mt-2 text-start'>{errors.tracklevel?.message}</p>
-<div className='inputGroup d-flex position-relative py-3 px-3 align-items-center mt-4 gap-3'>
+<p className='error mt-2 text-start'>{errors.level?.message}</p>
+<div className='inputGroup   d-flex position-relative py-3 px-3 align-items-center '>
     <input type="number" 
     className='border-0 '
     placeholder='Cost'
@@ -110,10 +112,11 @@ disabled={!watch('track')}
 </div>
 <p className='error mt-2 text-start'>{errors.Cost?.message}</p>
 
-<div className={`${cv? "border-0":null} my-5 py-4 cv d-flex justify-content-center `}>
+<div className={`${cv? "border-0":null}  py-4  mx-auto   cv d-flex justify-content-center `}>
     <input type="file" 
     id='cv'
     name='cv'
+    multiple
     {...register('cv')}
 onChange={(e)=>setCv(e.target.files[0])}
     />
@@ -126,13 +129,15 @@ onChange={(e)=>setCv(e.target.files[0])}
        :
        <>
        <img src={cvIcon} alt="" /> 
-       Upload course videos       </>
+       Upload course Cover      </>
        }
             </label>
         </div>
-<button type='submit' className='w-100 my-5 py-4' >Upload</button>
+<button type='submit' className='w-50 my-5 mx-auto py-4' >Upload</button>
 </form>
+
     </div>
+    </>
   )
 }
 

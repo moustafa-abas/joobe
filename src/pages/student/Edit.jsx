@@ -151,7 +151,7 @@ disabled={!watch('track')}
 <p className='error mt-2 text-start'>{errors.tracklevel?.message}</p>
 
 <button type='submit' className='w-100 my-5 py-4' >Next Step</button>
-<button type='button' className='w-100 my-5 py-4'onClick={()=>location.replace('/profile')} >Back</button>
+<button type='button'  className='button w-100 my-5 py-4'onClick={()=>location.replace('/profile')} >Back</button>
 </form>
     </div>
   )

@@ -1,12 +1,11 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBarsStaggered } from '@fortawesome/free-solid-svg-icons'
+import { faArrowRightFromBracket, faBarsStaggered } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {  NavLink, useLocation } from 'react-router-dom'
 import Logo from '../logo'
 import x from'../images/x.svg'
 import search from'../images/search.svg'
-import bill from'../images/bill.svg'
 import profile from'../images/profile.svg'
 import { setAlert } from '../pages/store/CommunitySlice'
 const Header = () => {
@@ -49,8 +48,7 @@ return (
         <li className='mx-4'><NavLink className={ location.pathname.includes('/addCourses') ? 'active' : ''}   to={"/courses/addCourses"}>Add Course</NavLink></li>  
         </>:<>
         <li className='mx-4'><NavLink className={ location.pathname.includes('/CompanyJobs') ? 'active' : ''}   to={"/CompanyJobs"}>Jops</NavLink></li>  
-        <li className='mx-4'><NavLink className={ location.pathname.includes('Applicants') ? 'active' : ''} to={'/m'}  >Applicants</NavLink></li>  
-        <li className='mx-4'><NavLink className={ location.pathname.includes('/Profile') ? 'active' : ''} to={'/n'} >Profile</NavLink></li>  
+        <li className='mx-3'><NavLink className={ location.pathname.includes('/employee') ? 'active' : ''} to={'/employee'} >Employee</NavLink></li>  
         </>
 }
         </>
@@ -80,8 +78,7 @@ return (
         </>:
         <>
         <li className='mx-3'><NavLink className={ location.pathname.includes('/CompanyJobs') ? 'active' : ''}   to={"/CompanyJobs"}>Jobs</NavLink></li>  
-        <li className='mx-3'><NavLink className={ location.pathname.includes('Applicants') ? 'active' : ''} to={'/m'}  >Applicants</NavLink></li>  
-        <li className='mx-3'><NavLink className={ location.pathname.includes('/Profile') ? 'active' : ''} to={'/n'} >Profile</NavLink></li>  
+        <li className='mx-3'><NavLink className={ location.pathname.includes('/employee') ? 'active' : ''} to={'/employee'} >Employee</NavLink></li>  
         </>
 }
 </>:null
@@ -91,13 +88,16 @@ return (
 }
 
 {isLogined?
-<div className='d-flex '>
-<a href="" >
-        <img src={bill} alt="" className='icon ms-3'/> 
-</a>
+<div className='d-flex align-items-center '>
+
         <a href="/profile" >
         <img src={profile} alt="" className='icon ms-3' />
         </a>
+        {location.pathname.includes('profile')?
+        <FontAwesomeIcon icon={faArrowRightFromBracket} className='icon ms-5 fs-3  text-primary ' onClick={()=>{
+                dispatch(setAlert('log out'))
+        }}/>:null
+}
         </div>
         :
         <buttons className='d-flex ms-md-5 ms-2 justify-content-between gap-4'>

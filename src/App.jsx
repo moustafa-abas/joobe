@@ -33,6 +33,9 @@ const Edit = lazy(()=>import('./pages/student/Edit'))
 const completeEdit = lazy(()=>import('./pages/student/CompleteEdit'))
 const CompanyJobs = lazy(()=>import('./pages/company/CompanyJobs'))
 const employee = lazy(()=>import('./pages/company/Employee'))
+const Applicants = lazy(()=>import('./pages/company/Applicants'))
+const Applicant = lazy(()=>import('./pages/company/Applicant'))
+const test = lazy(()=>import('./pages/registration/test'))
 const App=()=> {
   return (
     <Suspense fallback={
@@ -61,7 +64,7 @@ const App=()=> {
         <Route path='/courses/course_details' Component={Course_Details}/>
         <Route path='/courses/enrolled' Component={Course}/>
         <Route path='/courses/addCourses' Component={addCourse}/>
-        <Route path='/courses/editCourses' Component={editCourse}/>
+        <Route path='/courses/editCourse ' Component={editCourse}/>
 
         <Route path='/quiz/home' Component={Quiz}/>
         <Route path='/quiz/daily-tasks' Component={Tasks}/>
@@ -75,6 +78,9 @@ const App=()=> {
         <Route path='/payment' Component={Payment}/>
         <Route path='/CompanyJobs' Component={CompanyJobs}/>
         <Route path='/employee' Component={employee}/>
+        <Route path='/test' Component={test}/>
+        <Route path='/Applicants' Component={Applicants}/>
+        <Route path='/Applicant' Component={Applicant}/>
       </Routes>
     </Router>
     </Suspense>

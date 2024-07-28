@@ -1,13 +1,18 @@
 import { useDispatch, useSelector } from "react-redux";
-import { getJob } from "../pages/store/JobsSlice";
+import { bookMarkJob,  getJob } from "../pages/store/JobsSlice";
 import { setAlert } from "../pages/store/CommunitySlice";
 import bookMark from "../images/majesticons_bookmark-line.svg";
+import savedJobs from "../images/saved job.svg";
 import active from "../images/active.svg";
 import location from "../images/job-location.svg";
-const Job = (job) => {
+import { getUser } from "../pages/store/userSlice";
+const Job = ({job , saved}) => {
 const dispatch = useDispatch();
 const isLogined = useSelector((state) => state.user.isLogined);
-const jobData = job.job;
+const id = useSelector((state) => state.user.userData?._id);
+const isSaved=saved
+const jobData = job;
+console.log(jobData)
 return (
 <div className="jobComponent">
     <div className="job py-4 mb-4 d-flex flex-column flex-md-row position-relative">
@@ -17,7 +22,8 @@ return (
             src={jobData.companyId?.profileImage}
             alt=""
             width={70}
-            className="rounded-circle"
+            height={70}
+            className="rounded-circle "
         />
         <img
             src={active}
@@ -35,16 +41,19 @@ return (
         </div>
     </div>
     <div className="right d-flex flex-column text-center  align-items-center">
-        <img src={bookMark} alt="" className="position-absolute end-0 " />
+        <img src={isSaved? savedJobs:bookMark} alt="" className={` position-absolute end-0 `} onClick={async ()=>{await dispatch(bookMarkJob({id:jobData._id}))
+    dispatch(getUser({id}))
+    }} />
         <button
         className="py-3"
-        onClick={() => {
-            isLogined
-            ? dispatch(getJob({ id: jobData._id }))
-            : dispatch(setAlert("not logined"));
-        }}
+        onClick={async() => {
+            if(isLogined){
+             await  dispatch(getJob({ id: jobData._id }))
+               location.replace('/jobs/applyJob')
+        }else{
+            dispatch(setAlert('not logined'))
+        }}}
         >
-        {" "}
         Apply Now
         </button>
         <p>4 weeks ago • Over 200 applicants . 9 connections</p>

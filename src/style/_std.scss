@@ -79,7 +79,7 @@ img{
 
 @keyframes slider {
     0%{
-    background:var(--slider-1)  no-repeat center;
+    background:var(--slider-1)  no-repeat  center;
     }
     25%{
         background: var(--slider-2)  no-repeat center;
@@ -95,7 +95,6 @@ img{
         }
     }
 .slider{
-    
     background-size: cover;
         border-radius: 8px;
         animation: slider 15s ease-in-out infinite;
@@ -307,6 +306,9 @@ ul{
     }
 //courses-------------------------------------------------------------------------------------------------------
 .courses{
+       ::-webkit-scrollbar{
+        opacity: 0;
+                }
     h1{color: var(--Text-Color, #090F24);}
     .courses-group{
         
@@ -875,10 +877,7 @@ ul{
 width: 80%;
 border-bottom: 2px solid rgba(229, 231, 232, 0.70);
 li{
-    a{
-        color: var(--Text-Color) !important;
-    }
-
+cursor: pointer;
 @media ($max_mobile) {
     width: 40%;
     margin-bottom: 10px;
@@ -1045,7 +1044,12 @@ margin-left: -7%;
         margin-top: -5%;
         width: 200px;
         height: 200px;
-        img{
+        a{
+            right: -80px;
+        }
+        .img{
+width: 100%;
+height: 100%;
             border: 3px solid var(--White);
         }
         }

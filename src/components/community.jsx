@@ -1,6 +1,4 @@
-import profile from "../images/me.jpg";
 import points from "../images/3points.svg";
-import likes from "../images/likes.svg";
 import comment from "../images/comment.svg";
 import share from "../images/share.svg";
 import photoShare from "../images/heroicons_photo.svg";
@@ -16,7 +14,9 @@ const CommunityPart = () => {
 const dispatch = useDispatch();
 const alert = useSelector((state) => state.community.alert);
 const posts = useSelector((state) => state.community.posts?.data);
-const userId = useSelector((state) => state.user.userData) || ((state)=>state.user.id) 
+const profile = useSelector((state) => state.user.userData);
+const userId = useSelector((state) => state.user.userData._id) || ((state)=>state.user._id)  
+console.log(profile)
 useEffect(() => {
 dispatch(getPosts());
 }, []);
@@ -31,7 +31,7 @@ return (
 <div className="publish  p-1 overflow-y-scroll  ">
     <div className="head">
     <div className="d-flex align-items-center gap-3 mb-3 ms-3">
-        <img src={profile} alt="" className="rounded-circle" width={50} />
+        <img src={profile.profileImage} alt="" className="rounded-circle" width={50} height={50} />
         <h5
         className="text-secondary "
         onClick={() => dispatch(setAlert("create post"))}
@@ -57,7 +57,7 @@ return (
     </ul>
     </div>
     {posts?.map((post) => (
-    <div className="post py-2 px-3" key={post._id}>
+    <div className="post py-4 px-3" key={post._id}>
         <div className="info d-flex position-relative">
         <img
             src={post.studentId?.profileImage}
@@ -68,7 +68,7 @@ return (
             <h5>{post.studentId?.username}</h5>
             <h6>1 h</h6>
         </div>
-        {post.studentId._id === userId ? (
+        {post.studentId?._id === userId ? (
             <img
             src={points}
             alt=""
@@ -83,7 +83,7 @@ return (
         </div>
         <div className="content">
         <h2 className="my-3 fs-5 fw-light">{post.content}</h2>
-        {post.img ? <img src={post.img} alt="" /> : null}
+        {post.img ? <img src={post.img} alt="" width={100} height={300} /> : null}
         </div>
         <div className="tools d-flex justify-content-between mt-3">
         <div

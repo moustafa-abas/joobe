@@ -25,9 +25,18 @@ const dispatch=useDispatch()
         setSelectedPhoto(JSON.stringify(e.target.files[0]));
     };
     const onSubmit = (data) => {
+        let formData = new FormData();
+        formData.append("username", user.username);
+        formData.append("email", user.email);
+        formData.append("password", user.password);
+        formData.append("confirmPassword", user.confirmPassword);
+        formData.append("profileImage", data.profileImage[0]);
+        formData.append("name", data.name);
+        formData.append("location", data.location);
+        formData.append("about", data.about);
 
-        const all={...user,...data}
-dispatch(signCompany(all))
+        // const all={...user,...data}
+dispatch(signCompany(formData))
     };
 return (
 <div className='company Container'>

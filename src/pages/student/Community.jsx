@@ -71,7 +71,7 @@ dispatch(getJobs())
             jobs?.map((job)=>(
 
           <div className="job  d-flex " key={job._id}>
-            <img src={job.companyId?.profileImage} alt="" width={70}  className="rounded-circle"/>
+            <img src={job.companyId?.profileImage} alt="" width={80} height={80}  className="rounded-circle"/>
             <div className="info ms-3 mt-3 ">
               <h2>{job.title}</h2>
               <h3>{job.companyId?.username}</h3>

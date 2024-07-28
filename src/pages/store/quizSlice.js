@@ -72,8 +72,8 @@ extraReducers:(builder)=>{
         state.error=false
         state.loading=false
         location.replace('/quiz/result')
-        state.score=state.score + action.payload.data.score
-state.currentQuiz=state.currentQuiz +1
+        state.score+= action.payload.data.score
+state.currentQuiz++
 state.currentQuestion=0
 state.answers=[]
 state.finishQuestion=false

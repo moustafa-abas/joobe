@@ -18,7 +18,6 @@ const Questions = () => {
   const error = useSelector((state) => state.quizzes.error);
   const alert = useSelector((state) => state.community.alert);
 
-  console.log(alert);
   if (error === true) {
     dispatch(setAlert("failed"));
   }

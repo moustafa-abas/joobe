@@ -21,18 +21,13 @@ const DailyTasks = () => {
   const currentQuestion = useSelector((state) => state.quizzes.currentQuestion);
   const currentQuiz = useSelector((state) => state.quizzes.currentQuiz);
   const length = quizzesData[currentQuiz]?.exam?.length || 1;
-  const value = quizzesData[currentQuiz]?.exam.map((question, index) => index)[
-    currentQuestion
-  ];
+  const value = quizzesData[currentQuiz]?.exam.map((question, index) => index)[ currentQuestion];
   const alert = useSelector((state) => state.community.alert);
   return (
     <div className="quiz position-relative">
       <>
         <Header />
-        {alert === "finish" || alert==='no data'? (
-          <Alert />
-        ) : (
-          <div className="daily-tasks Container mt-3">
+        {alert === "finish" || alert==='no data'? (<Alert />) : (<div className="daily-tasks Container mt-3">
             <header className=" position-relative">
               <div className="text text-center ">
                 <h1 className="fw-lighter mt-4">
@@ -49,37 +44,17 @@ const DailyTasks = () => {
               </div>
             </header>
             <div className="tasks">
-              <h2 className="fw-bold text-center mt-5">
-                You have {quizzesData.length} Tasks{" "}
-              </h2>
-              <p className="fs-3 fw-semibold mt-3 text-center">
-                {userData.track}
-              </p>
+              <h2 className="fw-bold text-center mt-5">You have {quizzesData.length} Tasks{" "}</h2>
+              <p className="fs-3 fw-semibold mt-3 text-center">{userData.track}</p>
             </div>
-            <div className="question">
-              {quizzesData?.map((quiz, index) => (
+            <div className="question">{quizzesData?.map((quiz, index) => (
                 <div className="task mt-4" key={quiz._id} value={quiz._id}>
                   <p className="fs-5 fw-light">{quiz.exam?.length} Question</p>
                   <div className="state p-3 align-items-center d-flex">
                     <h4 className="me-4 pe-5 w-25">{quiz.name} </h4>
-                    <progress
-                      value={
-                        currentQuiz === index
-                          ? value
-                          : currentQuiz > index
-                          ? length
-                          : 0
-                      }
-                      max={length}
-                      className="w-75 me-3"
-                    ></progress>
-                    {currentQuiz > index ? (
-                      <img src={trueIcon} alt="" width={30} />
-                    ) : currentQuiz === index ? (
-                      <img src={circle} alt="" width={30} />
-                    ) : (
-                      <img src={lock} alt="" width={30} />
-                    )}
+                    <progress value={currentQuiz === index? value: currentQuiz > index? length: 0}max={length}className="w-75 me-3"></progress>
+                    {currentQuiz > index ? (<img src={trueIcon} alt="" width={30} />
+                    ) : currentQuiz === index ? (<img src={circle} alt="" width={30} />) : (<img src={lock} alt="" width={30} />)}
                   </div>
                 </div>
               ))}

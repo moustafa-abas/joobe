@@ -22,8 +22,13 @@ const [apply, setApply] = useState(false);
 const [cv, setCv] = useState();
 const job = useSelector((state) => state.jobs.job);
 const onsubmit = (data) => {
-data.cv = JSON.stringify(data.cv[0]);
-dispatch(applyJob(data));
+    let formData = new FormData();
+formData.append('name',data.name)
+formData.append('track',data.track)
+formData.append('link',data.link)
+formData.append('phone',data.phone)
+formData.append('cv',data.cv[0])
+dispatch(applyJob(formData));
 };
 return (
 <div className="applyJob position-relative pb-5">

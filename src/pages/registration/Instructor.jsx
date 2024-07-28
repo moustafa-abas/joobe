@@ -5,8 +5,8 @@ import { firstDataInstructor, getTracks } from "../store/userSlice";
 import { useEffect } from "react";
  const Instructor = () => {
     const dispatch =useDispatch()
-    const tracks=useSelector((state)=>state.user.tracks[0].tracks)
-
+    const tracks=useSelector((state)=>state.user.tracks)
+console.log(tracks)
     const { register, handleSubmit, formState: { errors } }  = useForm({
         defaultValues:{
 

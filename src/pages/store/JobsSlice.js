@@ -5,8 +5,9 @@ const initialState={
     loading:false,
     jobs:[],
     job:[],
-    error:null,
-    alert:false
+    error:false,
+    companyJobs:[],
+    savedJobs:[]
 
 }
 export const getJobs=createAsyncThunk('jobs/getJobs',
@@ -27,23 +28,77 @@ throw new Error(error.message)
         }
     }
 );
-// export const deleteJob=createAsyncThunk('jobs/deleteJob',
-//     async(id,{getState})=>{
-//         const token=getState().user.token
-//         try{
-//             const response=await axios.delete(`https://jobee-5pfw.onrender.com/api/jobs/${id}`,{
-//                 headers:{
-//                     Authorization:`Bearer ${token}`
-//                 }
-//             }
-//             )
-//             return response.data;
-//         }
-//         catch(error){
-// throw new Error(error.message)
-//         }
-//     }
-// );
+export const getCompanyJobs=createAsyncThunk('jobs/getCompanyJobs',
+    async(_,{getState})=>{
+        const token=getState().user.token
+        try{
+            const response=await axios.get('https://jobee-5pfw.onrender.com/api/jobs/company/list',
+                {
+                headers:{
+                    Authorization:`Bearer ${token}`
+                }
+            }
+            )
+            return response.data
+        }
+        catch(error){
+throw new Error(error.message)
+        }
+    }
+);
+export const bookMarkJob=createAsyncThunk('jobs/bookMarkJob',
+    async({id},{getState})=>{
+        const token=getState().user.token
+        try{
+            const response=await axios.post(`https://jobee-5pfw.onrender.com/api/jobs/bookmark/${id}`,
+                {},{
+                headers:{
+                    Authorization:`Bearer ${token}`
+                }
+            }
+            )
+            return response.data;
+        }
+        catch(error){
+throw new Error(error.message)
+        }
+    }
+);
+export const replayForApply=createAsyncThunk('jobs/replayForApply',
+    async({id,answer},{getState})=>{
+        const token=getState().user.token
+        try{
+            const response=await axios.post(`https://jobee-5pfw.onrender.com/api/jobs/change-stauts/${id}`,
+                {answer},{
+                headers:{
+                    Authorization:`Bearer ${token}`
+                }
+            }
+            )
+            return response.data;
+        }
+        catch(error){
+throw new Error(error.message)
+        }
+    }
+);
+export const deleteJob=createAsyncThunk('jobs/deleteJob',
+    async({id},{getState})=>{
+        const token=getState().user.token
+        try{
+            const response=await axios.delete(`https://jobee-5pfw.onrender.com/api/jobs/${id}`,{
+                headers:{
+                    Authorization:`Bearer ${token}`
+                }
+            }
+            )
+            return response.data;
+        }
+        catch(error){
+throw new Error(error.message)
+        }
+    }
+);
 // export const updateJob=createAsyncThunk('jobs/updateJob',
 //     async(id,data,{getState})=>{
 //         const token=getState().user.token
@@ -99,13 +154,30 @@ throw new Error(error.message)
         }
     }
 );
+// export const getCompanyJob=createAsyncThunk('jobs/getCompanyJob',
+//     async({id},{getState})=>{
+//         const token=getState().user.token
+//         try{
+//             const response=await axios.get(`https://jobee-5pfw.onrender.com/api/jobs/${id}`,{
+//                 headers:{
+//                     Authorization:`Bearer ${token}`
+//                 }
+//             }
+//             )
+//             return response.data;
+//         }
+//         catch(error){
+// throw new Error(error.message)
+//         }
+//     }
+// );
 export const applyJob=createAsyncThunk('jobs/applyJob',
-    async(data,{getState})=>{
+    async(formData,{getState})=>{
         const token=getState().user.token
-        const id=getState().jobs.job._id
+        const id=getState().jobs.job?._id
         try{
             const response=await axios.post(`https://jobee-5pfw.onrender.com/api/jobs/apply/${id}`,
-                data,
+                formData,
                 {
                 headers:{
                     Authorization:`Bearer ${token}`
@@ -134,25 +206,26 @@ const jobsSlice =createSlice({
         .addCase(getJobs.fulfilled,(state,action)=>{
             state.loading=false
             state.jobs=action.payload
-            state.error=null
+            state.error=false
         })
-        .addCase(getJobs.rejected,(state,action)=>{
+        .addCase(getJobs.rejected,(state)=>{
             state.loading=false
             state.jobs=[]
-            state.error=action.payload
+            state.error=true
         })
-        // .addCase(deleteJob.pending,(state)=>{
-        //     state.loading=true
-        // })
-        // .addCase(deleteJob.fulfilled,(state,action)=>{
-        //     state.loading=false
-        //     state.jobs=action.payload
-        //     state.error=null
-        // })
-        // .addCase(deleteJob.rejected,(state,action)=>{
-        //     state.loading=false
-        //     state.error=action.payload
-        // })
+
+        .addCase(deleteJob.pending,(state)=>{
+            state.loading=true
+        })
+        .addCase(deleteJob.fulfilled,(state,action)=>{
+            state.loading=false
+            state.jobs=action.payload
+            state.error=false
+        })
+        .addCase(deleteJob.rejected,(state)=>{
+            state.loading=false
+            state.error=true
+        })
         // .addCase(updateJob.pending,(state)=>{
         //     state.loading=true
         // })
@@ -170,12 +243,14 @@ const jobsSlice =createSlice({
         })
         .addCase(createJob.fulfilled,(state)=>{
             state.loading=false
-            state.error=null
+            state.error=false
             state.alert=true
+            location.replace('/CompanyJobs')
         })
-        .addCase(createJob.rejected,(state,action)=>{
+        .addCase(createJob.rejected,(state)=>{
             state.loading=false
-            state.error=action.payload
+            state.error=true
+
         })
         .addCase(getJob.pending,(state)=>{
             state.loading=true
@@ -183,13 +258,48 @@ const jobsSlice =createSlice({
         .addCase(getJob.fulfilled,(state,action)=>{
             state.loading=false
             state.job=action.payload.data
-            state.error=null
             location.replace('/jobs/applyJob')
+            state.error=false
         })
-        .addCase(getJob.rejected,(state,action)=>{
+        .addCase(getJob.rejected,(state)=>{
             state.loading=false
             state.job=[]
-            state.error=action.payload
+            state.error=true
+        })
+        .addCase(getCompanyJobs.pending,(state)=>{
+            state.loading=true
+        })
+        .addCase(getCompanyJobs.fulfilled,(state,action)=>{
+            state.loading=false
+            state.companyJobs=action.payload.data
+            state.error=false
+        })
+        .addCase(getCompanyJobs.rejected,(state)=>{
+            state.loading=false
+            state.companyJobs=[]
+            state.error=false
+        })
+        .addCase(bookMarkJob.pending,(state)=>{
+            state.loading=true
+        })
+        .addCase(bookMarkJob.fulfilled,(state)=>{
+            state.loading=false
+            state.error=false
+        })
+        .addCase(bookMarkJob.rejected,(state)=>{
+            state.loading=false
+            state.error=true
+        })
+        .addCase(replayForApply.pending,(state)=>{
+            state.loading=true
+        })
+        .addCase(replayForApply.fulfilled,(state)=>{
+            state.loading=false
+            state.error=false
+        })
+        .addCase(replayForApply.rejected,(state)=>{
+            state.loading=false
+            state.error=true
         })
     }
 })
