@@ -16,12 +16,12 @@ const handelShow=()=>{
     }
     const { register, handleSubmit, formState: { errors },watch }  = useForm({
         defaultValues:{
-            username:userData.username,
+            username:userData?.username,
         password:null,
-        age:userData.age,
-        experience:userData.experience,
-        track:userData.track,
-        tracklevel:userData.tracklevel
+        age:userData?.age,
+        experience:userData?.experience,
+        track:userData?.track,
+        tracklevel:userData?.tracklevel
     }
     });
     const dispatch=useDispatch()
