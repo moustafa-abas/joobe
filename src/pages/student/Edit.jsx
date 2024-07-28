@@ -9,7 +9,7 @@ import { getTracks } from '../store/userSlice';
 
 const Edit = () => {
     const userData=useSelector((state)=>state.user.userData)
-    const tracks=useSelector((state)=>state.user.tracks[0].tracks)
+    const tracks=useSelector((state)=>state.user.tracks[0]?.tracks)
 const [showPass , setShowPass] = useState(false)
 const handelShow=()=>{
     setShowPass(!showPass)
